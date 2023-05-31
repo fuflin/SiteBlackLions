@@ -3,18 +3,25 @@
 {% block title %}Hello EventController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<h1 style="text-align: center;">Listes des events</h1><br><br>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Exos/SiteBlackLions/src/Controller/EventController.php'|file_link(0) }}">src/Controller/EventController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Exos/SiteBlackLions/templates/event/index.html.twig'|file_link(0) }}">templates/event/index.html.twig</a></code></li>
-    </ul>
-</div>
+<h4 style="text-align: center;"><a href="{{ path('add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4><br><br>
+
+{% for event in events %}
+<div class="row" style="display: flex; justify-content: center;">
+    <div class="col-sm-6" style=" width: 30%;">
+        <div class="card" style="width: 18rem; background-color: black;">
+            <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5>
+              <h6 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br> <strong>{{event.DateCreate | date('d/m/Y')}}</strong></h6>
+              <p class="card-text" style="text-align: center; color: white;">Nombre de participants:<br> <strong style="color: rgb(0, 153, 255);">{{event.NbMaxPers}} pers.</strong></p>
+              <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-primary" style="display: flex; justify-content: center;">Présentation</a>
+            </div>
+          </div><br>
+{% endfor %}
+
+
+
 {% endblock %}

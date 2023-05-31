@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EventController!{% endblock %}
+
+{% block body %}
+
+<h1>Register</h1>
+
+    {{ form_start(eventForm) }}
+
+        <div class="form">
+            <div style="width: 40%; margin: 20px;">
+                {{ form_row(eventForm.name) }}
+            </div>
+            <div style="width: 40%; margin: 20px;">
+                {{ form_row(eventForm.description) }}
+            </div>
+            <div style="width: 40%; margin: 20px;">
+                {{ form_row(eventForm.poster) }}
+            </div>
+            <div style="width: 40%; margin: 20px;">
+                {{ form_row(eventForm.nb_max_pers) }}
+            </div>
+            <div style="width: 40%; margin: 20px;">
+                {{ form_row(eventForm.date_create) }}
+            </div>
+            <div style="width: 40%; margin: 30px;">
+                {{form_row(eventForm.submit, {'label':'Soumettre'})}}
+            </div>
+        </div>
+
+    {{ form_end(eventForm) }}
+
+{% endblock %}
