@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class EventType extends AbstractType
 {
@@ -23,7 +24,7 @@ class EventType extends AbstractType
                 'placeholder' => "Nom de l'événement"],
                 'label' => 'Nom'])
 
-            ->add('description', TextType::class, ['attr'=> [
+            ->add('description', TextareaType::class, ['attr'=> [
                 'class' => 'form-control',
                 'placeholder' => "Saisissez la description"],
                 'label' => 'Description'])
