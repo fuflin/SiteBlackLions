@@ -1,4 +1,15 @@
-body {
-    background-color: lightgray;
+:root{
+    --primary: #fff;
+    --secondary: #a2a2a2;
+    --accent: #e2c78c;
 }
+
+body{
+    margin: 0;
+    background: #151517;
+    font-family:
+        'Poppins', sans-serif;
+}
+
+*{box-sizing: border-box;}
 
