@@ -54,7 +54,8 @@ class EventType extends AbstractType
 
             ->add('date_create', DateType::class, [
                 'widget' => 'single_text',
-                'attr'=> ['class' => 'form-control']])
+                'attr'=> ['class' => 'form-control'],
+                'label' => 'Saisissez la date'])
 
             // ->add('user')
             // ->add('participates')

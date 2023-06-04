@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Event{% endblock %}
+
+{% block body %}
+
+<h1>Register</h1>
+
+    {{ form_start(mediaForm) }}
+
+        <div class="form">
+            <div style="width: 40%; margin: 20px; color: white;">
+                {{ form_row(mediaForm.media) }}
+            </div>
+            <div style="width: 40%; margin: 30px;">
+                {{form_row(mediaForm.submit, {'label':'Soumettre'})}}
+            </div>
+        </div>
+
+    {{ form_end(mediaForm) }}
+
+{% endblock %}

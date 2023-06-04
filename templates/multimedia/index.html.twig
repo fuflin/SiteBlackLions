@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MultimediaController!{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center;">Listes des Medias</h1><br><br>
+
+<h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un Media</a></h4><br><br>
+
+<div class="row premierC" style="width: 80%; margin: auto; border-radius: 10px; border: 5px solid;">
+
+  {% for media in medias %}
+    <div class="col-sm-6" style=" width: 30%; margin: 20px 10px;">
+
+      <div class="card" style="width: 20rem; background-color: black;">
+
+            <div class="card-body">
+                <h4 class="card-title" style="text-align: center; color: white;"><br><strong style="color: red;"></strong></h4>
+                <img src="{{asset('uploads/images/' ~ media.media)}}" class="card-img-top">
+                {# <a href="{{ path('show_media', {'id': media.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a> #}
+            </div>
+
+            {# <div class="option" style="display: flex; justify-content: center;">
+              <a href="{{ path('edit_media', {'id': media.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
+              <a href="{{ path('delete_media', {'id': media.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
+            </div> #}
+      </div>
+
+    </div>
+  {% endfor %}
+
+</div><br>
+
+{% endblock %}
