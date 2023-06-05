@@ -16,9 +16,10 @@ class MultimediaController extends AbstractController
     #[Route('/multimedia', name: 'app_multimedia')]
     public function index(EntityManagerInterface $em): Response
     {
-        $medias = $em->getRepository(Multimedia::class)->findAll();
+        $videos = $em->getRepository(Multimedia::class)->getVideos();
+        
         return $this->render('multimedia/index.html.twig', [
-            'medias' => $medias,
+            'videos' => $videos,
         ]);
     }
 

@@ -7,29 +7,64 @@
 
 <h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un Media</a></h4><br><br>
 
-<div class="row premierC" style="width: 80%; margin: auto;">
+{# <div class="row" style="width: 90%; margin: auto;">
 
   {% for media in medias %}
-    <div class="col-sm-6" style=" width: 30%; margin: 20px 10px;">
+    <div class="col-sm-6" style=" width: 25%; margin-top: 10px; margin-bottom: 10px; margin: auto;">
 
-      <div class="card" style="width: 20rem; background-color: black;">
+      <div class="card" style="width: 100%; background-color: black;">
 
                 <h4 class="card-title" style="text-align: center; color: white;"><br><strong style="color: red;"></strong></h4>
                 <img src="{{asset('uploads/images/' ~ media.media)}}">
                 <video controls>
-                  <source src="{{asset('uploads/images/' ~ media.media)}}" type="video/mp4">
+                  <source src="{{asset('uploads/videos/' ~ media.media)}}" type="video/mp4">
                 </video>
-                {# <a href="{{ path('show_media', {'id': media.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a> #}
-
-            {# <div class="option" style="display: flex; justify-content: center;">
-              <a href="{{ path('edit_media', {'id': media.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
-              <a href="{{ path('delete_media', {'id': media.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
-            </div> #}
-      </div>
-
+                {{ dump(media) }}
     </div>
   {% endfor %}
 
-</div><br>
+</div><br> #}
+
+<!-- Carousel wrapper -->
+<div id="Carousel" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+
+  <!-- Inner -->
+  <div class="carousel-inner">
+
+    <!-- Single item -->
+    {% for video in videos %}
+    <div class="carousel-item">
+      <video class="img-fluid" autoplay loop muted>
+        <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
+      </video>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- Inner -->
+
+  <!-- Controls -->
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->
+
 
 {% endblock %}

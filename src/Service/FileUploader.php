@@ -10,7 +10,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class FileUploader
 {
     public function __construct(
-        private $targetDirectory,
+        private $imagesDirectory,
+        private $videosDirectory,
         private SluggerInterface $slugger,
     ) {
     }
@@ -22,7 +23,12 @@ class FileUploader
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $fileName);
+            if($file->guessExtension() == 'mp4')
+            {
+                $file->move($this->getVideosDirectory(), $fileName);
+            } else {
+                $file->move($this->getImagesDirectory(), $fileName);
+            }
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
@@ -30,10 +36,13 @@ class FileUploader
         return $fileName;
     }
 
-    public function getTargetDirectory(): string
+    public function getImagesDirectory(): string
     {
-        return $this->targetDirectory;
+        return $this->imagesDirectory;
+    }
+
+    public function getVideosDirectory(): string
+    {
+        return $this->videosDirectory;
     }
 }
-
-?>

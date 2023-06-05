@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\MultimediaRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -53,5 +52,10 @@ class Multimedia
         $this->event = $event;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getMedia();
     }
 }

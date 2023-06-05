@@ -39,6 +39,15 @@ class MultimediaRepository extends ServiceEntityRepository
         }
     }
 
+    public function getVideos()
+    {
+        return $this->createQueryBuilder('m')
+            ->where("m.media LIKE '%.mp4'")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Multimedia[] Returns an array of Multimedia objects
 //     */
