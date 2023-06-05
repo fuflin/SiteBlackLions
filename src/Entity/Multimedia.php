@@ -19,13 +19,8 @@ class Multimedia
     #[ORM\Column(type: Types::TEXT)]
     private ?string $media = null;
 
-    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'multimedias')]
-    private Collection $events;
-
-    public function __construct()
-    {
-        $this->events = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'multimedias')]
+    private ?Event $event = null;
 
     public function getId(): ?int
     {
@@ -47,26 +42,15 @@ class Multimedia
     /**
      * @return Collection<int, Event>
      */
-    public function getEvents(): Collection
+
+    public function getEvent(): ?Event
     {
-        return $this->events;
+        return $this->event;
     }
 
-    public function addEvent(Event $event): self
+    public function setEvent(?Event $event): self
     {
-        if (!$this->events->contains($event)) {
-            $this->events->add($event);
-            $event->addMultimedia($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): self
-    {
-        if ($this->events->removeElement($event)) {
-            $event->removeMultimedia($this);
-        }
+        $this->event = $event;
 
         return $this;
     }

@@ -31,8 +31,6 @@ class Event
     #[ORM\Column(type: Types::TEXT)]
     private ?string $poster = null;
 
-    #[ORM\ManyToMany(targetEntity: Multimedia::class, inversedBy: 'events')]
-    private Collection $multimedias;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?User $user = null;
@@ -40,10 +38,13 @@ class Event
     #[ORM\ManyToMany(targetEntity: Participate::class, mappedBy: 'events')]
     private Collection $participates;
 
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Multimedia::class)]
+    private Collection $multimedias;
+
     public function __construct()
     {
-        $this->multimedias = new ArrayCollection();
         $this->participates = new ArrayCollection();
+        $this->multimedias = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,29 +112,6 @@ class Event
         return $this;
     }
 
-    /**
-     * @return Collection<int, Multimedia>
-     */
-    public function getMultimedias(): Collection
-    {
-        return $this->multimedias;
-    }
-
-    public function addMultimedia(Multimedia $multimedia): self
-    {
-        if (!$this->multimedias->contains($multimedia)) {
-            $this->multimedias->add($multimedia);
-        }
-
-        return $this;
-    }
-
-    public function removeMultimedia(Multimedia $multimedia): self
-    {
-        $this->multimedias->removeElement($multimedia);
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -177,5 +155,35 @@ class Event
     public function __toString()
     {
         return $this->getName(). "<br>" .$this->getNbMaxPers();
+    }
+
+    /**
+     * @return Collection<int, Multimedia>
+     */
+    public function getMultimedias(): Collection
+    {
+        return $this->multimedias;
+    }
+
+    public function addMultimedia(Multimedia $multimedia): self
+    {
+        if (!$this->multimedias->contains($multimedia)) {
+            $this->multimedias->add($multimedia);
+            $multimedia->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMultimedia(Multimedia $multimedia): self
+    {
+        if ($this->multimedias->removeElement($multimedia)) {
+            // set the owning side to null (unless already changed)
+            if ($multimedia->getEvent() === $this) {
+                $multimedia->setEvent(null);
+            }
+        }
+
+        return $this;
     }
 }
