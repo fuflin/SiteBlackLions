@@ -17,7 +17,7 @@ class MultimediaType extends AbstractType
     {
         $builder
             ->add('media', FileType::class,  [
-                'attr'=> 
+                'attr'=>
                 [
                     'class' => 'form-control',
                     'placeholder' => "format accepter: .jpeg, .png, .jpg, .mp4"
@@ -29,18 +29,23 @@ class MultimediaType extends AbstractType
                 'required' => false,
                 'constraints' =>
                 [
-                    new File([
-                        'maxSize' => '900M',
-                        'mimeTypes' => 
+                    new All
+                    ([
+                        'constraints' =>
                         [
-                            'image/jpeg',
-                            'image/png',
-                            'image/jpg',
-                            'video/mp4'
+                            new File([
+                                'maxSize' => '900M',
+                                'mimeTypes' =>
+                                [
+                                    'image/jpeg',
+                                    'image/png',
+                                    'image/jpg',
+                                    'video/mp4'
+                                ]
+                            ])
                         ]
                     ])
                 ]
-                        
             ])
 
             // ->add('events')

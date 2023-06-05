@@ -28,30 +28,27 @@ class MultimediaController extends AbstractController
 
     public function add(EntityManagerInterface $em, Multimedia $media = null, FileUploader $fileUploader, Request $request): Response
     {
-        // if(!$media){
-
-        //     $media = new Multimedia();
-        // }
 
         $form = $this->createForm(MultimediaType::class, $media);
         $form->handleRequest($request);
-        
 
-        // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis)
+        // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis ici géré par symfony)
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
-            $medias = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
-                dd($medias);
 
-                $posterFile = $form->get('media')->getData(); // hydratation d'un fichier
+                $posterFiles = $form->get('media')->getData(); // hydratation d'un fichier
 
-                if ($posterFile) {
+                        // on boucle pour pouvoir ajouter plusieurs éléments en même temps
 
-                    $posterFileName = $fileUploader->upload($posterFile); // on utilise le service upload pour chargé le média afin de le stocké en base de donnée
-                    $media->setMedia($posterFileName);
-                }
+                        foreach($posterFiles as $posterFile) { // pour chaque élément dans le tableau $posterFiles
 
-            $em->persist($media); // équivalent du prepare dans PDO
+                            $media = new Multimedia(); // je crée un nouvel objet contenant mon image/vidéo
+
+                            $posterFileName = $fileUploader->upload($posterFile); // on utilise le service upload pour chargé le média afin de le stocké en base de donnée
+                            $media->setMedia($posterFileName);
+                            $em->persist($media); // on persiste à chaque élément
+                        }
+
+
             $em->flush(); // équivalent de insert into (execute) dans PDO
 
             return $this->redirectToRoute('app_multimedia');
