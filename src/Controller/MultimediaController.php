@@ -28,25 +28,26 @@ class MultimediaController extends AbstractController
 
     public function add(EntityManagerInterface $em, Multimedia $media = null, FileUploader $fileUploader, Request $request): Response
     {
-        if(!$media){
+        // if(!$media){
 
-            $media = new Multimedia();
-        }
+        //     $media = new Multimedia();
+        // }
 
         $form = $this->createForm(MultimediaType::class, $media);
         $form->handleRequest($request);
+        
 
         // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis)
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $media = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
-
+            dd($form);
+            $medias = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
+                dd($medias);
 
                 $posterFile = $form->get('media')->getData(); // hydratation d'un fichier
 
                 if ($posterFile) {
 
-                    $posterFileName = $fileUploader->upload($posterFile); // on utilise le service upload pour chargé l'image afin de la stocké en base de donnée
+                    $posterFileName = $fileUploader->upload($posterFile); // on utilise le service upload pour chargé le média afin de le stocké en base de donnée
                     $media->setMedia($posterFileName);
                 }
 

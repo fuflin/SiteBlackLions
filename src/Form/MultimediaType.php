@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Multimedia;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -16,24 +17,31 @@ class MultimediaType extends AbstractType
     {
         $builder
             ->add('media', FileType::class,  [
-                'attr'=> [
+                'attr'=> 
+                [
                     'class' => 'form-control',
-                    'placeholder' => "format accepter: .jpeg, .png, .jpg, .mp4"],
+                    'placeholder' => "format accepter: .jpeg, .png, .jpg, .mp4"
+                ],
+
                 'label' => 'Media à enregistrer',
+                'multiple' => true, // paramètre permettant à l'utilisateur de pouvoir ajouter plusieurs fichiers en même temps
                 'mapped' => false,
                 'required' => false,
-                // 'multiple' => true, // paramètre permettant à l'utilisateur de pouvoir ajouter plusieurs fichiers en même temps
-                'constraints' =>[
+                'constraints' =>
+                [
                     new File([
-                        'maxSize' => '10M',
-                        'mimeTypes' => [
+                        'maxSize' => '900M',
+                        'mimeTypes' => 
+                        [
                             'image/jpeg',
                             'image/png',
                             'image/jpg',
                             'video/mp4'
                         ]
                     ])
-                ]])
+                ]
+                        
+            ])
 
             // ->add('events')
 
