@@ -25,46 +25,40 @@
 
 </div><br> #}
 
-<!-- Carousel wrapper -->
-<div id="Carousel" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+<div class="container">
+  <h2 style="text-align: center; color: white;">Galerie Vidéo</h2><br>
+    <div id="MyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-  <!-- Inner -->
-  <div class="carousel-inner">
-
-    <!-- Single item -->
+      <div class="carousel-inner">
     {% for video in videos %}
-    <div class="carousel-item">
-      <video class="img-fluid" autoplay loop muted>
-        <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
-      </video>
-    </div>
+
+        <div class="carousel-item active">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
+          </video>
+        </div>
+        {% else %}
+        <div class="carousel-item">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
+          </video>
+        </div>
+      </div>
     {% endfor %}
 
-  </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#MyCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
 
-  <!-- Inner -->
+      <button class="carousel-control-next" type="button" data-bs-target="#MyCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
 
-  <!-- Controls -->
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-mdb-target="#carouselVideoExample"
-    data-mdb-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-mdb-target="#carouselVideoExample"
-    data-mdb-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-<!-- Carousel wrapper -->
+    </div>
+
+ </div>
 
 
 {% endblock %}
