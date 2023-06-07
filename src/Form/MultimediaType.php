@@ -34,7 +34,7 @@ class MultimediaType extends AbstractType
                         'constraints' =>
                         [
                             new File([
-                                'maxSize' => '900M',
+                                'maxSize' => '1024M',
                                 'mimeTypes' =>
                                 [
                                     'image/jpeg',
