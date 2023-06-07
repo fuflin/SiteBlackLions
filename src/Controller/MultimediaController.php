@@ -17,7 +17,7 @@ class MultimediaController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $videos = $em->getRepository(Multimedia::class)->getVideos();
-        
+
         return $this->render('multimedia/index.html.twig', [
             'videos' => $videos,
         ]);

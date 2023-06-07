@@ -1,1 +1,9 @@
-/*# sourceMappingURL=app.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(21, 21, 21);
+}/*# sourceMappingURL=app.css.map */

@@ -7,29 +7,12 @@
 
 <h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un Media</a></h4><br><br>
 
-{# <div class="row" style="width: 90%; margin: auto;">
-
-  {% for media in medias %}
-    <div class="col-sm-6" style=" width: 25%; margin-top: 10px; margin-bottom: 10px; margin: auto;">
-
-      <div class="card" style="width: 100%; background-color: black;">
-
-                <h4 class="card-title" style="text-align: center; color: white;"><br><strong style="color: red;"></strong></h4>
-                <img src="{{asset('uploads/images/' ~ media.media)}}">
-                <video controls>
-                  <source src="{{asset('uploads/videos/' ~ media.media)}}" type="video/mp4">
-                </video>
-                {{ dump(media) }}
-    </div>
-  {% endfor %}
-
-</div><br> #}
-
 <div class="container">
   <h2 style="text-align: center; color: white;">Galerie Vidéo</h2><br>
     <div id="MyCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <div class="carousel-inner">
+
     {% for video in videos %}
 
         <div class="carousel-item active">
