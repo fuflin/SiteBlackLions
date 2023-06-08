@@ -59,8 +59,16 @@
                             Mon Compte
                           </a>
                           <ul class="dropdown-menu dropdown-menu-dark">
+
+                            {% if app.user %}
+                            <li><a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a></li>
+
+                            {% else %}
+
                             <li><a class="dropdown-item" href="{{path('app_register')}}">S'inscrire</a></li>
                             <li><a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a></li>
+
+                            {% endif %}
                             <li>
                               <hr class="dropdown-divider">
                             </li>
