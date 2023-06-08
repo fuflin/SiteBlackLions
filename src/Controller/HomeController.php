@@ -15,4 +15,12 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+
+    // route pour la page airsoft, étant une page fixe sans interaction avec la bdd sa route a été mise ici
+    #[Route('/airsoft', name: 'app_airsoft')]
+    public function indexAirsoft(): Response
+    {
+        return $this->render('airsoft/index.html.twig', []);
+    }
 }
