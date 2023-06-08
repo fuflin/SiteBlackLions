@@ -131,8 +131,8 @@ class EventController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                if(!$user){ // si la personne n'est pas connecté, elle est renvoyé vers la page d'inscription
-                    return $this->redirectToRoute('app_register');
+                if(!$user){ // si la personne n'a pas de compte , elle est renvoyé vers la page d'inscription
+                    return $this->redirectToRoute('app_login');
                 }
 
                 $participate = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
@@ -141,7 +141,6 @@ class EventController extends AbstractController
                 $participate->addUser($user);
                 $participate->addEvent($event);
 
-                // dd($participate);
                 $em->persist($participate); // équivalent du prepare dans PDO
                 $em->flush(); // équivalent de insert into (execute) dans PDO
 
