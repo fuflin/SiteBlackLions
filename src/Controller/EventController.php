@@ -31,12 +31,9 @@ class EventController extends AbstractController
     //fonction pour ajouter un event
     #[Route('/event/add', name: 'add_event')]
 
-    public function add(EntityManagerInterface $em, Event $event = null, FileUploader $fileUploader, Request $request): Response
+    public function addEvent(EntityManagerInterface $em, Event $event = null, FileUploader $fileUploader, Request $request): Response
     {
-        if(!$event){
-
-            $event = new Event();
-        }
+        $event = new Event();
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -45,7 +42,6 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $event = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
-
 
                 $posterFile = $form->get('poster')->getData(); // hydratation d'un fichier
 
@@ -70,7 +66,7 @@ class EventController extends AbstractController
     //fonction pour modifier un event
     #[Route('/event/{id}/edit', name: 'edit_event')]
 
-    public function edit(EntityManagerInterface $em, Event $event = null, FileUploader $fileUploader, Request $request): Response
+    public function editEvent(EntityManagerInterface $em, Event $event = null, FileUploader $fileUploader, Request $request): Response
     {
 
         $form = $this->createForm(EventType::class, $event);
@@ -106,7 +102,7 @@ class EventController extends AbstractController
     // fonction pour supprimer un event
     #[Route('/event/{id}/delete', name: 'delete_event')]
 
-    public function delete(EntityManagerInterface $em, Event $event): Response
+    public function deleteEvent(EntityManagerInterface $em, Event $event): Response
     {
 
         $em->remove($event);
@@ -119,7 +115,7 @@ class EventController extends AbstractController
     // fonction pour afficher les détails d'un event + inscription à l'event en question
     #[Route('/event/{id}', name: 'show_event')]
 
-    public function show(EntityManagerInterface $em, Event $event, Request $request): Response
+    public function showEvent(EntityManagerInterface $em, Event $event, Request $request): Response
     {
 
         $user = $this->getUser(); //on récupère le User en session
