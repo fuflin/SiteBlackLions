@@ -6,29 +6,31 @@
 
 <h1>Register</h1>
 
-    {{ form_start(eventForm) }}
+    <div style="display: flex; justify-content: center;">
+        {{ form_start(eventForm, {'attr': {'style': 'width: 65%'} }) }}
 
-        <div class="form">
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(eventForm.name) }}
+            <div class="form">
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(eventForm.name) }}
+                </div>
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(eventForm.description) }}
+                </div>
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_widget(eventForm.poster) }}
+                </div>
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(eventForm.nb_max_pers) }}
+                </div>
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(eventForm.date_create) }}
+                </div>
+                <div style="width: 100%; margin: 30px; text-align: center;">
+                    {{form_row(eventForm.submit, {'label':'Soumettre'})}}
+                </div>
             </div>
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(eventForm.description) }}
-            </div>
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(eventForm.poster) }}
-            </div>
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(eventForm.nb_max_pers) }}
-            </div>
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(eventForm.date_create) }}
-            </div>
-            <div style="width: 40%; margin: 30px;">
-                {{form_row(eventForm.submit, {'label':'Soumettre'})}}
-            </div>
-        </div>
 
-    {{ form_end(eventForm) }}
+        {{ form_end(eventForm) }}
+    </div>
 
 {% endblock %}

@@ -6,17 +6,20 @@
 
 <h1 style="text-align: center; color: white;">Ajouter un/des media(s)</h1>
 
-    {{ form_start(mediaForm) }}
 
-        <div class="form">
-            <div style="width: 40%; margin: 20px; color: white;">
-                {{ form_row(mediaForm.media) }}
-            </div>
-            <div style="width: 40%; margin: 30px;">
-                {{form_row(mediaForm.submit, {'label':'Soumettre'})}}
-            </div>
-        </div>
+    <div style="display: flex; justify-content: center;">
+        {{ form_start(mediaForm, {'attr': {'style': 'width: 65%'} }) }}
 
-    {{ form_end(mediaForm) }}
+            <div class="form">
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(mediaForm.media) }}
+                </div>
+                <div style="width: 100%; margin: 30px; text-align: center;">
+                    {{form_row(mediaForm.submit, {'label':'Envoyer'})}}
+                </div>
+            </div>
+
+        {{ form_end(mediaForm) }}
+    </div>
 
 {% endblock %}

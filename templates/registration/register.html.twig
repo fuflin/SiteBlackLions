@@ -9,29 +9,32 @@
 
     <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
+
+<div style="display: flex; justify-content: center;">
+    {{ form_start(registrationForm, {'attr': {'style': 'width: 65%'} }) }}
 
         <div class="form">
-            <div style="width: 40%; margin: 20px; color: white;">
+            <div style="width: 100%; margin: 20px; color: white;">
                 {{ form_row(registrationForm.nickname) }}
             </div>
-            <div style="width: 40%; margin: 20px; color: white;">
+            <div style="width: 100%; margin: 20px; color: white;">
                 {{ form_row(registrationForm.email) }}
             </div>
-            <div style="width: 40%; margin: 20px; color: white;">
+            <div style="width: 100%; margin: 20px; color: white;">
                 {{ form_widget(registrationForm.plainPassword, {label: 'Password'}) }}
             </div>
-            <div style="width: 40%; margin: 20px; color: white;">
+            <div style="width: 100%; margin: 20px; color: white;">
                 {{ form_row(registrationForm.discord_nickname) }}
             </div>
-            <div style="width: 40%; margin: 20px; color: white;">
+            <div style="width: 100%; margin: 20px; color: white;">
                 {{ form_row(registrationForm.agreeTerms) }}
             </div>
-            <div style="width: 40%; margin: 30px;">
+            <div style="width: 100%; margin: 30px; text-align: center;">
                 {{form_row(registrationForm.submit, {'label':'Soumettre'})}}
             </div>
         </div>
 
     {{ form_end(registrationForm) }}
+</div>
 
 {% endblock %}
