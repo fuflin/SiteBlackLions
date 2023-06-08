@@ -19,11 +19,11 @@
     <div class="form">
         <div style="width: 40%; margin: 20px; color: white;">
             <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Entrez votre Pseudo" required autofocus>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Entrez votre Email" required autofocus>
         </div>
         <div style="width: 40%; margin: 20px; color: white;">
             <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Entrez votre adresse Email" required>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
         </div>
         <div style="width: 40%; margin: 20px;">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
