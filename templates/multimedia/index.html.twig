@@ -5,7 +5,11 @@
 {% block body %}
 <h1 style="text-align: center;">Listes des Medias</h1><br>
 
+{% if is_granted('ROLE_ADMIN') %}
+
 <h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un Media</a></h4><br>
+
+{% endif %}
 
 <div class="container">
 
@@ -70,7 +74,6 @@
           </figure>
         </div>
       </div>
-      {# {{ dump(image) }} #}
       {% endfor %}
 
       <button class="carousel-control-prev" type="button" data-bs-target="#MyCarouselImg" data-bs-slide="prev">

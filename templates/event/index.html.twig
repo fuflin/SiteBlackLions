@@ -6,21 +6,27 @@
 
 <h1 style="text-align: center;">Listes des events</h1><br><br>
 
-<h4 style="text-align: center;"><a href="{{ path('add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4><br><br>
+{% if is_granted('ROLE_ADMIN') %}
 
-<div class="row premierC" style="width: 80%; margin: auto;">
+<h4 style="text-align: center;"><a href="{{ path('add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4>
+
+{% endif %}
+
+<div class="row" style="width: 80%; margin: auto;">
 
   {% for event in events %}
-    <div class="col-sm-6" style=" width: 30%; margin: 20px 10px;">
+    <div class="col-sm-6" style=" width: 32%; margin: 50px 10px;">
 
-      <div class="card" style="width: 20rem; background-color: black;">
+      <div class="card" style="width: 25rem; background-color: black; border: solid rgb(51, 49, 49) 2px">
 
           <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top" style="height:300px;">
 
+          {% if is_granted('ROLE_ADMIN') %}
+
             <div class="card-body">
-                <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5>
-                <h6 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br><strong>{{event.DateCreate | date('d/m/Y')}}</strong></h6>
-                <p class="card-text" style="text-align: center; color: white;">Nombre de participants:<br><strong style="color: rgb(0, 153, 255);">{{event.NbMaxPers}} pers.</strong></p>
+                <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5><br>
+                <h5 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br><strong style="color: darkgreen;">{{event.DateCreate | date('d/m/Y')}}</strong></h5><br>
+                <h6 class="card-text" style="text-align: center; color: white;">Nombre de participants:<br><strong style="color: rgb(0, 153, 255);">{{event.NbMaxPers}} pers.</strong></h6><br>
                 <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a>
             </div>
 
@@ -28,6 +34,17 @@
               <a href="{{ path('edit_event', {'id': event.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
               <a href="{{ path('delete_event', {'id': event.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
             </div>
+
+          {% else %}
+
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5><br>
+              <h5 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br><strong style="color: darkgreen;">{{event.DateCreate | date('d/m/Y')}}</strong></h5><br>
+              <h6 class="card-text" style="text-align: center; color: white;">Nombre de participants:<br><strong style="color: rgb(0, 153, 255);">{{event.NbMaxPers}} pers.</strong></h6><br>
+              <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a>
+            </div>
+
+          {% endif %}
       </div>
 
     </div>
