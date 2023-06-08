@@ -66,7 +66,7 @@ class RegistrationFormType extends AbstractType
                 ])
 
                 ->add('submit', SubmitType::class, [
-                    'attr' => ['class' => 'btn btn-secondary']])
+                    'attr' => ['class' => 'btn btn-primary']])
 
                 ->add('agreeTerms', CheckboxType::class, [
                     'mapped' => false,
