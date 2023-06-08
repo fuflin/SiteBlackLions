@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Entity\Participate;
+use App\Form\ParticipateType;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -113,13 +116,41 @@ class EventController extends AbstractController
     }
 
 
-    // fonction pour afficher les détails d'un event
+    // fonction pour afficher les détails d'un event + inscription à l'event en question
     #[Route('/event/{id}', name: 'show_event')]
 
-    public function show(Event $event): Response
+    public function show(EntityManagerInterface $em, Event $event, Request $request): Response
     {
+
+        $user = $this->getUser(); //on récupère le User en session
+
+        $participate = new Participate();
+
+        $form = $this->createForm(ParticipateType::class, $participate);
+        $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                if(!$user){ // si la personne n'est pas connecté, elle est renvoyé vers la page d'inscription
+                    return $this->redirectToRoute('app_register');
+                }
+
+                $participate = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
+
+                $participate->setDateRegis(new \DateTime());
+                $participate->addUser($user);
+                $participate->addEvent($event);
+
+                // dd($participate);
+                $em->persist($participate); // équivalent du prepare dans PDO
+                $em->flush(); // équivalent de insert into (execute) dans PDO
+
+                return $this->redirectToRoute('app_event');
+            }
+
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
+           'Form' => $form->createView(),
         ]);
     }
 }
