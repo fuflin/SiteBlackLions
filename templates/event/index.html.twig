@@ -41,7 +41,8 @@
               <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5><br>
               <h5 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br><strong style="color: darkgreen;">{{event.DateCreate | date('d/m/Y')}}</strong></h5><br>
               <h6 class="card-text" style="text-align: center; color: white;">Nombre de participants:<br><strong style="color: rgb(0, 153, 255);">{{event.NbMaxPers}} pers.</strong></h6><br>
-              <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a>
+              <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">Présentation</a><br>
+              {% include "event/redirect.html.twig"%}
             </div>
 
           {% endif %}

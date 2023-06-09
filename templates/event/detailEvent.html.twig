@@ -28,13 +28,9 @@
     <p style="text-align: center; background-color: aliceblue; border-radius: 10px; font-size: 1.5em;  width: 40%; padding: 10px;">{{event.description}}</p>
 </div>
 
+{% include "event/redirect.html.twig"%}
 
-{{ form_start(Form) }}
-        <div style="width: 100%; margin: 30px; text-align: center;">
-            {{form_row(Form.submit, {'label':"S'inscrire à l'événement"})}}
-        </div>
-{{ form_end(Form) }}
-
+{# {{ dump(app.user) }} #}
 
 
 {% endblock %}

@@ -1,0 +1,15 @@
+{# {% if app.user.participates == true %}
+    {{ dump(app.user) }}
+{% endif %} #}
+
+<form action="{{path('regis_event',  {id: event.id})}}" style="display: flex; justify-content: center;">
+    <button type="submit" class="btn btn-primary">
+        S'inscrire à l'événement
+    </button>
+</form>
+{{ dump(participate) }}
+{# <form action="{{path('remove_regis_event',  {id: event.id, idParticipate: participate.id})}}" style="display: flex; justify-content: center;">
+    <button type="submit" class="btn btn-primary">
+        Se désinscrire de l'événement
+    </button>
+</form> #}

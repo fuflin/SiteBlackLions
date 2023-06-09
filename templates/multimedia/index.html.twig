@@ -7,7 +7,8 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 
-<h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un Media</a></h4><br>
+<h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary" style="width: 30%">Ajouter un
+    Media</a></h4><br>
 
 {% endif %}
 
@@ -15,79 +16,78 @@
 
   <div class="carouselVids">
 
-      <h2 style="text-align: center; color: white;">Galerie Vidéo</h2><br>
-      <div id="MyCarouselVids" class="carousel slide carousel-fade" data-bs-ride="carousel">
-
-        <div class="carousel-inner">
-
-        {% for video in videos %}
-
-          <div class="carousel-item active">
-            <video class="img-fluid" autoplay loop muted>
-              <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4"/>
-            </video>
-          </div>
-
-        {% else %}
-
-          <div class="carousel-item">
-            <video class="img-fluid" autoplay loop muted>
-              <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4"/>
-            </video>
-          </div>
-        </div>
-
-        {% endfor %}
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#MyCarouselVids" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#MyCarouselVids" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
-      </div>
-  </div><br>
-
-  <div class="carouselImgs">
-    <h2 style="text-align: center; color: white;">Galerie Photo</h2><br>
-    <div id="MyCarouselImg" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <h2 style="text-align: center; color: white;">Galerie Vidéo</h2><br>
+    <div id="MyCarouselVids" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
       <div class="carousel-inner">
 
-      {% for image in images %}
+        {% for video in videos %}
 
-        <div class="carousel-item active">
-          <figure width="80%">
-            <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
-          </figure>
+        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+          <video class="img-fluid" autoplay loop muted>
+            <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
+          </video>
         </div>
 
-      {% else %}
+        {% else %}
 
         <div class="carousel-item">
-          <figure width="80%">
-            <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
-          </figure>
+          <video class="img-fluid" autoplay loop muted>
+            <source src="{{ asset('uploads/videos/' ~ video.media)}}" type="video/mp4" />
+          </video>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#MyCarouselImg" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#MyCarouselVids" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
 
-      <button class="carousel-control-next" type="button" data-bs-target="#MyCarouselImg" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#MyCarouselVids" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
 
     </div>
+  </div><br>
+
+<div class="carouselImgs">
+  <h2 style="text-align: center; color: white;">Galerie Photo</h2><br>
+  <div id="MyCarouselImg" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+
+      {% for image in images %}
+
+      <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+        <figure width="80%">
+          <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
+        </figure>
+      </div>
+
+      {% else %}
+
+      <div class="carousel-item">
+        <figure width="80%">
+          <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
+        </figure>
+      </div>
+      {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#MyCarouselImg" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#MyCarouselImg" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
   </div>
+</div>
 
 </div>
 
