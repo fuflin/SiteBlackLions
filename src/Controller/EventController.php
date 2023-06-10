@@ -22,8 +22,12 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
+        $participates = $em->getRepository(Participate::class)->findAll();
+        // dd('hello');
+
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'participates' => $participates
         ]);
     }
 
@@ -158,13 +162,13 @@ class EventController extends AbstractController
 
         $user = $this->getUser(); //on récupère le User en session
 
-        if($user){
+        if($user && $event->getParticipates()->contains($participate)){
 
-            $em->remove($participate);
-            $em->flush(); // équivalent de insert into (execute) dans PDO
-
-            return $this->redirectToRoute('app_event');
+            $event->removeParticipate($participate);
         }
+
+        $em->flush();
+        return $this->redirectToRoute('app_event');
     }
 
 }

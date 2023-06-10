@@ -19,10 +19,10 @@ class Participate
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_regis = null;
 
-    #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'participates')]
+    #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'participates',  cascade: ['remove'])]
     private Collection $events;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participates')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participates',  cascade: ['remove'])]
     private Collection $users;
 
     public function __construct()
