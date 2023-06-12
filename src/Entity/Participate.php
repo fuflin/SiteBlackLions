@@ -19,17 +19,11 @@ class Participate
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_regis = null;
 
-    #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'participates',  cascade: ['remove'])]
-    private Collection $events;
+    #[ORM\ManyToOne(inversedBy: 'participates')]
+    private ?Event $event = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'participates',  cascade: ['remove'])]
-    private Collection $users;
-
-    public function __construct()
-    {
-        $this->events = new ArrayCollection();
-        $this->users = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'participates')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -48,51 +42,28 @@ class Participate
         return $this;
     }
 
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getEvents(): Collection
+    public function getEvent(): ?Event
     {
-        return $this->events;
+        return $this->event;
     }
 
-    public function addEvent(Event $event): self
+    public function setEvent(?Event $event): self
     {
-        if (!$this->events->contains($event)) {
-            $this->events->add($event);
-        }
+        $this->event = $event;
 
         return $this;
     }
 
-    public function removeEvent(Event $event): self
+    public function getUser(): ?User
     {
-        $this->events->removeElement($event);
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        $this->users->removeElement($user);
-
-        return $this;
-    }
 }

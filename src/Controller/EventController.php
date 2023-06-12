@@ -22,12 +22,10 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
-        $participates = $em->getRepository(Participate::class)->findAll();
-        // dd('hello');
+        // dd($events);
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
-            'participates' => $participates
         ]);
     }
 
@@ -122,11 +120,11 @@ class EventController extends AbstractController
     public function showEvent(Event $event): Response
     {
 
-        $participate = $event->getParticipates();
+        // $participate = $event->getParticipates();
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
-           'participate' => $participate
+        //    'participate' => $participate
         ]);
     }
 
@@ -144,13 +142,13 @@ class EventController extends AbstractController
         $participate = new Participate();
 
             $participate->setDateRegis(new \DateTime());
-            $participate->addUser($user);
-            $participate->addEvent($event);
+            $participate->setUser($user);
+            $participate->setEvent($event);
 
             $em->persist($participate); // équivalent du prepare dans PDO
             $em->flush(); // équivalent de insert into (execute) dans PDO
 
-            return $this->redirectToRoute('app_event');
+        return $this->redirectToRoute('app_event');
     }
 
     // fonction pour désinscrire à un événement
@@ -158,13 +156,14 @@ class EventController extends AbstractController
 
     public function removeRegisEvent(EntityManagerInterface $em, Event $event, $idParticipate)
     {
-        $participate = $em->getRepository(Participate::class)->find($idParticipate);
+
+        $participate = $em->getRepository(Participate::class)->find($idParticipate); //on cherche l'id de la participation
 
         $user = $this->getUser(); //on récupère le User en session
 
         if($user && $event->getParticipates()->contains($participate)){
 
-            $event->removeParticipate($participate);
+            $em->remove($participate);
         }
 
         $em->flush();

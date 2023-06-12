@@ -35,16 +35,16 @@ class Event
     #[ORM\ManyToOne(inversedBy: 'events')]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Participate::class, mappedBy: 'events')]
-    private Collection $participates;
-
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Multimedia::class)]
     private Collection $multimedias;
 
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class)]
+    private Collection $participates;
+    
     public function __construct()
     {
-        $this->participates = new ArrayCollection();
         $this->multimedias = new ArrayCollection();
+        $this->participates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,33 +125,6 @@ class Event
         return $this;
     }
 
-    /**
-     * @return Collection<int, Participate>
-     */
-    public function getParticipates(): Collection
-    {
-        return $this->participates;
-    }
-
-    public function addParticipate(Participate $participate): self
-    {
-        if (!$this->participates->contains($participate)) {
-            $this->participates->add($participate);
-            $participate->addEvent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParticipate(Participate $participate): self
-    {
-        if ($this->participates->removeElement($participate)) {
-            $participate->removeEvent($this);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getName(). "<br>" .$this->getNbMaxPers();
@@ -186,4 +159,36 @@ class Event
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Participate>
+     */
+    public function getParticipates(): Collection
+    {
+        return $this->participates;
+    }
+
+    public function addParticipate(Participate $participate): self
+    {
+        if (!$this->participates->contains($participate)) {
+            $this->participates->add($participate);
+            $participate->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Participate $participate): self
+    {
+        if ($this->participates->removeElement($participate)) {
+            // set the owning side to null (unless already changed)
+            if ($participate->getEvent() === $this) {
+                $participate->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }

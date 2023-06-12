@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Event::class)]
     private Collection $events;
 
-    #[ORM\ManyToMany(targetEntity: Participate::class, mappedBy: 'users')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class)]
     private Collection $participates;
 
     public function __construct()
@@ -217,7 +217,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->participates->contains($participate)) {
             $this->participates->add($participate);
-            $participate->addUser($this);
+            $participate->setUser($this);
         }
 
         return $this;
@@ -226,9 +226,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeParticipate(Participate $participate): self
     {
         if ($this->participates->removeElement($participate)) {
-            $participate->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($participate->getUser() === $this) {
+                $participate->setUser(null);
+            }
         }
 
         return $this;
     }
+
 }
