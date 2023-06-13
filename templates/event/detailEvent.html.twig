@@ -23,7 +23,7 @@
     <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Date de l'événement:<br> <strong>{{event.DateCreate | date('d/m/Y')}}</strong></h4>
 </div><br>
 <div style="display: flex; justify-content: center;">
-    <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Nombre de participants:<br> <strong>{{event.NbMaxPers}}pers.</strong></h4>
+    <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Nombre de participants:<br> <strong>{{event.participates|length}}/{{event.NbMaxPers}}pers.</strong></h4>
 </div><br><br>
 
 
