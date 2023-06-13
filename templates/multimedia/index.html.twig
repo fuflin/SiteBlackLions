@@ -61,7 +61,7 @@
       {% for image in images %}
 
       <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-        <figure width="80%">
+        <figure width="40%">
           <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
         </figure>
       </div>
@@ -69,7 +69,7 @@
       {% else %}
 
       <div class="carousel-item">
-        <figure width="80%">
+        <figure width="40%">
           <img src="{{ asset('uploads/images/' ~ image.media)}}" width="100%">
         </figure>
       </div>
