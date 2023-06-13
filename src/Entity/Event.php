@@ -38,9 +38,9 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Multimedia::class)]
     private Collection $multimedias;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class)]
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class, cascade: ["remove"])]
     private Collection $participates;
-    
+
     public function __construct()
     {
         $this->multimedias = new ArrayCollection();
