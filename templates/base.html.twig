@@ -1,168 +1,171 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Page générale{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            <script src="https://kit.fontawesome.com/9cf79281fe.js" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-        {% endblock %}
+  <head>
+      <meta charset="UTF-8">
+      <title>{% block title %}Page générale{% endblock %}</title>
+      <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+      {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+      {% endblock %}
+      {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        <script src="https://kit.fontawesome.com/9cf79281fe.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+      {% endblock %}
+  </head>
 
-    </head>
+  <body>
 
-    <body>
+    <header>
+          <nav class="navbar navbar-dark bg-dark fixed-top">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="{{path('app_home')}}">Association BlackLions</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                  <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu de Navigation</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{path('app_home')}}"><strong>Accueil</strong></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">L'Association</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{path('app_multimedia')}}">Galerie</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{path('app_event')}}">Evénements</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          L'airsoft
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                          <li><a class="dropdown-item" href="{{path('app_airsoft')}}">Qu'est-ce que c'est?</a></li>
+                          <li><a class="dropdown-item" href="#">Les règlementations</a></li>
+                          <li><a class="dropdown-item" href="#">Les règles de ce sport</a></li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="#">En savoir plus?</a></li>
+                        </ul>
+                      </li><br>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Mon Compte
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
 
-        <header>
-            <nav class="navbar navbar-dark bg-dark fixed-top">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="{{path('app_home')}}">Association BlackLions</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-                    <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu de Navigation</h5>
-                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="{{path('app_home')}}"><strong>Accueil</strong></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">L'Association</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_multimedia')}}">Galerie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_event')}}">Evénements</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            L'airsoft
-                          </a>
-                          <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{path('app_airsoft')}}">Qu'est-ce que c'est?</a></li>
-                            <li><a class="dropdown-item" href="#">Les règlementations</a></li>
-                            <li><a class="dropdown-item" href="#">Les règles de ce sport</a></li>
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">En savoir plus?</a></li>
-                          </ul>
-                        </li><br>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Mon Compte
-                          </a>
-                          <ul class="dropdown-menu dropdown-menu-dark">
+                          {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                              <li><a class="dropdown-item" href="{{path('admin_index')}}">Administration</a></li>
+                            {% endif %}
+                              <li><a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a></li>
 
-                            {% if app.user %}
-                            <li><a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a></li>
-
-                            {% else %}
+                          {% else %}
 
                             <li><a class="dropdown-item" href="{{path('app_register')}}">S'inscrire</a></li>
                             <li><a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a></li>
 
-                            {% endif %}
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
+                          {% endif %}
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-              </nav>
-        </header>
-
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        
-      </body>
-
-      <footer>
-        <div class="container">
-            <section class="mt-5">
-              <div class="row text-center d-flex justify-content-center pt-5">
-                <div class="col-md-2">
-                  <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!" class="text-white">About us</a>
-                  </h6>
-                </div>
-                <div class="col-md-2">
-                  <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!" class="text-white">Products</a>
-                  </h6>
-                </div>
-                <div class="col-md-2">
-                  <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!" class="text-white">Awards</a>
-                  </h6>
-                </div>
-                <div class="col-md-2">
-                  <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!" class="text-white">Help</a>
-                  </h6>
-                </div>
-                <div class="col-md-2">
-                  <h6 class="text-uppercase font-weight-bold">
-                    <a href="#!" class="text-white">Contact</a>
-                  </h6>
-                </div>
               </div>
-            </section>
+            </nav>
+    </header>
 
-            <hr class="my-5" />
+      <main>
+        {% block body %}{% endblock %}
+      </main>
 
-            <section class="mb-5">
-              <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                  <p style="color: white;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                    distinctio earum repellat quaerat voluptatibus placeat nam,
-                    commodi optio pariatur est quia magnam eum harum corrupti
-                    dicta, aliquam sequi voluptate quas.
-                  </p>
+    <footer>
+          <div class="container">
+              <section class="mt-5">
+                <div class="row text-center d-flex justify-content-center pt-5">
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" class="text-white">About us</a>
+                    </h6>
+                  </div>
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" class="text-white">Products</a>
+                    </h6>
+                  </div>
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" class="text-white">Awards</a>
+                    </h6>
+                  </div>
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" class="text-white">Help</a>
+                    </h6>
+                  </div>
+                  <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" class="text-white">Contact</a>
+                    </h6>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
 
-            <section class="text-center mb-5">
-              <a href="" class="text-white me-4">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-discord"></i>
-              </a>
-            </section>
-          </div>
+              <hr class="my-5" />
 
-          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Copyright:
-            <p class="text-white">Fuflin Elan Formation</p>
-          </div>
+              <section class="mb-5">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-lg-8">
+                    <p style="color: white;">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                      distinctio earum repellat quaerat voluptatibus placeat nam,
+                      commodi optio pariatur est quia magnam eum harum corrupti
+                      dicta, aliquam sequi voluptate quas.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="text-center mb-5">
+                <a href="" class="text-white me-4">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                  <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                  <i class="fab fa-discord"></i>
+                </a>
+              </section>
+            </div>
+
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+              © 2023 Copyright:
+              <p class="text-white">Fuflin Elan Formation</p>
+            </div>
 
     </footer>
+
+  </body>
+
 </html>
