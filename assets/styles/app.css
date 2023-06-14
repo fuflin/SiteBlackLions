@@ -6,9 +6,11 @@
 }
 
 body {
-  background: rgb(21, 21, 21);
+  background: rgb(21, 21, 21) !important;
 }
-
-section {
-  margin: 20px !important;
+body header {
+  height: 65px;
+}
+body footer {
+  height: 350px;
 }/*# sourceMappingURL=app.css.map */
