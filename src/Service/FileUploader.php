@@ -23,7 +23,7 @@ class FileUploader
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
-            if($file->guessExtension() == 'mp4')
+            if($file->guessExtension() == 'mp4') //condition pour séparé les fichiers vidéos des images
             {
                 $file->move($this->getVideosDirectory(), $fileName);
             } else {
