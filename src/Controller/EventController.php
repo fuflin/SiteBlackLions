@@ -70,6 +70,8 @@ class EventController extends AbstractController
     public function editEvent(EntityManagerInterface $em, Event $event = null, FileUploader $fileUploader, Request $request): Response
     {
 
+        $user = $this->getUser();
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -90,7 +92,14 @@ class EventController extends AbstractController
             $em->persist($event); // équivalent du prepare dans PDO
             $em->flush(); // équivalent de insert into (execute) dans PDO
 
-            return $this->redirectToRoute('app_event');
+            if( in_array('ROLE_ADMIN', $user->getRoles(), true) ){
+
+                return $this->redirectToRoute('admin_events_index');
+
+            } else {
+
+                return $this->redirectToRoute('app_event');
+            }
         }
 
         // vue pour afficher le formulaire d'ajout
@@ -111,7 +120,7 @@ class EventController extends AbstractController
         $em->flush();
 
         if( in_array('ROLE_ADMIN', $user->getRoles(), true) ){
-            // dd($user->getRoles());
+
             return $this->redirectToRoute('admin_events_index');
 
         } else {
@@ -131,6 +140,7 @@ class EventController extends AbstractController
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
         ]);
+
     }
 
     // fonction pour s'inscrire à un événement
