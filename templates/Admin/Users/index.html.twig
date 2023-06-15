@@ -15,7 +15,9 @@
                             <th>liste des Users</th>
                             <th>Adresse mail</th>
                             <th>Date d'inscription</th>
-                            <th>Pseudo Discrd</th>
+                            <th>Roles</th>
+                            <th>Vérifié</th>
+                            <th>Pseudo Discord</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,6 +26,23 @@
                                 <td>{{user.nickname}}</td>
                                 <td>{{user.email}}</td>
                                 <td>{{user.DateCreate | date('d/m/Y')}}</td>
+                                <td>
+                                {% for role in user.roles %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        {% set name = "Administrateur" %}
+                                        {% set color = "danger" %}
+                                    {% else %}
+                                        {% set name = "Membre" %}
+                                        {% set color = "success" %}
+                                    {% endif %}
+                                    <span class="badge bg-{{color}}">{{name}}</span>
+                                {% endfor %}</td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : ""}} disabled>
+                                        <label class="form-check-label" for="switch{{ user.id }}"></label>
+                                    </div>
+                                </td>
                                 <td>{{user.DiscordNickname}}</td>
                             </tr>
                         {% endfor %}
