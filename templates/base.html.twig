@@ -37,17 +37,22 @@
                         <a class="nav-link active" aria-current="page" href="{{path('app_home')}}"><strong>Accueil</strong></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">L'Association</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                          <a class="nav-link" href="{{path('admin_index')}}"><strong>Administration</strong></a>
+                        {% endif %}
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{path('app_multimedia')}}">Galerie</a>
+                        <a class="nav-link" href="#"><strong>L'Association</strong></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{path('app_event')}}">Evénements</a>
+                          <a class="nav-link" href="{{path('app_multimedia')}}"><strong>Galerie</strong></a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{path('app_event')}}"><strong>Evénements</strong></a>
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          L'airsoft
+                          <strong>L'airsoft</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                           <li><a class="dropdown-item" href="{{path('app_airsoft')}}">Qu'est-ce que c'est?</a></li>
@@ -61,14 +66,12 @@
                       </li><br>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Mon Compte
+                          <strong>Mon Compte</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
 
                           {% if app.user %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                              <li><a class="dropdown-item" href="{{path('admin_index')}}">Administration</a></li>
-                            {% endif %}
+
                               <li><a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a></li>
 
                           {% else %}
