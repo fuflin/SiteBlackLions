@@ -18,9 +18,9 @@ class ParticipateController extends AbstractController
 
     public function index(EntityManagerInterface $em):Response
     {
-        $participates = $em->getRepository(Participate::class)->findAll();
+        $participates = $em->getRepository(Participate::class)->findBy([], ['event' => 'asc']);
 
-        return $this->render('admin/participate/index.html.twig', compact('participates'));
+        return $this->render('admin/participate/index.html.twig', compact('participates')); // compact est une fonction qui renvoi un tableau avec des variables et leurs données
     }
 
 }
