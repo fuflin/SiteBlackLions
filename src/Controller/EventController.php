@@ -128,11 +128,8 @@ class EventController extends AbstractController
     public function showEvent(Event $event): Response
     {
 
-        // $participate = $event->getParticipates();
-
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
-        //    'participate' => $participate
         ]);
     }
 
