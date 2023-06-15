@@ -105,11 +105,20 @@ class EventController extends AbstractController
 
     public function deleteEvent(EntityManagerInterface $em, Event $event): Response
     {
+        $user = $this->getUser();
 
         $em->remove($event);
         $em->flush();
 
-        return $this->redirectToRoute('app_event');
+        if( in_array('ROLE_ADMIN', $user->getRoles(), true) ){
+            // dd($user->getRoles());
+            return $this->redirectToRoute('admin_events_index');
+
+        } else {
+
+            return $this->redirectToRoute('app_event');
+        }
+
     }
 
 
