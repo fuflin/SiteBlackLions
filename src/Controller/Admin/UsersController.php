@@ -24,4 +24,11 @@ class UsersController extends AbstractController
         return $this->render('admin/users/index.html.twig', compact('users'));
     }
 
+    // #[Route('/', name: 'index')]
+
+    // public function banUser() 
+    // {
+
+    // }
+
 }
