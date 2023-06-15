@@ -14,7 +14,7 @@
                         <tr>
                             <th>Liste des users</th>
                             <th>Mail des users</th>
-                            <th>Date d'inscription au site</th>
+                            <th>Nom de l'événement</th>
                             <th>Date d'inscription à l'event</th>
                             <th>Nombre de participants</th>
                         </tr>
@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ participate.user.nickname }}</td>
                                 <td>{{ participate.user.email }}</td>
-                                <td>{{participate.user.DateCreate | date('d/m/Y')}}</td>
+                                <td>{{participate.event.name}}</td>
                                 <td>{{participate.DateRegis | date('d/m/Y')}}</td>
                                 <td>{{participate.event.NbMaxPers}}</td>
                             </tr>
