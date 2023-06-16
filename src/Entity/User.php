@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class)]
     private Collection $participates;
 
+    #[ORM\Column]
+    private ?bool $is_banned = null;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -231,6 +234,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $participate->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsBanned(): ?bool
+    {
+        return $this->is_banned;
+    }
+
+    public function setIsBanned(bool $is_banned): self
+    {
+        $this->is_banned = $is_banned;
 
         return $this;
     }

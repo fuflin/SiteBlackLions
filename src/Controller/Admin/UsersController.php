@@ -24,47 +24,33 @@ class UsersController extends AbstractController
         return $this->render('admin/users/index.html.twig', compact('users'));
     }
 
-    //fonction pour modifier un user
-    // #[Route('/user/{id}/edit', name: 'edit_user')]
 
-    // public function edituser(EntityManagerInterface $em, User $user = null, Request $request): Response
-    // {
+    #[Route('/users/ban', name: 'ban', methods: ['POST'])]
+    public function banUser(EntityManagerInterface $em, Request $request, User $user): Response
+    {
 
-    //     $user = $this->getUser();
+        if ($request->isMethod('POST')) {
+            $banId = $request->request->get('_banned');
+            
+            $user->setIsBanned(true);
 
-    //     $form = $this->createForm(UserType::class, $user);
-    //     $form->handleRequest($request);
+            $em->persist($user);
+            $em->flush();
 
-    //     // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis)
-    //     if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('admin_users_index');
+        }
 
-    //         $user = $form->getData(); // hydratation avec données du formulaire / injection des valeurs saisies dans le form
 
-    //         $em->persist($user); // équivalent du prepare dans PDO
-    //         $em->flush(); // équivalent de insert into (execute) dans PDO
+        // $form = $this->createForm(UserType::class, $user);
+        // $form->handleRequest($request);
 
-    //         if( in_array('ROLE_ADMIN', $user->getRoles(), true) ){
+        // if ($form->isSubmitted() && $form->isValid()) {
 
-    //             return $this->redirectToRoute('admin_users_index');
+        //     $this->$em->flush();
 
-    //         } else {
+        //     return $this->redirectToRoute('admin_users_index');
+        // }
 
-    //             return $this->redirectToRoute('app_user');
-    //         }
-    //     }
-
-    //     // vue pour afficher le formulaire d'ajout
-    //     return $this->render('user/add.html.twig', [
-    //         'userForm' => $form->createView(),
-    //         'edit'
-    //     ]); // création du formulaire
-    // }
-
-    // #[Route('/', name: 'index')]
-
-    // public function banUser()
-    // {
-
-    // }
-
+        
+    }
 }

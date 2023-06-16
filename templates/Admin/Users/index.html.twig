@@ -16,8 +16,9 @@
                             <th>Adresse mail</th>
                             <th>Date d'inscription</th>
                             <th>Roles</th>
-                            <th>Vérifié</th>
                             <th>Pseudo Discord</th>
+                            <th>Vérifié</th>
+                            <th>Bloqué</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,13 +38,24 @@
                                     {% endif %}
                                     <span class="badge bg-{{color}}">{{name}}</span>
                                 {% endfor %}</td>
+                                <td>{{user.DiscordNickname}}</td>
                                 <td>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : ""}} disabled>
                                         <label class="form-check-label" for="switch{{ user.id }}"></label>
                                     </div>
                                 </td>
-                                <td>{{user.DiscordNickname}}</td>
+                                <td>
+                                    {# {{ form_start(form) }}
+                                        {{ form_row(form.isBanned) }}
+                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                    {{ form_end(form) }} #}
+
+                                    <form action="{{path('admin_users_ban')}}" method="post">
+                                        <input class="form-check-input" type="checkbox" name="_banned" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}}>
+                                        {# <button type="submit" class="btn btn-primary">Enregistrer</button> #}
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
