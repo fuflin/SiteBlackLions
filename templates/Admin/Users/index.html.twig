@@ -46,19 +46,18 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {# {{ form_start(form) }}
-                                        {{ form_row(form.isBanned) }}
-                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                    {{ form_end(form) }} #}
-
-                                    <form action="{{path('admin_users_ban')}}" method="post">
-                                        <input class="form-check-input" type="checkbox" name="_banned" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}}>
-                                        {# <button type="submit" class="btn btn-primary">Enregistrer</button> #}
-                                    </form>
+                                    <div class="form-check form-switch">
+                                        <form action="{{ path('admin_users_ban') }}" method="post" id="banForm">
+                                        <input type="hidden" name="userId" value="{{ user.id }}">
+                                        <input class="form-check-input" type="checkbox" name="isBanned" value="{{ user.id }}" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}}>
+                                        </form>
+                                        <script>console.log('switch{{ user.id }}');</script>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
+                    
                 </table>
             </div>
         </div>

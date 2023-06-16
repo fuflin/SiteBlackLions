@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,31 +27,21 @@ class UsersController extends AbstractController
 
 
     #[Route('/users/ban', name: 'ban', methods: ['POST'])]
-    public function banUser(EntityManagerInterface $em, Request $request, User $user): Response
+    public function banUser(EntityManagerInterface $em, Request $request, UserRepository $userRepository): Response
     {
 
         if ($request->isMethod('POST')) {
-            $banId = $request->request->get('_banned');
-            
-            $user->setIsBanned(true);
+            $userId = $request->request->get('userId');
+            $user = $userRepository->find($userId);
 
-            $em->persist($user);
-            $em->flush();
+            if ($user) {
+                $isBanned = $request->request->has('isBanned');
+                $user->setIsBanned($isBanned);
+                $em->flush();
+            }
 
             return $this->redirectToRoute('admin_users_index');
         }
 
-
-        // $form = $this->createForm(UserType::class, $user);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-
-        //     $this->$em->flush();
-
-        //     return $this->redirectToRoute('admin_users_index');
-        // }
-
-        
     }
 }

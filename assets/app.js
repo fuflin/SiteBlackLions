@@ -10,3 +10,18 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const switchElements = document.querySelectorAll('#switch');
+    console.log(switchElements.length);
+    const formElement = document.getElementById('banForm');
+
+    switchElements.forEach(switchElement => {
+        switchElement.addEventListener('click', () => {
+            formElement.submit();
+        })
+
+    // switchElement.addEventListener('change', function() {
+    //     formElement.submit();
+    // });
+});})
