@@ -31,33 +31,31 @@
                                 {% for role in user.roles %}
                                     {% if role == "ROLE_ADMIN" %}
                                         {% set name = "Administrateur" %}
-                                        {% set color = "danger" %}
+                                        {% set color = "info" %}
                                     {% else %}
                                         {% set name = "Membre" %}
-                                        {% set color = "success" %}
+                                        {% set color = "primary" %}
                                     {% endif %}
                                     <span class="badge bg-{{color}}">{{name}}</span>
                                 {% endfor %}</td>
                                 <td>{{user.DiscordNickname}}</td>
                                 <td>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : ""}} disabled>
-                                        <label class="form-check-label" for="switch{{ user.id }}"></label>
-                                    </div>
+                                    {% if user.isVerified == true %}
+                                        {% set color = "success" %}
+                                    {% endif %}
+                                    <span class="badge bg-{{color}}">{{user.isVerified}}</span>
                                 </td>
                                 <td>
                                     <div class="form-check form-switch">
                                         <form action="{{ path('admin_users_ban') }}" method="post" id="banForm">
-                                        <input type="hidden" name="userId" value="{{ user.id }}">
-                                        <input class="form-check-input" type="checkbox" name="isBanned" value="{{ user.id }}" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}}>
+                                            <input class="form-check-input" type="checkbox" name="isBanned" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}} onchange="this.form.submit()">
+                                            <input type="hidden" name="userId" value="{{ user.id }}">
                                         </form>
-                                        <script>console.log('switch{{ user.id }}');</script>
                                     </div>
                                 </td>
                             </tr>
                         {% endfor %}
                     </tbody>
-                    
                 </table>
             </div>
         </div>

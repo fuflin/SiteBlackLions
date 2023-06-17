@@ -11,17 +11,13 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
+
+//--------- partie JS pour le switch du panel Admin ---------//
 document.addEventListener('DOMContentLoaded', function() {
-    const switchElements = document.querySelectorAll('#switch');
+    const switchElements = document.querySelectorAll('input[id^=switch]');
     console.log(switchElements.length);
     const formElement = document.getElementById('banForm');
+});
+//--------- fin partie JS pour le switch du panel Admin ---------//
 
-    switchElements.forEach(switchElement => {
-        switchElement.addEventListener('click', () => {
-            formElement.submit();
-        })
 
-    // switchElement.addEventListener('change', function() {
-    //     formElement.submit();
-    // });
-});})

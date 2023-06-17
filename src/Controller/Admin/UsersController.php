@@ -35,6 +35,7 @@ class UsersController extends AbstractController
             $user = $userRepository->find($userId);
 
             if ($user) {
+
                 $isBanned = $request->request->has('isBanned');
                 $user->setIsBanned($isBanned);
                 $em->flush();
