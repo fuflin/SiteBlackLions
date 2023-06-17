@@ -51,8 +51,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class)]
     private Collection $participates;
 
-    #[ORM\Column]
-    private ?bool $is_banned = null;
+    #[ORM\Column(type: 'boolean')]
+    private $is_banned = false;
 
     public function __construct()
     {
