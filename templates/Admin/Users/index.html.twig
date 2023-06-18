@@ -46,12 +46,15 @@
                                     <span class="badge bg-{{color}}">{{user.isVerified}}</span>
                                 </td>
                                 <td>
+                                    {# switch pour le ban user  #}
                                     <div class="form-check form-switch">
                                         <form action="{{ path('admin_users_ban') }}" method="post" id="banForm">
                                             <input class="form-check-input" type="checkbox" name="isBanned" role="switch" id="switch{{ user.id }}" {{ user.isBanned ? "checked" : ""}} onchange="this.form.submit()">
+                                    {# le onchange="this.form.submit() nous permet de submit le switch grâce au code en js #}
                                             <input type="hidden" name="userId" value="{{ user.id }}">
                                         </form>
                                     </div>
+                                    {# fin du switch #}
                                 </td>
                             </tr>
                         {% endfor %}
