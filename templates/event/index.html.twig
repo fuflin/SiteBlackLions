@@ -8,7 +8,7 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 
-<h4 style="text-align: center;"><a href="{{ path('add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4>
+<h4 style="text-align: center;"><a href="{{ path('admin_events_add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4>
 
 {% endif %}
 
@@ -33,8 +33,8 @@
           {% if is_granted('ROLE_ADMIN') %}
 
             <div class="option" style="display: flex; justify-content: center;">
-              <a href="{{ path('edit_event', {'id': event.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
-              <a href="{{ path('delete_event', {'id': event.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
+              <a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
+              <a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
             </div>
           {% endif %}
       </div>
