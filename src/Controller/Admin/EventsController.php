@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Event;
+use App\Service\SendMail;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,17 @@ class EventsController extends AbstractController
         $events = $em->getRepository(Event::class)->findAll();
 
         return $this->render('admin/events/index.html.twig', compact('events'));
+    }
+
+
+    
+    #[Route('/event/{id}', name: 'delete')]
+
+    public function sendMail(Event $event, SendMail $mail):Response
+    {
+        dd($event);
+
+        return $this->redirectToRoute('admin_events_index');
     }
 
 }
