@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UsersController extends AbstractController
 {
 
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'index')] // fonction pour afficher les users dans le panel admin
 
     public function index(EntityManagerInterface $em):Response
     {
@@ -25,8 +25,9 @@ class UsersController extends AbstractController
         return $this->render('admin/users/index.html.twig', compact('users'));
     }
 
-
+    // fonction pour bloqué un user
     #[Route('/users/ban', name: 'ban', methods: ['POST'])]
+
     public function banUser(EntityManagerInterface $em, Request $request, UserRepository $userRepository): Response
     {
 
@@ -45,4 +46,6 @@ class UsersController extends AbstractController
         }
 
     }
+
+
 }
