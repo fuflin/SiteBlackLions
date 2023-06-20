@@ -26,8 +26,8 @@
                                 <td><a href="{{ path('admin_participate_show', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">{{ event.name }}</a></td>
                                 <td>{{event.DateCreate | date('d/m/Y')}}</td>
                                 <td>{{event.participates|length}}/{{event.NbMaxPers}}</td>
-                                <td><a href="{{ path('edit_event', {'id': event.id})}}" class="btn btn-warning">cliquez ici</a></td>
-                                <td><a href="{{ path('delete_event', {'id': event.id})}}" class="btn btn-danger">cliquez ici</a></td>
+                                <td><a href="{{ path('edit_event', {'id': event.id})}}" class="btn btn-warning">Modifer</a></td>
+                                <td><a href="{{ path('admin_events_delete', {'id': event.id})}}" class="btn btn-danger">Supprimer</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
