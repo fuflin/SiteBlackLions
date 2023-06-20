@@ -4,7 +4,7 @@
     {% for participate in event.participates %}
         {% if participate.user == app.user %}
             <form action="{{path('remove_regis_event',  {'id': event.id, 'idParticipate': participate.id})}}" style="display: flex; justify-content: center;">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-light">
                 Se désinscrire de l'événement
                 </button>
             </form>
@@ -14,7 +14,7 @@
 
 {% if not isParticipate %}
     <form action="{{path('regis_event',  {'id': event.id})}}" style="display: flex; justify-content: center;">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-light">
             S'inscrire à l'événement
         </button>
     </form><br>
