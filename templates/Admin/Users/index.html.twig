@@ -42,8 +42,10 @@
                                 <td>
                                     {% if user.isVerified == true %}
                                         {% set color = "success" %}
+                                    {% else %}
+                                        {% set color = "danger" %}
                                     {% endif %}
-                                    <span class="badge bg-{{color}}">{{user.isVerified}}</span>
+                                    <span class="px-2 mx-2 bg-{{color}} border border-light rounded-circle">&nbsp;</span>
                                 </td>
                                 <td>
                                     {# switch pour le ban user  #}
