@@ -125,11 +125,6 @@ class Event
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName(). "<br>" .$this->getNbMaxPers();
-    }
-
     /**
      * @return Collection<int, Multimedia>
      */
@@ -190,5 +185,8 @@ class Event
         return $this;
     }
 
-    
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

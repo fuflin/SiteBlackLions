@@ -110,6 +110,7 @@ class EventsController extends AbstractController
     public function deleteEvent(EntityManagerInterface $em, Event $event, SendMail $mail): Response
     {
         $users = $em->getRepository(Participate::class)->findBy(['event' => $event]);
+
         //------- Supression de l'événement -------//
         $em->remove($event);
         $em->flush();
@@ -123,7 +124,7 @@ class EventsController extends AbstractController
 
             $mail->send(
                 'admin@admin.fr', // adresse de l'admin
-                $user->getUser()->getEmail(),   // adresse du user 
+                $user->getUser()->getEmail(),   // adresse du user
                 "Annulation d'événement",
                 'mail',
                 $context);

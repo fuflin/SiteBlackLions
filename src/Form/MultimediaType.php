@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Event;
 use App\Entity\Multimedia;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -48,7 +50,9 @@ class MultimediaType extends AbstractType
                 ]
             ])
 
-            // ->add('events')
+            ->add('event', EntityType::class, [
+                'class' => Event::class
+            ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary']])
