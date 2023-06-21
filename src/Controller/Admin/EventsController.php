@@ -2,11 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Service\SendMail;
+use App\Entity\Participate;
 use App\Service\FileUploader;
+use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -105,11 +109,26 @@ class EventsController extends AbstractController
 
     public function deleteEvent(EntityManagerInterface $em, Event $event, SendMail $mail): Response
     {
+        $users = $em->getRepository(Participate::class)->findBy(['event' => $event]);
+        //------- Supression de l'événement -------//
+        $em->remove($event);
+        $em->flush();
+        //------- Supression de l'événement -------//
 
-        dd($event);
+        //------- Envoi du mail aux différents users concerné par la suppression -------//
+        foreach ($users as $user){
 
-        // $em->remove($event);
-        // $em->flush();
+            $context = compact('user'); // infos des users
+            $context['event'] = $event->getName(); // nom de l'event supprimé pour la vue du mail
+
+            $mail->send(
+                'admin@admin.fr', // adresse de l'admin
+                $user->getUser()->getEmail(),   // adresse du user 
+                "Annulation d'événement",
+                'mail',
+                $context);
+        }
+        //------- Envoi du mail aux différents users concerné par la suppression -------//
 
         return $this->redirectToRoute('admin_events_index');
 
