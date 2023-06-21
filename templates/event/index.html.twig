@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1 style="text-align: center;">Listes des events</h1><br><br>
+<h1 style="text-align: center; color:aliceblue;">Listes des events</h1><br><br>
 
 {% if is_granted('ROLE_ADMIN') %}
 
@@ -17,7 +17,7 @@
   {% for event in events %}
     <div class="col-sm-6" style=" width: 32%; margin: 50px 10px;">
 
-      <div class="card" style="width: 25rem; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px;">
+      <div class="card" style="width: 80%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto;">
 
           <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top" style="height:300px; border-radius: 15px;">
 
