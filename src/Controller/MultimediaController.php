@@ -62,4 +62,8 @@ class MultimediaController extends AbstractController
             'mediaForm' => $form->createView()
         ]); // création du formulaire
     }
+
+    // préparé une fonction pour afficher les médias en fonction de l'event
+
+    // préparé une vue pour afficher les média d'un event particulier
 }
