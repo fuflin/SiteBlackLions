@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Email{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1 style="text-align: center; color: white">Modification E-mail</h1>
+
+
+    <div style="display: flex; justify-content: center; margin-top: 80px">
+        {{ form_start(mailForm, {'attr': {'style': 'width: 65%'} }) }}
+    
+            <div class="form">
+                <div style="width: 100%; margin: 20px; color: white;">
+                    {{ form_row(mailForm.email) }}
+                </div>
+                <div style="width: 100%; margin: 30px; text-align: center;">
+                    {{form_row(mailForm.submit, {'label':'Soumettre'})}}
+                </div>
+            </div>
+    
+        {{ form_end(mailForm) }}
+    </div>
+
+{% endblock %}

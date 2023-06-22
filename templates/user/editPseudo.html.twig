@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1 style="text-align: center; color: white">Modification du pseudo</h1>
+
+
+<div style="display: flex; justify-content: center; margin-top: 80px">
+    {{ form_start(pseudoForm, {'attr': {'style': 'width: 65%'} }) }}
+
+        <div class="form">
+            <div style="width: 100%; margin: 20px; color: white;">
+                {{ form_row(pseudoForm.nickname) }}
+            </div>
+            <div style="width: 100%; margin: 20px; color: white;">
+                {{ form_row(pseudoForm.discord_nickname) }}
+            </div>
+            <div style="width: 100%; margin: 30px; text-align: center;">
+                {{form_row(pseudoForm.submit, {'label':'Soumettre'})}}
+            </div>
+        </div>
+
+    {{ form_end(pseudoForm) }}
+</div>
+
+{% endblock %}

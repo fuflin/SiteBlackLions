@@ -4,27 +4,33 @@
 
 {% block body %}
 
-<h1 style="text-align: center; color:aliceblue;">Personnalisation de votre compte</h1>
+<h1 style="text-align: center; color:aliceblue; margin-bottom: 30px;">Personnalisation de votre compte</h1>
 
 <div class="container">
-    <div class="card" style="width: 80%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto;">
+        <div class="card" style="width: 40%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto; margin-bottom: 30px;">
         <div class="card-body">
-            <h5 class="card-text" style="text-align: center; color: white;">Modifier votre pseudo</h5><br>
-            <a href="" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
+            <h5 class="card-text" style="text-align: center; color: white;">{{ app.user.nickname }}</h5>
+            <h6 class="card-text" style="text-align: center; color: white;">Pour modifier votre pseudo</h6><br>
+            <a href="{{path('edit_user_pseudo', {'id': app.user.id})}}" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
         </div>
-    </div>
-    <div class="card" style="width: 80%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto;">
-        <div class="card-body">
-            <h5 class="card-text" style="text-align: center; color: white;">Modifier votre adresse mail</h5><br>
-            <a href="" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
         </div>
-    </div>
-    <div class="card" style="width: 80%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto;">
-        <div class="card-body">
-            <h5 class="card-text" style="text-align: center; color: white;"></h5>Modifier votre mot de passe<br>
-            <a href="" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
+        <div class="card" style="width: 40%; background-color: black; border: solid rgb(61, 49, 49) 2px; padding: 10px; margin: auto; margin-bottom: 30px;">
+            <div class="card-body">
+                <h5 class="card-text" style="text-align: center; color: white;">{{ app.user.email }}</h5>
+                <h6 class="card-text" style="text-align: center; color: white;">Pour modifier votre adresse mail</h6><br>
+                <a href="{{path('edit_user_mail', {'id': app.user.id})}}" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
+            </div>
         </div>
-    </div>
+        <div class="card" style="width: 40%; background-color: black; border: solid rgb(61, 49, 49) 2px; padding: 10px; margin: auto; margin-bottom: 30px;">
+            <div class="card-body">
+                <h5 class="card-text" style="text-align: center; color: white;"></h5>
+                <h6 class="card-text" style="text-align: center; color: white;">Pour modifier votre mot de passe</h6><br>
+                <a href="{{path('edit_user_password', {'id': app.user.id})}}" class="btn btn-light" style="display: flex; justify-content: center;">Cliquez ici</a>
+            </div>
+        </div>
+        <div class="option" style="display: flex; justify-content: center;">
+            <a href="{{ path('delete_user', {'id': app.user.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer mon compte</a>
+        </div>
 </div>
 
 {% endblock %}
