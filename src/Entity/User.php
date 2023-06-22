@@ -45,10 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Event::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Event::class, cascade:['remove'])]
     private Collection $events;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class, cascade:['remove'])]
     private Collection $participates;
 
     #[ORM\Column(type: 'boolean')]

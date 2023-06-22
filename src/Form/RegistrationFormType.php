@@ -44,11 +44,11 @@ class RegistrationFormType extends AbstractType
                     'attr'=> [
                         'class' => 'form-control',
                         ],
-                    'first_options' => ['label' => 'Password', 'attr' =>['placeholder' => '12 characters min']],
-                    'second_options' => ['label' => 'Repeat Password', 'attr' =>['placeholder' => '12 characters min']],
+                    'first_options' => ['label' => 'Mot de passe', 'attr' =>['placeholder' => '12 characters min']],
+                    'second_options' => ['label' => 'Repéter le mot de passe', 'attr' =>['placeholder' => '12 characters min']],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrez un mot de passe',
                     ]),
                     // new Regex([ //la regex impose des conditions pour le mdp: 1 majuscule, 1 minuscule, 1 nombre, 1 charactère spéciale
                     //     'pattern' => '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,32}$',
