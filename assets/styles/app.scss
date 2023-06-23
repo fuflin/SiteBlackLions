@@ -8,14 +8,22 @@
 body {
     background: rgb(21, 21, 21) !important;
 
-    header {
+    main {
 
-        height: 65px;
+        h1{
+        text-align: center;
+        color: white;
+        margin: 30px;
+        }
 
     }
 
-    footer {
 
+    header {
+        height: 65px;
+    }
+
+    footer {
         height: 350px;
     }
 

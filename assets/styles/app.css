@@ -8,6 +8,11 @@
 body {
   background: rgb(21, 21, 21) !important;
 }
+body main h1 {
+  text-align: center;
+  color: white;
+  margin: 30px;
+}
 body header {
   height: 65px;
 }
