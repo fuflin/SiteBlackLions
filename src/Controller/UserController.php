@@ -71,7 +71,7 @@ class UserController extends AbstractController
             $em->persist($user); // équivalent du prepare dans PDO
             $em->flush(); // équivalent de insert into (execute) dans PDO
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_user');
         }
 
         // vue pour afficher le formulaire d'ajout
@@ -81,7 +81,7 @@ class UserController extends AbstractController
         ]); // création du formulaire
     }
 
-    #[Route('/user/{id}/edit_password', name: 'edit_user_password')]
+    #[Route('/user/{id}/edit_password', name: 'edit_user_password', methods:['GET', 'POST'])]
 
     public function editPassword(EntityManagerInterface $em, User $user, UserPasswordHasherInterface $hasher, Request $request): Response
     {
@@ -93,16 +93,22 @@ class UserController extends AbstractController
 
         // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis)
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
-            if($hasher->isPasswordValid($user, $form->getData()->getPlainPassword())) {
 
-                $user->setPassword($form->getData()->getNewPassword());
-            }
+            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])) { //pour le $form->getData() on précise quel élément du tableau on souhaite récupéré
+                // dd($form->getData());
+
+                $user->setPassword(
+                    $hasher->hashPassword(
+                        $user,
+                        $form->getData()['newPassword'] // ici on set l'ancien password par le nouveau
+                        )
+                    );
+                }
 
             $em->persist($user); // équivalent du prepare dans PDO
             $em->flush(); // équivalent de insert into (execute) dans PDO
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_user');
         }
 
         // vue pour afficher le formulaire d'ajout
