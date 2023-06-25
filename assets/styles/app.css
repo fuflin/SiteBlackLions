@@ -13,8 +13,76 @@ body main h1 {
   color: white;
   margin: 30px;
 }
+body main .container {
+  margin-top: 80px;
+}
+body main .container .row h1 {
+  text-align: center;
+  color: black;
+}
+body main .container .carouselImg .carousel-item figure {
+  width: 40% !important;
+}
+body main .container .carouselImg .carousel-item figure img {
+  width: 100% !important;
+  border-radius: 15px !important;
+}
+body main .add-event {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 80px !important;
+}
+body main .add-event form div {
+  width: 100% !important;
+  color: white !important;
+  margin-bottom: 30px !important;
+}
+body main .add-event form .button {
+  width: 100% !important;
+  margin: 30px !important;
+  text-align: center !important;
+}
+body main .add-media {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 150px !important;
+}
+body main .add-media form {
+  width: 45%;
+}
+body main .add-media form div {
+  width: 100% !important;
+  color: white !important;
+  margin-bottom: 30px !important;
+}
+body main .add-media form .button {
+  width: 100% !important;
+  margin: 30px !important;
+  text-align: center !important;
+}
+body main .regis {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 80px !important;
+}
+body main .regis form div {
+  width: 100% !important;
+  color: white !important;
+  margin-bottom: 30px !important;
+}
+body main .regis form .button {
+  width: 100% !important;
+  margin: 30px !important;
+  text-align: center !important;
+}
 body header {
   height: 65px;
+}
+body header figure {
+  height: 50%;
+}
+body header figure img {
+  width: 100%;
 }
 body footer {
   height: 350px;

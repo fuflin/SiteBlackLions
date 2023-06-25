@@ -16,11 +16,122 @@ body {
         margin: 30px;
         }
 
+        .container{
+
+            margin-top: 80px;
+
+            .row{
+
+                h1 {
+                    text-align: center;
+                    color: black;
+                }
+            }
+
+            .carouselImg {
+
+                .carousel-item{
+
+                    figure {
+                        width: 40% !important;
+
+                        img {
+
+                            width: 100% !important;
+                            border-radius: 15px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .add-event {
+
+            display: flex !important;
+            justify-content: center !important;
+            margin-top: 80px !important;
+
+            form {
+
+                div {
+
+                    width: 100% !important;
+                    color: white !important;
+                    margin-bottom: 30px !important;
+                }
+
+                .button {
+
+                    width: 100% !important;
+                    margin: 30px !important;
+                    text-align: center !important;
+                }
+            }
+        }
+
+        .add-media {
+
+            display: flex !important;
+            justify-content: center !important;
+            margin-top: 150px !important;
+
+            form {
+
+                width: 45%;
+
+                div {
+
+                    width: 100% !important;
+                    color: white !important;
+                    margin-bottom: 30px !important;
+                }
+
+                .button {
+
+                    width: 100% !important;
+                    margin: 30px !important;
+                    text-align: center !important;
+                }
+            }
+        }
+
+        .regis {
+
+            display: flex !important;
+            justify-content: center !important;
+            margin-top: 80px !important;
+
+            form {
+
+                div {
+
+                    width: 100% !important;
+                    color: white !important;
+                    margin-bottom: 30px !important;
+                }
+
+                .button {
+
+                    width: 100% !important;
+                    margin: 30px !important;
+                    text-align: center !important;
+                }
+            }
+        }
     }
 
 
     header {
         height: 65px;
+
+        figure {
+
+            height: 50%;
+
+            img {
+                width: 100%;
+            }
+        }
     }
 
     footer {
