@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+<form class="login" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -15,31 +15,34 @@
     {% endif %}
 
     <h1>Connexion</h1>
+    <figure>
+        <img src="{{asset('/img/airsoft logo CMJN-01.jpg')}}" alt="logo association">
+    </figure>
 
-<div style="display: flex; justify-content: center; margin-top: 150px;">
-    <div class="form" style="width: 45%;">
-        <div style="width: 100%; margin: 20px; color: white;">
-            <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Entrez votre Email" required autofocus>
-        </div>
-        <div style="width: 100%; margin: 20px; color: white;">
-            <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
-        </div>
-        <div style="width: 40%; margin: 20px;">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        </div>
-        <div style="width: 100%; margin: 30px;  text-align: center;">
-            <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
-        </div>
-        <div style="width: 100%; margin: 30px;  text-align: center;">
-            <a class="btn btn-lg btn-secondary" href="{{path('app_register')}}"><strong>S'inscrire</strong></a>
-        </div>
-        <div style="width: 100%; margin: 30px;  text-align: center;">
-            <a href="{{path('app_forgot_password_request')}}"><strong>Mot de passe oublié</strong></a>
+    <div class="long" style="display: flex; justify-content: center; margin-top: 150px;">
+        <div class="form" style="width: 45%;">
+            <div style="width: 100%; margin: 20px; color: white;">
+                <label for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Entrez votre Email" required autofocus>
+            </div>
+            <div style="width: 100%; margin: 20px; color: white;">
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
+            </div>
+            <div style="width: 40%; margin: 20px;">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            </div>
+            <div style="width: 100%; margin: 30px;  text-align: center;">
+                <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>
+            </div>
+            <div style="width: 100%; margin: 30px;  text-align: center;">
+                <a class="btn btn-lg btn-secondary" href="{{path('app_register')}}"><strong>S'inscrire</strong></a>
+            </div>
+            <div style="width: 100%; margin: 30px;  text-align: center;">
+                <a href="{{path('app_forgot_password_request')}}"><strong>Mot de passe oublié</strong></a>
+            </div>
         </div>
     </div>
-</div>
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.

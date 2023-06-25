@@ -6,26 +6,27 @@
 
 <h1>Ajouter un événement</h1>
 
-    <div style="display: flex; justify-content: center; margin-top: 80px;">
+    <div class="add-event">
         {{ form_start(eventForm, {'attr': {'style': 'width: 65%'} }) }}
 
             <div class="form">
-                <div style="width: 100%; margin: 20px; color: white;">
+                <div>
                     {{ form_row(eventForm.name) }}
                 </div>
-                <div style="width: 100%; margin: 20px; color: white;">
+                <div>
                     {{ form_row(eventForm.description) }}
                 </div>
-                <div style="width: 100%; margin: 20px; color: white;">
+                <div>
+                    <label>Affiche événement</label>
                     {{ form_widget(eventForm.poster) }}
                 </div>
-                <div style="width: 100%; margin: 20px; color: white;">
+                <div>
                     {{ form_row(eventForm.nb_max_pers) }}
                 </div>
-                <div style="width: 100%; margin: 20px; color: white;">
+                <div>
                     {{ form_row(eventForm.date_create) }}
                 </div>
-                <div style="width: 100%; margin: 30px; text-align: center;">
+                <div class="button">
                     {{form_row(eventForm.submit, {'label':'Soumettre'})}}
                 </div>
             </div>

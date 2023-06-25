@@ -10,31 +10,31 @@
     <h1>Inscription</h1>
 
 
-<div style="display: flex; justify-content: center; margin-top: 80px">
-    {{ form_start(registrationForm, {'attr': {'style': 'width: 65%'} }) }}
+    <div class="regis">
+        {{ form_start(registrationForm, {'attr': {'style': 'width: 65%'} }) }}
 
-        <div class="form">
-            <div style="width: 100%; margin: 20px; color: white;">
-                {{ form_row(registrationForm.nickname) }}
+            <div class="form">
+                <div>
+                    {{ form_row(registrationForm.nickname) }}
+                </div>
+                <div>
+                    {{ form_row(registrationForm.email) }}
+                </div>
+                <div>
+                    {{ form_widget(registrationForm.plainPassword, {label: 'Password'}) }}
+                </div>
+                <div>
+                    {{ form_row(registrationForm.discord_nickname) }}
+                </div>
+                {# <div>
+                    {{ form_row(registrationForm.agreeTerms) }}
+                </div> #}
+                <div class="button">
+                    {{form_row(registrationForm.submit, {'label':'Soumettre'})}}
+                </div>
             </div>
-            <div style="width: 100%; margin: 20px; color: white;">
-                {{ form_row(registrationForm.email) }}
-            </div>
-            <div style="width: 100%; margin: 20px; color: white;">
-                {{ form_widget(registrationForm.plainPassword, {label: 'Password'}) }}
-            </div>
-            <div style="width: 100%; margin: 20px; color: white;">
-                {{ form_row(registrationForm.discord_nickname) }}
-            </div>
-            <div style="width: 100%; margin: 20px; color: white;">
-                {{ form_row(registrationForm.agreeTerms) }}
-            </div>
-            <div style="width: 100%; margin: 30px; text-align: center;">
-                {{form_row(registrationForm.submit, {'label':'Soumettre'})}}
-            </div>
-        </div>
 
-    {{ form_end(registrationForm) }}
-</div>
+        {{ form_end(registrationForm) }}
+    </div>
 
 {% endblock %}
