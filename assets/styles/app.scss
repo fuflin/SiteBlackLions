@@ -119,6 +119,47 @@ body {
             }
         }
 
+        .login {
+
+            figure {
+
+                width: 20%;
+                margin: auto;
+
+                img {
+
+                    width: 100%;
+                    border-radius: 200px !important;
+                }
+            }
+
+            .long {
+
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: 40px !important;
+
+                .form {
+
+                    width: 50%;
+
+                    div {
+
+                        width: 100% !important;
+                        margin: 20px !important;
+                        color: white !important;
+                    }
+
+                    .button {
+
+                        width: 100% !important;
+                        margin: 30px !important;
+                        text-align: center !important;
+                    }
+                }
+            }
+        }
+
         $max-img-width: 600px;
         $max-img-height: 400px;
 

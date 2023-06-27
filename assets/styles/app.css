@@ -75,6 +75,32 @@ body main .regis form .button {
   margin: 30px !important;
   text-align: center !important;
 }
+body main .login figure {
+  width: 20%;
+  margin: auto;
+}
+body main .login figure img {
+  width: 100%;
+  border-radius: 200px !important;
+}
+body main .login .long {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 40px !important;
+}
+body main .login .long .form {
+  width: 50%;
+}
+body main .login .long .form div {
+  width: 100% !important;
+  margin: 20px !important;
+  color: white !important;
+}
+body main .login .long .form .button {
+  width: 100% !important;
+  margin: 30px !important;
+  text-align: center !important;
+}
 body main img {
   max-width: 100%;
   max-height: 60%;
