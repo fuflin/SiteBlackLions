@@ -48,12 +48,36 @@ class MultimediaRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findVids($event)
+    {
+        return $this->createQueryBuilder('m')
+            ->where("m.media LIKE '%.mp4'")
+            ->andWhere("m.event = :event")
+            ->setParameter("event", $event)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function getImages()
     {
         return $this->createQueryBuilder('m')
             ->where("m.media LIKE '%.jpg'")
             ->orWhere("m.media LIKE '%.jpeg'")
             ->orWhere("m.media LIKE '%.png'")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findImgs($event)
+    {
+        return $this->createQueryBuilder('m')
+            ->where("m.media LIKE '%.jpg'")
+            ->orWhere("m.media LIKE '%.jpeg'")
+            ->orWhere("m.media LIKE '%.png'")
+            ->andWhere("m.event = :event")
+            ->setParameter("event", $event)
             ->getQuery()
             ->getResult()
             ;
