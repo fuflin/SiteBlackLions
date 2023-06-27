@@ -13,6 +13,17 @@
 
 {% endif %}
 
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Liste des événements
+  </button>
+  <ul class="dropdown-menu">
+    {% for event in events %}
+      <li><a class="dropdown-item" href="{{path('show_media', {'id': event.id})}}">{{event.name}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
 <div class="container">
 
   <div class="carouselVids">

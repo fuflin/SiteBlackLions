@@ -75,6 +75,46 @@ body main .regis form .button {
   margin: 30px !important;
   text-align: center !important;
 }
+body main img {
+  max-width: 100%;
+  max-height: 60%;
+  vertical-align: top;
+}
+body main .gallery {
+  display: flex;
+  margin: 10px auto;
+  max-width: 600px !important;
+  position: relative;
+  padding-top: 66.6666666667%;
+}
+@media screen and (min-width: 600px) {
+  body main .gallery {
+    padding-top: 400px;
+  }
+}
+body main .gallery__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+body main .gallery__thumb {
+  padding-top: 6px;
+  margin: 6px;
+  display: block;
+}
+body main .gallery__selector {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+body main .gallery__selector:checked + .gallery__img {
+  opacity: 1;
+}
+body main .gallery__selector:checked ~ .gallery__thumb > img {
+  box-shadow: 0 0 0 3px #0be2f6;
+}
 body header {
   height: 65px;
 }

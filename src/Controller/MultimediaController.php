@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Entity\Multimedia;
 use App\Form\MultimediaType;
 use App\Service\FileUploader;
+use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +21,12 @@ class MultimediaController extends AbstractController
         $videos = $em->getRepository(Multimedia::class)->getVideos();
         $images = $em->getRepository(Multimedia::class)->getImages();
 
+        $events = $em->getRepository(Event::class)->findAll();
+
         return $this->render('multimedia/index.html.twig', [
             'videos' => $videos,
-            'images' => $images
+            'images' => $images,
+            'events' => $events,
         ]);
     }
 
@@ -63,7 +68,23 @@ class MultimediaController extends AbstractController
         ]); // création du formulaire
     }
 
-    // préparé une fonction pour afficher les médias en fonction de l'event
+    // fonction pour afficher les détails d'un event
+    #[Route('/multimedia/event/{id}', name: 'show_media')]
 
-    // préparé une vue pour afficher les média d'un event particulier
+    public function showMedia(EntityManagerInterface $em, $id): Response
+    {
+        // dd($events);
+        $event = $em->getRepository(Event::class)->find($id);
+
+        $videos = $em->getRepository(Multimedia::class)->findVids($event);
+        $images = $em->getRepository(Multimedia::class)->findImgs($event);
+        // dd($images);
+
+        return $this->render('multimedia/showMediaEvent.html.twig', [
+            'event' => $event,
+            'images' => $images,
+            'videos' => $videos
+        ]);
+
+    }
 }

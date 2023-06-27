@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EventController extends AbstractController
@@ -81,6 +82,29 @@ class EventController extends AbstractController
 
         $em->flush();
         return $this->redirectToRoute('app_event');
+    }
+
+    #[Route("/events/search", name:"app_event_search", methods:["POST"])]
+    public function searchAction(Request $request, EntityManagerInterface $entityManager)
+    {
+        $searchTerm = $request->request->get('searchTerm');
+        $searchDate = $request->request->get('searchDate');
+
+        $events = $entityManager->getRepository(Event::class)
+            ->searchByTermAndDate($searchTerm, $searchDate);
+
+        // Convert the events to JSON
+        $jsonData = [];
+        foreach ($events as $event) {
+            $jsonData[] = [
+                'id' => $event->getId(),
+                'nom' => $event->getNom(),
+                'date' => $event->getDate()->format('Y-m-d'),
+                // Add other properties if needed
+            ];
+        }
+
+        return new JsonResponse($jsonData);
     }
 
 }

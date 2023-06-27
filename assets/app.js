@@ -21,3 +21,4 @@ document.addEventListener('DOMContentLoaded', function() {
 //--------- fin partie JS pour le switch du panel Admin ---------//
 
 
+
