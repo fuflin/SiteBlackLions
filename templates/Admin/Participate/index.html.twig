@@ -8,9 +8,9 @@
         <div class="row">
             {% include "partials/adminNav.html.twig" %}
             <div class="col-9 border border-light bg-light p-3">
-                <h1 style="text-align: center;">Liste des Participations</h1><br>
+                <h3 class="align-middle">Liste des Participations</h3><br>
 
-                <h2 style="text-align: center;"><u>Evénement:</u> <strong>{{event.name}}</strong><br><br>Nombre de Participants: {{event.participates|length}}/{{event.NbMaxPers}}</h2><br>
+                <h3 class="align-middle"><u>Evénement:</u> <strong>{{event.name}}</strong><br><br>Nombre de Participants: {{event.participates|length}}/{{event.NbMaxPers}}</h3><br>
 
                 <table class="table table-dark table-striped-columns">
                     <thead>

@@ -14,7 +14,7 @@
         </div>
     {% endif %}
 
-    <h1>Connexion</h1>
+    <h2>Connexion</h2>
     <figure>
         <img src="{{asset('/img/airsoft logo CMJN-01.jpg')}}" alt="logo association">
     </figure>
@@ -29,7 +29,7 @@
                 <label for="inputPassword">Password</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
             </div>
-            <div style="width: 40%; margin: 20px;">
+            <div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </div>
             <div class="button">
