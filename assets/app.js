@@ -12,13 +12,39 @@ import './styles/app.css';
 import './bootstrap';
 
 
-//--------- partie JS pour le switch du panel Admin ---------//
+//--------- partie pour le switch du panel Admin ---------//
 document.addEventListener('DOMContentLoaded', function() {
     const switchElements = document.querySelectorAll('input[id^=switch]');
     console.log(switchElements.length);
     const formElement = document.getElementById('banForm');
 });
-//--------- fin partie JS pour le switch du panel Admin ---------//
+//--------- fin partie pour le switch du panel Admin ---------//
 
 
+
+//--------- Partie de la barre de Recherche---------//
+
+$(document).ready(function() {
+
+    $('#live_search').keyup(function(){
+
+      var input = $(this).val();
+      if(input !=""){
+        $.ajax({
+            method: 'POST',
+            url: 'service/recherche.php',
+            data: {input:input},
+            success: function(data){
+                if(data !=""){
+                    $('#result').html('');
+                }else {
+                    document.getElementById('result').innerHTML = "<div style='font-size: 20px; text-align: center; margin-top: 20px'>Aucun événement</div>";
+                }
+            }
+        })
+      }
+
+
+    });
+});
 
