@@ -8,6 +8,7 @@ use App\Form\EventType;
 use App\Entity\Participate;
 use App\Form\ParticipateType;
 use App\Service\FileUploader;
+use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,27 +85,17 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event');
     }
 
-    #[Route("/events/search", name:"app_event_search", methods:["POST"])]
-    public function searchAction(Request $request, EntityManagerInterface $entityManager)
+    #[Route("/events/search", name:"app_event_search", methods:["GET"])]
+
+    public function search(Request $request, EventRepository $eventRepository): Response
     {
-        $searchTerm = $request->request->get('searchTerm');
-        $searchDate = $request->request->get('searchDate');
+        $searchTerm = $request->query->get('searchTerm');
 
-        $events = $entityManager->getRepository(Event::class)
-            ->searchByTermAndDate($searchTerm, $searchDate);
-
-        // Convert the events to JSON
-        $jsonData = [];
-        foreach ($events as $event) {
-            $jsonData[] = [
-                'id' => $event->getId(),
-                'nom' => $event->getNom(),
-                'date' => $event->getDate()->format('Y-m-d'),
-                // Add other properties if needed
-            ];
-        }
-
-        return new JsonResponse($jsonData);
+        // Utilisez la méthode appropriée du repository pour effectuer la recherche
+        $event = $eventRepository->searchByNameOrDate($searchTerm);
+        // dd($events);
+        // Retournez la réponse en JSON
+        return $this->json($event);
     }
 
 }

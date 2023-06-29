@@ -39,6 +39,18 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchByNameOrDate($searchTerm)
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e.name' , 'e.id')
+            ->where('e.name LIKE :searchTerm')
+            // ->orWhere('e.date_create = :searchTerm')
+            ->setParameter('searchTerm', $searchTerm . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

@@ -29,21 +29,31 @@ $(document).ready(function() {
     $('#live_search').keyup(function(){
 
         var input = $(this).val();
-    //   alert(input);
+        // alert(input);
 
-        if(input !=""){
+        if(input != ""){
             $.ajax({
 
-                method: 'POST',
-                url: 'service/recherche.php',
-                data: {input:input},
+                method: 'GET',
+                url: '/events/search',
+                data: {searchTerm:input},
 
                 success: function(data){
-                    $('#live_search').html(data);
+
+                    var result = data.results || data;
+                    console.log(result);
+                    var resultHtml = "";
+
+                    for(var i = 0; i < result.length; i++){
+                        resultHtml += "<div>" + result[i].name + "</div>"
+                    }
+
+                    $('#result').html(resultHtml);
+                    $('#result').css('display', 'block');
                 }
             });
         } else {
-            $('#live_search').css('display', 'none');
+            $('#result').css('display', 'none');
         }
     });
 });
