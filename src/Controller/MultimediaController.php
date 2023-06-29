@@ -87,4 +87,10 @@ class MultimediaController extends AbstractController
         ]);
 
     }
+
+    // public function searchAction (EntityManagerInterface $em, Request $request): Response
+    // {
+    //     $request = $request->get(key: 'q');
+
+    // }
 }

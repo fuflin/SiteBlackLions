@@ -28,23 +28,23 @@ $(document).ready(function() {
 
     $('#live_search').keyup(function(){
 
-      var input = $(this).val();
-      if(input !=""){
-        $.ajax({
-            method: 'POST',
-            url: 'service/recherche.php',
-            data: {input:input},
-            success: function(data){
-                if(data !=""){
-                    $('#result').html('');
-                }else {
-                    document.getElementById('result').innerHTML = "<div style='font-size: 20px; text-align: center; margin-top: 20px'>Aucun événement</div>";
+        var input = $(this).val();
+    //   alert(input);
+
+        if(input !=""){
+            $.ajax({
+
+                method: 'POST',
+                url: 'service/recherche.php',
+                data: {input:input},
+
+                success: function(data){
+                    $('#live_search').html(data);
                 }
-            }
-        })
-      }
-
-
+            });
+        } else {
+            $('#live_search').css('display', 'none');
+        }
     });
 });
 

@@ -45,7 +45,7 @@ class MultimediaRepository extends ServiceEntityRepository
             ->where("m.media LIKE '%.mp4'")
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findVids($event)
@@ -56,7 +56,7 @@ class MultimediaRepository extends ServiceEntityRepository
             ->setParameter("event", $event)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function getImages()
@@ -67,21 +67,26 @@ class MultimediaRepository extends ServiceEntityRepository
             ->orWhere("m.media LIKE '%.png'")
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     public function findImgs($event)
     {
-        return $this->createQueryBuilder('m')
-            ->where("m.media LIKE '%.jpg'")
-            ->orWhere("m.media LIKE '%.jpeg'")
-            ->orWhere("m.media LIKE '%.png'")
-            ->andWhere("m.event = :event")
-            ->setParameter("event", $event)
-            ->getQuery()
-            ->getResult()
-            ;
+        return $this->createQueryBuilder('m') // appel de la table avec son alias
+            ->where("m.media LIKE '%.jpg'") // condition récupère toute donnée se terminant par .jpg
+            ->orWhere("m.media LIKE '%.jpeg'") // ou condition récupère toute donnée se terminant par .jpeg
+            ->orWhere("m.media LIKE '%.png'") // ou condition récupère toute donnée se terminant par .png
+            ->andWhere("m.event = :event") // et condition que la donnée appartienne à un objet event
+            ->setParameter("event", $event) // attribut le paramètre event à la variable déclaré $event
+            ->getQuery() // exécuter la requête
+            ->getResult() // récupéré les résultats sous forme forme de tableau
+        ;
     }
+
+    // public function findMedia()
+    // {
+    //     return $this->createQueryBuilder('q')
+    // }
 
 //    /**
 //     * @return Multimedia[] Returns an array of Multimedia objects
