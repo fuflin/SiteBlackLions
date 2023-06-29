@@ -99,7 +99,7 @@ body main .login .long .form .button {
 }
 body main img {
   max-width: 100%;
-  max-height: 60%;
+  max-height: 80%;
   vertical-align: top;
   -o-object-fit: contain;
      object-fit: contain;
@@ -119,14 +119,18 @@ body main .gallery {
 body main .gallery__img {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  transform: translateX(-50%);
 }
 body main .gallery__thumb {
   padding-top: 6px;
   margin: 6px;
   display: block;
+}
+body main .gallery__thumb img {
+  height: 80px;
 }
 body main .gallery__selector {
   position: absolute;
