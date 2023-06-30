@@ -23,6 +23,13 @@ body main .container .carouselImg .carousel-item figure img {
   width: 100% !important;
   border-radius: 15px !important;
 }
+body main .search {
+  width: 50%;
+  margin: auto;
+}
+body main .search input {
+  margin-bottom: 40px !important;
+}
 body main .add-event {
   display: flex !important;
   justify-content: center !important;

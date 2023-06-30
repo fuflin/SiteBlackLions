@@ -37,6 +37,17 @@ body {
             }
         }
 
+        .search {
+
+            width: 50%;
+            margin: auto;
+
+            input {
+
+                margin-bottom: 40px !important;
+            }
+        }
+
         .add-event {
 
             display: flex !important;

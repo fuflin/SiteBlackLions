@@ -15,6 +15,7 @@ class SearchForm extends AbstractType
     {
         $builder
             ->add('q', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'placeholder' => "Recherche"
                 ]
@@ -22,6 +23,7 @@ class SearchForm extends AbstractType
 
             ->add('date', DateType::class,  [
                 'widget' => 'single_text',
+                'required' => false,
                 'attr'=> ['class' => 'form-control'],
                 'label' => 'Saisissez la date'
             ]);

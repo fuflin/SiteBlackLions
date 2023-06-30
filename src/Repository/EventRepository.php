@@ -39,17 +39,39 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
-    public function searchByNameOrDate($searchTerm)
+    public function searchByNameOrDate($data)
     {
         return $this->createQueryBuilder('e')
             ->select('e.name' , 'e.id')
-            ->where('e.name LIKE :searchTerm')
-            // ->orWhere('e.date_create = :searchTerm')
-            ->setParameter('searchTerm', $searchTerm . '%')
+            ->where('e.name LIKE :data')
+            // ->orWhere('e.date_create = :date')
+            ->setParameter('data', $data . '%')
             ->getQuery()
             ->getResult()
         ;
     }
+
+    public function searchEvent($data)
+    {
+
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+            $sub->select('e.name')
+                    ->from('App\Entity\Event', 'e')
+                    ->where('e.name LIKE :name')
+                    ->setParameter('name', $data);
+
+        $query = $em->createQueryBuilder();
+
+            $query->select('ev.date_create')
+                    ->from('App\Entity\Event', 'ev')
+                    ->where('ev.date_create = :date')
+                    ->setParameter('date', $data);
+
+        return $query->getQuery()->getResult();
+    }
+
 
 //    /**
 //     * @return Event[] Returns an array of Event objects

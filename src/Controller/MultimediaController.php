@@ -20,10 +20,6 @@ class MultimediaController extends AbstractController
     #[Route('/multimedia', name: 'app_multimedia')]
     public function index(EntityManagerInterface $em): Response
     {
-        $data = new SearchData();
-
-        $form = $this->createForm(SearchForm::class, $data);
-
         $videos = $em->getRepository(Multimedia::class)->getVideos();
         $images = $em->getRepository(Multimedia::class)->getImages();
 
@@ -33,7 +29,6 @@ class MultimediaController extends AbstractController
             'videos' => $videos,
             'images' => $images,
             'events' => $events,
-            'form' => $form->createView(),
         ]);
     }
 
@@ -83,14 +78,17 @@ class MultimediaController extends AbstractController
         // dd($events);
         $event = $em->getRepository(Event::class)->find($id);
 
-        $videos = $em->getRepository(Multimedia::class)->findVids($event);
-        $images = $em->getRepository(Multimedia::class)->findImgs($event);
+        // $videos = $em->getRepository(Multimedia::class)->findVids($event);
+        // $images = $em->getRepository(Multimedia::class)->findImgs($event);
+
+        $media = $em->getRepository(Multimedia::class)->findImgs($event);
         // dd($images);
 
         return $this->render('multimedia/showMediaEvent.html.twig', [
             'event' => $event,
-            'images' => $images,
-            'videos' => $videos
+            'media' => $media,
+            // 'images' => $images,
+            // 'videos' => $videos
         ]);
 
     }
