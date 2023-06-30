@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Event;
-use App\Form\EventType;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Entity\Participate;
-use App\Form\ParticipateType;
-use App\Service\FileUploader;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,17 +83,32 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event');
     }
 
+    // #[Route("/events/search", name:"app_event_search", methods:["GET"])]
+
+    // public function search(Request $request, EventRepository $eventRepository): Response
+    // {
+    //     $searchTerm = $request->query->get('searchTerm');
+
+    //     // Utilisez la méthode appropriée du repository pour effectuer la recherche
+    //     $event = $eventRepository->searchByNameOrDate($searchTerm);
+    //     // dd($event);
+    //     // Retournez la réponse en JSON
+    //     return $this->json($event);
+    // }
+
     #[Route("/events/search", name:"app_event_search", methods:["GET"])]
 
-    public function search(Request $request, EventRepository $eventRepository): Response
+    public function search(): Response
     {
-        $searchTerm = $request->query->get('searchTerm');
 
-        // Utilisez la méthode appropriée du repository pour effectuer la recherche
-        $event = $eventRepository->searchByNameOrDate($searchTerm);
-        // dd($events);
-        // Retournez la réponse en JSON
-        return $this->json($event);
+        $data = new SearchData();
+
+        $form = $this->createForm(SearchForm::class, $data);
+
+        return $this->render('multimedia/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 
 }

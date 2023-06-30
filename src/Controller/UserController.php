@@ -86,8 +86,6 @@ class UserController extends AbstractController
     public function editPassword(EntityManagerInterface $em, User $user, UserPasswordHasherInterface $hasher, Request $request): Response
     {
 
-        // $user = $this->getUser();
-
         $form = $this->createForm(ChangPasswordType::class);
         $form->handleRequest($request);
 

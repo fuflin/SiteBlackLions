@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Entity\Multimedia;
 use App\Form\MultimediaType;
 use App\Service\FileUploader;
@@ -18,6 +20,10 @@ class MultimediaController extends AbstractController
     #[Route('/multimedia', name: 'app_multimedia')]
     public function index(EntityManagerInterface $em): Response
     {
+        $data = new SearchData();
+
+        $form = $this->createForm(SearchForm::class, $data);
+
         $videos = $em->getRepository(Multimedia::class)->getVideos();
         $images = $em->getRepository(Multimedia::class)->getImages();
 
@@ -27,6 +33,7 @@ class MultimediaController extends AbstractController
             'videos' => $videos,
             'images' => $images,
             'events' => $events,
+            'form' => $form->createView(),
         ]);
     }
 

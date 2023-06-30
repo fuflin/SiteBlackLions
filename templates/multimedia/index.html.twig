@@ -10,7 +10,7 @@
 <h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary">Ajouter un Media</a></h4>
 {% endif %}
 
-<div class="dropdown">
+{# <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Liste des événements
   </button>
@@ -24,10 +24,30 @@
 <div class="container">
     <input class="form-control" type="text" id="live_search" placeholder="Recherche un événement">
     <div id="result"></div>
+</div> #}
+
+
+
+  
+
+  
+
+
+
+<div class="regis">
+  {{form_start(form, {'attr': {'style': 'width: 50%'} })}}
+
+      <div class="form">
+          <div>
+            {{form_row(form.q)}}
+          </div>
+          <div>
+            {{form_row(form.date)}}
+          </div>
+      </div>
+
+      {{form_end(form)}}
 </div>
-
-
-
 
 <div class="container">
 
