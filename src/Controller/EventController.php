@@ -83,35 +83,37 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event');
     }
 
-    // #[Route("/events/search", name:"app_event_search", methods:["GET"])]
-
-    // public function search(Request $request, EventRepository $eventRepository): Response
-    // {
-    //     $searchTerm = $request->query->get('searchTerm');
-
-    //     // Utilisez la méthode appropriée du repository pour effectuer la recherche
-    //     $event = $eventRepository->searchByNameOrDate($searchTerm);
-    //     // dd($event);
-    //     // Retournez la réponse en JSON
-    //     return $this->json($event);
-    // }
-
     #[Route("/events/search", name:"app_event_search", methods:["GET"])]
 
     public function search(Request $request, EventRepository $eventRepository): Response
     {
+        $searchTerm = $request->query->get('searchTerm');
 
-        $data = new SearchData();
-
-        $form = $this->createForm(SearchForm::class, $data);
-        $data = $request->query->get('data');
-
-
-        $data = $eventRepository->searchEvent($data);
-        dd($data);
-
-        return $this->json($data);
-
+        // Utilisez la méthode appropriée du repository pour effectuer la recherche
+        $event = $eventRepository->searchByNameOrDate($searchTerm);
+        // dd($event);
+        // Retournez la réponse en JSON
+        return $this->json($event);
     }
+
+    // #[Route("/events/search", name:"app_event_search", methods:["GET"])]
+
+    // public function search(Request $request, EventRepository $eventRepository): Response
+    // {
+
+    //     $data = new SearchData();
+
+    //     $form = $this->createForm(SearchForm::class, $data);
+    //     $form->handleRequest($request);
+    //     $data = $request->query->get('data');
+    //     // dd($data);
+    //     $event = $eventRepository->searchEvent($data);
+    //     dd($event);
+    //     return $this->render('multimedia/index.html.twig', [
+    //         'event' => $event,
+    //         'form' => $form->createView(),
+    //      ]);
+
+    // }
 
 }

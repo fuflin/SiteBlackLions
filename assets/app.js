@@ -24,43 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //--------- Partie de la barre de Recherche---------//
 
-// $(document).ready(function() {
-
-//     $('#live_search').keyup(function(){
-
-//         var input = $(this).val();
-//         // alert(input);
-
-//         if(input != ""){
-//             $.ajax({
-
-//                 method: 'GET',
-//                 url: '/events/search',
-//                 data: {searchTerm:input},
-
-//                 success: function(data){
-
-//                     var result = data.results || data;
-//                     console.log(result);
-//                     var resultHtml = "";
-
-//                     for(var i = 0; i < result.length; i++){
-//                         resultHtml += "<div>" + result[i].name + "</div>"
-//                     }
-
-//                     $('#result').html(resultHtml);
-//                     $('#result').css('display', 'block');
-//                 }
-//             });
-//         } else {
-//             $('#result').css('display', 'none');
-//         }
-//     });
-// });
-
 $(document).ready(function() {
 
-    $('#name_search').keyup(function(){
+    $('#live_search').keyup(function(){
 
         var input = $(this).val();
         // alert(input);
@@ -70,7 +36,7 @@ $(document).ready(function() {
 
                 method: 'GET',
                 url: '/events/search',
-                data: {data:input},
+                data: {searchTerm:input},
 
                 success: function(data){
 
@@ -91,3 +57,39 @@ $(document).ready(function() {
         }
     });
 });
+
+// $(document).ready(function() {
+
+//     $('#name_search').keyup(function(){
+
+//         var input = $(this).val();
+//         // alert(input);
+
+//         if(input != ""){
+//             $.ajax({
+
+//                 method: 'GET',
+//                 url: '/events/search',
+//                 data: {data:input},
+
+//                 success: function(data){
+// console.log(data);
+//                     var result = data.results || data;
+                    
+//                     var resultHtml = "";
+
+//                     for(var i = 0; i < result.length; i++){
+//                         resultHtml += "<div>" + result[i].name + "</div>"
+//                     }
+
+//                     $('#result').html(resultHtml);
+//                     $('#result').css('display', 'block');
+//                 }
+//             });
+//         } else {
+//             $('#result').css('display', 'none');
+//         }
+//     });
+// });
+
+

@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Event;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Data\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -51,23 +52,22 @@ class EventRepository extends ServiceEntityRepository
         ;
     }
 
-    public function searchEvent($data)
+    public function searchEvent(SearchData $search): array
     {
 
-        $em = $this->getEntityManager();
-        $sub = $em->createQueryBuilder();
+        $query = $this->createQueryBuilder('e');
 
-            $sub->select('e.name')
-                    ->from('App\Entity\Event', 'e')
-                    ->where('e.name LIKE :name')
-                    ->setParameter('name', $data);
+            if(!empty($search->q)) {
+                $query = $query
+                    ->andWhere('e.name LIKE :q')
+                    ->setParameter('q', $search->q . '%');
+            }
 
-        $query = $em->createQueryBuilder();
-
-            $query->select('ev.date_create')
-                    ->from('App\Entity\Event', 'ev')
-                    ->where('ev.date_create = :date')
-                    ->setParameter('date', $data);
+            if (!empty($search->date)) {
+                $query = $query
+                    ->andWhere('e.date_create LIKE :date')
+                    ->setParameter('date', "%{$search->date}%");
+            }
 
         return $query->getQuery()->getResult();
     }
