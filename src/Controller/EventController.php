@@ -98,22 +98,22 @@ class EventController extends AbstractController
 
     // #[Route("/events/search", name:"app_event_search", methods:["GET"])]
 
-    // public function search(Request $request, EventRepository $eventRepository): Response
+    // public function searchEvent(Request $request, EventRepository $eventRepository): Response
     // {
 
     //     $data = new SearchData();
 
     //     $form = $this->createForm(SearchForm::class, $data);
+    //     dd($data);
     //     $form->handleRequest($request);
-    //     $data = $request->query->get('data');
-    //     // dd($data);
+    //     // $data = $request->query->get('data');
+
     //     $event = $eventRepository->searchEvent($data);
-    //     dd($event);
+    //     // dd($event);
     //     return $this->render('multimedia/index.html.twig', [
     //         'event' => $event,
     //         'form' => $form->createView(),
-    //      ]);
-
+    //     ]);
     // }
 
 }

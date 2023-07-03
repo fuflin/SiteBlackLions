@@ -15,5 +15,5 @@ class SearchData
     /**
      * @var datetime
      */
-    public $date = "";
+    public $date = null;
 }

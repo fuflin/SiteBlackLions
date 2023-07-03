@@ -45,7 +45,7 @@ class EventRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->select('e.name' , 'e.id')
             ->where('e.name LIKE :data')
-            // ->orWhere('e.date_create = :date')
+            // ->orWhere('e.date_create :data')
             ->setParameter('data', $data . '%')
             ->getQuery()
             ->getResult()
