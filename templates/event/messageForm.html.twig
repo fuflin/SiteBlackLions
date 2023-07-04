@@ -1,0 +1,14 @@
+<div class="regis">
+    {{ form_start(messageForm, {'attr': {'style': 'width: 65%'} }) }}
+
+        <div class="form">
+            <div>
+                {{ form_row(messageForm.message) }}
+            </div>
+            <div class="button">
+                {{form_row(messageForm.submit, {'label':'Soumettre'})}}
+            </div>
+        </div>
+
+    {{ form_end(messageForm) }}
+</div>

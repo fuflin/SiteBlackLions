@@ -78,17 +78,17 @@ class MultimediaController extends AbstractController
         // dd($events);
         $event = $em->getRepository(Event::class)->find($id);
 
-        // $videos = $em->getRepository(Multimedia::class)->findVids($event);
-        // $images = $em->getRepository(Multimedia::class)->findImgs($event);
+        $videos = $em->getRepository(Multimedia::class)->findVids($event);
+        $images = $em->getRepository(Multimedia::class)->findImgs($event);
 
-        $media = $em->getRepository(Multimedia::class)->findImgs($event);
-        // dd($images);
+        // $medias = $em->getRepository(Multimedia::class)->findMedias($event);
+        // dd($medias);
 
         return $this->render('multimedia/showMediaEvent.html.twig', [
             'event' => $event,
-            'media' => $media,
-            // 'images' => $images,
-            // 'videos' => $videos
+            // 'medias' => $medias,
+            'images' => $images,
+            'videos' => $videos
         ]);
 
     }

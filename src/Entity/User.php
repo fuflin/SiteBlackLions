@@ -54,10 +54,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $is_banned = false;
 
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Message::class)]
+    private Collection $messages;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->participates = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -246,6 +250,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsBanned(bool $is_banned): self
     {
         $this->is_banned = $is_banned;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUser() === $this) {
+                $message->setUser(null);
+            }
+        }
 
         return $this;
     }

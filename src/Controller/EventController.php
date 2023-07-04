@@ -37,6 +37,7 @@ class EventController extends AbstractController
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
+        //    'messageForm'=> null
         ]);
 
     }

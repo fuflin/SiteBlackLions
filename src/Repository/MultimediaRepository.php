@@ -83,10 +83,16 @@ class MultimediaRepository extends ServiceEntityRepository
         ;
     }
 
-    // public function findMedia()
-    // {
-    //     return $this->createQueryBuilder('q')
-    // }
+    public function findMedias($event)
+    {
+        return $this->createQueryBuilder('m')
+            ->select('m.media, m.id')
+            ->where('m.event = :event')
+            ->setParameter("event", $event)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Multimedia[] Returns an array of Multimedia objects

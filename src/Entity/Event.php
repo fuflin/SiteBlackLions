@@ -31,9 +31,8 @@ class Event
     #[ORM\Column(type: Types::TEXT)]
     private ?string $poster = null;
 
-
-    #[ORM\ManyToOne(inversedBy: 'events')]
-    private ?User $user = null;
+    // #[ORM\ManyToOne(inversedBy: 'events')]
+    // private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Multimedia::class)]
     private Collection $multimedias;
@@ -41,10 +40,14 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class, cascade: ["remove"])]
     private Collection $participates;
 
+    #[ORM\OneToMany(mappedBy: 'Event', targetEntity: Message::class)]
+    private Collection $messages;
+
     public function __construct()
     {
         $this->multimedias = new ArrayCollection();
         $this->participates = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,17 +116,17 @@ class Event
     }
 
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
+    // public function getUser(): ?User
+    // {
+    //     return $this->user;
+    // }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
+    // public function setUser(?User $user): self
+    // {
+    //     $this->user = $user;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Multimedia>
@@ -188,5 +191,35 @@ class Event
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getEvent() === $this) {
+                $message->setEvent(null);
+            }
+        }
+
+        return $this;
     }
 }
