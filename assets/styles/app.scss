@@ -130,29 +130,7 @@ body {
             }
         }
 
-        .formMessage {
-
-            display: flex !important;
-            justify-content: center !important;
-            margin-top: 40px !important;
-
-            form {
-
-                div {
-
-                    width: 100% !important;
-                    color: white !important;
-                    margin-bottom: 30px !important;
-                }
-
-                .button {
-
-                    width: 100% !important;
-                    margin-top: 30px !important;
-                    text-align: center !important;
-                }
-            }
-        }
+        
 
         .container_message {
 
@@ -169,6 +147,30 @@ body {
 
                     font-size: 20px !important;
                     height: 20px;
+                }
+            }
+
+            .formMessage {
+
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: 40px !important;
+    
+                form {
+    
+                    div {
+    
+                        width: 100% !important;
+                        color: white !important;
+                        margin-bottom: 30px !important;
+                    }
+    
+                    .button {
+    
+                        width: 100% !important;
+                        margin-top: 30px !important;
+                        text-align: center !important;
+                    }
                 }
             }
         }

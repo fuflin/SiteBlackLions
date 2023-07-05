@@ -84,21 +84,6 @@ body main .regis form .button {
   margin-top: 30px !important;
   text-align: center !important;
 }
-body main .formMessage {
-  display: flex !important;
-  justify-content: center !important;
-  margin-top: 40px !important;
-}
-body main .formMessage form div {
-  width: 100% !important;
-  color: white !important;
-  margin-bottom: 30px !important;
-}
-body main .formMessage form .button {
-  width: 100% !important;
-  margin-top: 30px !important;
-  text-align: center !important;
-}
 body main .container_message {
   width: 50%;
   margin: auto;
@@ -111,6 +96,21 @@ body main .container_message .card {
 body main .container_message .card footer {
   font-size: 20px !important;
   height: 20px;
+}
+body main .container_message .formMessage {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 40px !important;
+}
+body main .container_message .formMessage form div {
+  width: 100% !important;
+  color: white !important;
+  margin-bottom: 30px !important;
+}
+body main .container_message .formMessage form .button {
+  width: 100% !important;
+  margin-top: 30px !important;
+  text-align: center !important;
 }
 body main .detail_event .poster {
   display: flex;

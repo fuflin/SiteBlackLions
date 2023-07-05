@@ -45,16 +45,18 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         $messages = $em->getRepository(Message::class)->findBy(['event' => $event]);
-
         $user = $this->getUser();
-
-        $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
+        $participates = $em->getRepository(Participate::class)->findBy(['event' => $event]);
 
         // dd($participates);
         if($user instanceof User){
-            foreach ($participates as $participate){
 
-                if (!$user->getId() == $participate->getUser()->getId()) {
+            foreach ($participates as $participate){
+                dd($participate);
+
+                if ($user->getId() && $participate->getUser()->getId()) {
+                    // dd($user->getId() && $participate->getUser()->getId());
+
                     if ($form->isSubmitted() && $form->isValid()) {
 
                         $message->setUser($this->getUser());
@@ -77,6 +79,7 @@ class EventController extends AbstractController
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
+           'participates' => $participates,
            'messages' => $messages,
            'messageForm'=> $form->createView()
         ]);

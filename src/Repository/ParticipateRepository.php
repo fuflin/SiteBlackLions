@@ -39,6 +39,17 @@ class ParticipateRepository extends ServiceEntityRepository
         }
     }
 
+    public function getParticipe($user_id) {
+
+        return $this->createQueryBuilder('p')
+                ->select('p.user_id')
+                ->where('p.id = :id')
+                ->setParameter('user_id', $user_id)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
     // public function infoParticipate(){
 
     //     return $this->createQueryBuilder('p')

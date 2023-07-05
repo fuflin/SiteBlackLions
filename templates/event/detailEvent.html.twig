@@ -41,6 +41,7 @@
     <h2>Messagerie</h2>
 
     <div class="container_message">
+
         {% for message in messages %}
                 <div class="card">
                     <div class="card-header">Post {{message.createdDate | date('d/m/Y')}}</div>
@@ -51,22 +52,26 @@
                     </blockquote>
                     </div>
                 </div>
-            {% endfor %}
-    </div>
+        {% endfor %}
 
-    <div class="formMessage">
-    {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
+    {# {% if  %} #}
+            <div class="formMessage">
+                {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
 
-        <div class="form">
-            <div>
-                {{ form_row(messageForm.content) }}
+                    <div class="form">
+                        <div>
+                            {{ form_row(messageForm.content) }}
+                        </div>
+                        <div class="button">
+                            {{form_row(messageForm.submit, {'label':'Soumettre'})}}
+                        </div>
+                    </div>
+
+                {{ form_end(messageForm) }}
             </div>
-            <div class="button">
-                {{form_row(messageForm.submit, {'label':'Soumettre'})}}
-            </div>
-        </div>
-
-    {{ form_end(messageForm) }}
+        {# {% else %}
+            <p>Pour discuter avec les membres veuillez vous inscrire à l'événement</p>
+    {% endif %} #}
     </div>
 {% endif %}
 
