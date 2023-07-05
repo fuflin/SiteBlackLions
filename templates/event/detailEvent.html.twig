@@ -35,31 +35,31 @@
 
 </div>
 
-
-
 {% include "event/redirect.html.twig"%}
 
 {% if app.user %}
+    <h2>Messagerie</h2>
 
-    {% for message in messages %}
-        <div class="message">
-            <div class="card-header">Post</div>
-            <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>{{message.content}}</p>
-                <footer class="blockquote-footer">{{message.date_create}}<cite title="Source Title">{{message.user.nickname}}</cite></footer>
-            </blockquote>
-            </div>
-        </div>
-    {% endfor %}
-
+    <div class="container_message">
+        {% for message in messages %}
+                <div class="card">
+                    <div class="card-header">Post {{message.createdDate | date('d/m/Y')}}</div>
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{message.content}}</p>
+                        <footer class="blockquote-footer"><cite title="Source Title">{{message.user.nickname}}</cite></footer>
+                    </blockquote>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
 
     <div class="formMessage">
-    {{ form_start(messageForm, {'attr': {'style': 'width: 65%'} }) }}
+    {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
 
         <div class="form">
             <div>
-                {{ form_row(messageForm.message) }}
+                {{ form_row(messageForm.content) }}
             </div>
             <div class="button">
                 {{form_row(messageForm.submit, {'label':'Soumettre'})}}

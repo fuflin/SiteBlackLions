@@ -130,7 +130,49 @@ body {
             }
         }
 
-        
+        .formMessage {
+
+            display: flex !important;
+            justify-content: center !important;
+            margin-top: 40px !important;
+
+            form {
+
+                div {
+
+                    width: 100% !important;
+                    color: white !important;
+                    margin-bottom: 30px !important;
+                }
+
+                .button {
+
+                    width: 100% !important;
+                    margin-top: 30px !important;
+                    text-align: center !important;
+                }
+            }
+        }
+
+        .container_message {
+
+            width: 50%;
+            margin: auto;
+            height: 50% !important;
+
+            .card {
+
+                width: 90%;
+                margin: 20px auto;
+
+                footer {
+
+                    font-size: 20px !important;
+                    height: 20px;
+                }
+            }
+        }
+
         .detail_event {
 
             .poster {
@@ -372,7 +414,7 @@ body {
     }
 
     footer {
-        height: 350px;
+        height: 250px;
     }
 
     }

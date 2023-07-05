@@ -194,7 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->events->contains($event)) {
             $this->events->add($event);
-            $event->setUser($this);
+            // $event->setUser($this);
         }
 
         return $this;
@@ -204,9 +204,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($event->getUser() === $this) {
-                $event->setUser(null);
-            }
+            // if ($event->getUser() === $this) {
+            //     $event->setUser(null);
+            // }
         }
 
         return $this;

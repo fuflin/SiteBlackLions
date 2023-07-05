@@ -19,11 +19,11 @@ class Message
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Event $Event = null;
+    private ?Event $event = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -53,24 +53,24 @@ class Message
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): self
+    public function setUser(?User $user): self
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }
 
     public function getEvent(): ?Event
     {
-        return $this->Event;
+        return $this->event;
     }
 
-    public function setEvent(?Event $Event): self
+    public function setEvent(?Event $event): self
     {
-        $this->Event = $Event;
+        $this->event = $event;
 
         return $this;
     }

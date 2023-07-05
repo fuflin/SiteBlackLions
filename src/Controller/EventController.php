@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Event;
 use App\Entity\Message;
 use App\Data\SearchData;
@@ -24,11 +25,11 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
-        $messages = $em->getRepository(Message::class)->findAll();
+        // $messages = $em->getRepository(Message::class)->findAll();
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
-            'messages' => $messages
+            // 'messages' => $messages
         ]);
     }
 
@@ -38,27 +39,45 @@ class EventController extends AbstractController
 
     public function showEvent(Event $event, EntityManagerInterface $em, Request $request): Response
     {
-
         $message = new Message();
 
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $messages = $em->getRepository(Message::class)->findBy(['event' => $event]);
 
-            $message->setUser($this->getUser());
-            $message->setEvent($event);
+        $user = $this->getUser();
 
-            $message = $form->getData();
+        $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
 
-            $em->persist($message);
-            $em->flush();
+        // dd($participates);
+        if($user instanceof User){
+            foreach ($participates as $participate){
 
-            return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
+                if (!$user->getId() == $participate->getUser()->getId()) {
+                    if ($form->isSubmitted() && $form->isValid()) {
+
+                        $message->setUser($this->getUser());
+                        $message->setEvent($event);
+
+                        $message = $form->getData();
+
+                        $em->persist($message);
+                        $em->flush();
+
+                        $this->addFlash(
+                           'Veuillez vous inscrire pour pouvoir chatter',
+                           'flashMessage'
+                        );
+                        return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
+                    }
+                }
+            }
         }
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
+           'messages' => $messages,
            'messageForm'=> $form->createView()
         ]);
 

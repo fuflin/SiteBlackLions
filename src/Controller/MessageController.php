@@ -21,30 +21,5 @@ class MessageController extends AbstractController
         ]);
     }
 
-    #[Route('/event/{id}/message/new', name: 'new_message_event')]
-    public function newMessage(Event $event, EntityManagerInterface $em, Request $request): Response
-    {
-        $message = new Message();
-
-        $form = $this->createForm(MessageType::class, $message);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $message->setUser($this->getUser());
-            $message->setEvent($event);
-
-            $message = $form->getData();
-
-            $em->persist($message);
-            $em->flush();
-
-            return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
-        }
-
-        return $this->render('event/messageForm.html.twig', [
-            // 'event' => $event,
-            'messageForm' => $form->createView()
-        ]);
-    }
+    
 }
