@@ -22,12 +22,13 @@ body main h4 a {
 body main .container {
   margin-top: 80px;
 }
-body main .container .carouselImg .carousel-item figure {
-  width: 40% !important;
+body main .container figure {
+  width: 60%;
+  margin: auto;
 }
-body main .container .carouselImg .carousel-item figure img {
-  width: 100% !important;
-  border-radius: 15px !important;
+body main .container img {
+  width: 100%;
+  border-radius: 15px;
 }
 body main .search {
   width: 50%;
