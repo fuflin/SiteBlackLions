@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $is_banned = false;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Message::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]
     private Collection $messages;
 
     public function __construct()
@@ -204,9 +204,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->events->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            // if ($event->getUser() === $this) {
-            //     $event->setUser(null);
-            // }
+            if ($event->getUser() === $this) {
+                $event->setUser(null);
+            }
         }
 
         return $this;

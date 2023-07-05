@@ -31,8 +31,8 @@ class Event
     #[ORM\Column(type: Types::TEXT)]
     private ?string $poster = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'events')]
-    // private ?User $user = null;
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Multimedia::class)]
     private Collection $multimedias;
@@ -40,7 +40,7 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class, cascade: ["remove"])]
     private Collection $participates;
 
-    #[ORM\OneToMany(mappedBy: 'Event', targetEntity: Message::class)]
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Message::class)]
     private Collection $messages;
 
     public function __construct()
@@ -116,17 +116,17 @@ class Event
     }
 
 
-    // public function getUser(): ?User
-    // {
-    //     return $this->user;
-    // }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-    // public function setUser(?User $user): self
-    // {
-    //     $this->user = $user;
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     /**
      * @return Collection<int, Multimedia>

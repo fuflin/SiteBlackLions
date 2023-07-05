@@ -45,37 +45,27 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         $messages = $em->getRepository(Message::class)->findBy(['event' => $event]);
+
         $user = $this->getUser();
-        $participates = $em->getRepository(Participate::class)->findBy(['event' => $event]);
-
+        
+        $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
         // dd($participates);
-        if($user instanceof User){
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            foreach ($participates as $participate){
-                // dd($participate);
+                $message->setUser($this->getUser());
+                $message->setEvent($event);
 
-                if ($user->getId() && $participate->getUser()->getId()) {
-                    // dd($user->getId() && $participate->getUser()->getId());
+                $message = $form->getData();
 
-                    if ($form->isSubmitted() && $form->isValid()) {
+                $em->persist($message);
+                $em->flush();
 
-                        $message->setUser($this->getUser());
-                        $message->setEvent($event);
-
-                        $message = $form->getData();
-
-                        $em->persist($message);
-                        $em->flush();
-
-                        $this->addFlash(
-                           'Veuillez vous inscrire pour pouvoir chatter',
-                           'flashMessage'
-                        );
-                        return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
-                    }
-                }
+                $this->addFlash(
+                    'Veuillez vous inscrire pour pouvoir chatter',
+                    'flashMessage'
+                );
+                return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
             }
-        }
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
