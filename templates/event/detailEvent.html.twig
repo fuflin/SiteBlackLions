@@ -55,6 +55,9 @@
         {% endfor %}
 
     {# {% if  %} #}
+    {% for user in event.participates %}
+    {{ dump(user) }}
+    {% if app.user == user %}
             <div class="formMessage">
                 {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
 
@@ -71,8 +74,12 @@
             </div>
         {# {% else %}
             <p>Pour discuter avec les membres veuillez vous inscrire à l'événement</p>
-    {% endif %} #}
-    </div>
+        {% endif %} #}
+</div>
+    {% endif %}
+        
+    {% endfor %}
+            
 {% endif %}
 
 

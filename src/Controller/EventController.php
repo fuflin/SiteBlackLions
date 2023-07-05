@@ -52,7 +52,7 @@ class EventController extends AbstractController
         if($user instanceof User){
 
             foreach ($participates as $participate){
-                dd($participate);
+                // dd($participate);
 
                 if ($user->getId() && $participate->getUser()->getId()) {
                     // dd($user->getId() && $participate->getUser()->getId());
