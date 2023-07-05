@@ -13,6 +13,12 @@ body main h2 {
   color: white;
   margin: 30px;
 }
+body main h4 {
+  text-align: center;
+}
+body main h4 a {
+  width: 30%;
+}
 body main .container {
   margin-top: 80px;
 }
@@ -77,6 +83,92 @@ body main .regis form .button {
   width: 100% !important;
   margin-top: 30px !important;
   text-align: center !important;
+}
+body main .detail_event .poster {
+  display: flex;
+  justify-content: center;
+}
+body main .detail_event .poster figure {
+  width: 45%;
+  border-radius: 15px;
+}
+body main .detail_event .poster figure img {
+  width: 100%;
+}
+body main .detail_event .bloc {
+  background-color: aliceblue;
+  width: 45%;
+  margin: auto;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+body main .detail_event .bloc div {
+  display: flex;
+  justify-content: center;
+}
+body main .detail_event .bloc div h4 {
+  text-align: center;
+  width: 40%;
+  padding: 10px;
+}
+body main .detail_event .bloc div p {
+  text-align: center;
+  font-size: 1.5em;
+  width: 70%;
+  padding: 10px;
+}
+body main .card_event .row {
+  width: 90% !important;
+  margin: auto !important;
+}
+body main .card_event .row .col-sm-6 {
+  width: 32% !important;
+  margin: 50px 10px !important;
+}
+body main .card_event .row .col-sm-6 .card {
+  width: 80% !important;
+  background-color: black !important;
+  border: solid rgb(51, 49, 49) 2px !important;
+  padding: 10px !important;
+  margin: auto !important;
+}
+body main .card_event .row .col-sm-6 .card figure {
+  height: 300px !important;
+  border-radius: 15px !important;
+}
+body main .card_event .row .col-sm-6 .card figure img {
+  width: 100% !important;
+}
+body main .card_event .row .col-sm-6 .card .card-body .card-title {
+  text-align: center !important;
+  color: white !important;
+}
+body main .card_event .row .col-sm-6 .card .card-body .card-title .first {
+  color: red;
+}
+body main .card_event .row .col-sm-6 .card .card-body .card-title .second {
+  color: darkgreen;
+}
+body main .card_event .row .col-sm-6 .card .card-body .card-text {
+  text-align: center;
+  color: white !important;
+}
+body main .card_event .row .col-sm-6 .card .card-body .card-text .third {
+  color: rgb(0, 153, 255);
+}
+body main .card_event .row .col-sm-6 .card .card-body a {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 75%;
+}
+body main .card_event .row .col-sm-6 .card .option {
+  display: flex;
+  justify-content: center;
+}
+body main .card_event .row .col-sm-6 .card .option a {
+  width: 42%;
+  margin: 10px;
 }
 body main .login figure {
   width: 20%;

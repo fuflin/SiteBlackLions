@@ -8,41 +8,46 @@
 
 {% if is_granted('ROLE_ADMIN') %}
 
-<h4 style="text-align: center;"><a href="{{ path('admin_events_add_event')}}" class="btn btn-primary" style="width: 30%">Ajouter un Evènement</a></h4>
+<h4><a href="{{ path('admin_events_add_event')}}" class="btn btn-primary">Ajouter un Evènement</a></h4>
 
 {% endif %}
 
-<div class="row" style="width: 90%; margin: auto;">
+<div class="card_event">
 
-  {% for event in events %}
-    <div class="col-sm-6" style=" width: 32%; margin: 50px 10px;">
+    <div class="row">
 
-      <div class="card" style="width: 80%; background-color: black; border: solid rgb(51, 49, 49) 2px; padding: 10px; margin: auto;">
+      {% for event in events %}
+        <div class="col-sm-6">
 
-          <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top" style="height:300px; border-radius: 15px;">
+          <div class="card">
 
-            <div class="card-body">
-                <h5 class="card-title" style="text-align: center; color: white;">Evénement:<br><strong style="color: red;">{{event.name}}</strong></h5><br>
-                <h5 class="card-title" style="text-align: center; color: white;">Date de l'événement:<br><strong style="color: darkgreen;">{{event.DateCreate | date('d/m/Y')}}</strong></h5><br>
-                <h6 class="card-text" style="text-align: center; color: white;">Nombre de participants:<br><strong style="color: rgb(0, 153, 255);">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6><br>
-                <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light" style="display: flex; justify-content: center;">Présentation</a>
-            </div>
+            <figure>
+              <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top">
+            </figure>
 
-          {% include "event/redirect.html.twig"%}
+              <div class="card-body">
+                  <h5 class="card-title">Evénement:<br><strong class="first">{{event.name}}</strong></h5>
+                  <h5 class="card-title">Date de l'événement:<br><strong class="second">{{event.DateCreate | date('d/m/Y')}}</strong></h5>
+                  <h6 class="card-text">Nombre de participants:<br><strong class="third">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6><br>
+                  <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light">Présentation</a>
 
-          {% if is_granted('ROLE_ADMIN') %}
+              </div>
 
-            <div class="option" style="display: flex; justify-content: center;">
-              <a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-primary" style="width: 42%; margin: 10px;">Modifier</a>
-              <a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger" style="width: 42%; margin: 10px;">Supprimer</a>
-            </div>
-          {% endif %}
-      </div>
+              {% include "event/redirect.html.twig"%}
+
+              {% if is_granted('ROLE_ADMIN') %}
+
+                <div class="option">
+                  <a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-primary">Modifier</a>
+                  <a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger">Supprimer</a>
+                </div>
+              {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
 
     </div>
-  {% endfor %}
-
-</div><br>
-
+</div>
 
 {% endblock %}

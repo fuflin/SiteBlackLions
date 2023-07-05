@@ -16,6 +16,14 @@ body {
         margin: 30px;
         }
 
+        h4 {
+            text-align: center;
+
+            a{
+                width: 30%;
+            }
+        }
+
         .container{
 
             margin-top: 80px;
@@ -118,6 +126,134 @@ body {
                     width: 100% !important;
                     margin-top: 30px !important;
                     text-align: center !important;
+                }
+            }
+        }
+
+        
+        .detail_event {
+
+            .poster {
+
+                display: flex;
+                justify-content: center;
+
+                figure {
+
+                    width: 45%;
+                    border-radius: 15px;
+
+                    img {
+
+                        width: 100%;
+
+                    }
+                }
+            }
+
+            .bloc {
+
+                background-color: aliceblue;
+                width: 45%;
+                margin: auto;
+                border-radius: 10px;
+                margin-bottom: 30px;
+
+                div {
+
+                    display: flex;
+                    justify-content: center;
+
+                    h4 {
+                        text-align: center;
+                        width: 40%;
+                        padding: 10px;
+                    }
+
+                    p {
+
+                        text-align: center;
+                        font-size: 1.5em;
+                        width: 70%;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+
+        .card_event {
+
+            .row {
+
+                width: 90% !important;
+                margin: auto !important;
+
+                .col-sm-6 {
+
+                    width: 32% !important;
+                    margin: 50px 10px !important;
+
+                    .card {
+
+                        width: 80% !important;
+                        background-color: black !important;
+                        border: solid rgb(51, 49, 49) 2px !important;
+                        padding: 10px !important;
+                        margin: auto !important;
+
+                        figure {
+
+                            height: 300px !important;
+                            border-radius: 15px !important;
+
+                            img {
+
+                                width: 100% !important;
+                            }
+                        }
+
+                        .card-body {
+
+                            .card-title {
+
+                                text-align: center !important;
+                                color: white !important;
+
+                                .first {
+                                    color: red;
+                                }
+                                .second {
+                                    color: darkgreen;
+                                }
+                            }
+                            .card-text {
+
+                                text-align: center;
+                                color: white !important;
+
+                                .third {
+                                    color: rgb(0, 153, 255);
+                                }
+                            }
+
+                            a {
+                                display: flex;
+                                justify-content: center;
+                                margin: auto;
+                                width: 75%;
+                            }
+                        }
+
+                        .option {
+                            display: flex;
+                            justify-content: center;
+
+                            a {
+                                width: 42%;
+                                margin: 10px;
+                            }
+                        }
+                    }
                 }
             }
         }

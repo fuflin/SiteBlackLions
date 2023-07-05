@@ -5,34 +5,71 @@
 
 {% block body %}
 
-<h2>Détail de l'événement</h2><br><br>
+<h2>Détail de l'événement</h2>
 
-<h4 style="text-align: center;"></h4>
+<h4></h4>
 
-<div style="display: flex; justify-content: center; border-radius: 15px;">
-    <figure style="width: 40%;">
-        <img src="{{asset('uploads/images/' ~ event.poster)}}" style="border-radius: 15px; width: 100%;">
-    </figure>
+<div class="detail_event">
 
-</div><br><br>
+    <div class="poster">
+        <figure>
+            <img src="{{asset('uploads/images/' ~ event.poster)}}">
+        </figure>
+    </div>
 
-<div style="display: flex; justify-content: center;">
-    <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Evénement:<br> <strong>{{event.name}}</strong></h4>
-</div><br>
-<div style="display: flex; justify-content: center;">
-    <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Date de l'événement:<br> <strong>{{event.DateCreate | date('d/m/Y')}}</strong></h4>
-</div><br>
-<div style="display: flex; justify-content: center;">
-    <h4 style="text-align: center; background-color: aliceblue; border-radius: 10px; width: 22%; padding: 10px;">Nombre de participants:<br> <strong>{{event.participates|length}}/{{event.NbMaxPers}}pers.</strong></h4>
-</div><br><br>
+    <div class="bloc">
+        <div>
+            <h4><u>Evénement:</u><br> <strong>{{event.name}}</strong></h4>
+        </div>
+        <div>
+            <h4><u>Date de l'événement:</u><br> <strong>{{event.DateCreate | date('d/m/Y')}}</strong></h4>
+        </div>
+        <div>
+            <h4><u>Nombre de participants:</u><br> <strong>{{event.participates|length}}/{{event.NbMaxPers}}pers.</strong></h4>
+        </div>
 
+        <div>
+            <p><u>Description</u><br><strong>{{event.description}}</strong></p>
+        </div>
+    </div>
 
-<div style="display: flex; justify-content: center;">
-    <p style="text-align: center; background-color: aliceblue; border-radius: 10px; font-size: 1.5em;  width: 40%; padding: 10px;">{{event.description}}</p>
 </div>
+
+
 
 {% include "event/redirect.html.twig"%}
 
-{% include "event/messageForm.html.twig" %}
+{% if app.user %}
+
+    {% for message in messages %}
+        <div class="message">
+            <div class="card-header">Post</div>
+            <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{message.content}}</p>
+                <footer class="blockquote-footer">{{message.date_create}}<cite title="Source Title">{{message.user.nickname}}</cite></footer>
+            </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <div class="formMessage">
+    {{ form_start(messageForm, {'attr': {'style': 'width: 65%'} }) }}
+
+        <div class="form">
+            <div>
+                {{ form_row(messageForm.message) }}
+            </div>
+            <div class="button">
+                {{form_row(messageForm.submit, {'label':'Soumettre'})}}
+            </div>
+        </div>
+
+    {{ form_end(messageForm) }}
+    </div>
+{% endif %}
+
+
 
 {% endblock %}

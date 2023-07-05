@@ -26,7 +26,7 @@ class Message
     private ?Event $Event = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $Message = null;
+    private ?string $content = null;
 
     public function __construct()
     {
@@ -75,14 +75,14 @@ class Message
         return $this;
     }
 
-    public function getMessage(): ?string
+    public function getContent(): ?string
     {
-        return $this->Message;
+        return $this->content;
     }
 
-    public function setMessage(string $Message): self
+    public function setContent(string $content): self
     {
-        $this->Message = $Message;
+        $this->content = $content;
 
         return $this;
     }

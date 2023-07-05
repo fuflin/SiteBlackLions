@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Message;
 use App\Data\SearchData;
 use App\Form\SearchForm;
+use App\Form\MessageType;
 use App\Entity\Participate;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,9 +24,11 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
+        $messages = $em->getRepository(Message::class)->findAll();
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'messages' => $messages
         ]);
     }
 
@@ -32,12 +36,30 @@ class EventController extends AbstractController
     // fonction pour afficher les détails d'un event
     #[Route('/event/{id}', name: 'show_event')]
 
-    public function showEvent(Event $event): Response
+    public function showEvent(Event $event, EntityManagerInterface $em, Request $request): Response
     {
+
+        $message = new Message();
+
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $message->setUser($this->getUser());
+            $message->setEvent($event);
+
+            $message = $form->getData();
+
+            $em->persist($message);
+            $em->flush();
+
+            return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
+        }
 
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
-        //    'messageForm'=> null
+           'messageForm'=> $form->createView()
         ]);
 
     }
