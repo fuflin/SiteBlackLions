@@ -7,6 +7,7 @@
 
 body {
   background: rgb(21, 21, 21) !important;
+  position: relative;
 }
 body main h2 {
   text-align: center;
@@ -21,14 +22,6 @@ body main h4 a {
 }
 body main .container {
   margin-top: 80px;
-}
-body main .container figure {
-  width: 60%;
-  margin: auto;
-}
-body main .container img {
-  width: 100%;
-  border-radius: 15px;
 }
 body main .search {
   width: 50%;
@@ -93,10 +86,25 @@ body main .container_message {
 body main .container_message .card {
   width: 90%;
   margin: 20px auto;
+  transition: 3s all ease-in-out;
+}
+body main .container_message .card .button {
+  position: absolute;
+  right: 12px;
+  top: 60%;
+  visibility: hidden;
+  opacity: 0;
 }
 body main .container_message .card footer {
   font-size: 20px !important;
   height: 20px;
+}
+body main .container_message .card:hover {
+  transition: 3s all ease-in-out;
+}
+body main .container_message .card:hover .button {
+  visibility: visible;
+  opacity: 1;
 }
 body main .container_message .formMessage {
   display: flex !important;

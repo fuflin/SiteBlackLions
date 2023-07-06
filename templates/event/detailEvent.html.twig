@@ -44,12 +44,20 @@
 
         {% for message in messages %}
                 <div class="card">
-                    <div class="card-header">Post {{message.createdDate | date('d/m/Y')}}</div>
+                    <div class="card-header">
+                        Post {{message.createdDate | date('d/m/Y')}}
+                    </div>
                     <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>{{message.content}}</p>
-                        <footer class="blockquote-footer"><cite title="Source Title">{{message.user.nickname}}</cite></footer>
-                    </blockquote>
+                        <blockquote class="blockquote mb-0">
+                            <p>{{message.content}}</p>
+                            <footer class="blockquote-footer"><cite title="Source Title">{{message.user.nickname}}</cite></footer>
+                        </blockquote>
+                        {% if app.user == message.user or is_granted ('ROLE_ADMIN')  %}
+                        {# {{ dump(app.user == message.user) }} #}
+                            <div class="button">
+                                <a href="{{path('delete_message',  {'id': event.id, 'idMessage': message.id})}}" class="btn btn-danger">Supprimer</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
         {% endfor %}
@@ -58,7 +66,6 @@
         {# {{ dump(event.participates) }} #}
             {% if app.user == participate.user %}
             {# {{ dump(app.user == user.user) }} #}
-
                 <div class="formMessage">
                     {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
 
@@ -73,7 +80,6 @@
 
                     {{ form_end(messageForm) }}
                 </div>
-
             {% endif %}
         {% endfor %}
 

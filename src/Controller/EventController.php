@@ -47,7 +47,7 @@ class EventController extends AbstractController
         $messages = $em->getRepository(Message::class)->findBy(['event' => $event]);
 
         $user = $this->getUser();
-        
+
         $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
         // dd($participates);
             if ($form->isSubmitted() && $form->isValid()) {
@@ -74,6 +74,24 @@ class EventController extends AbstractController
            'messageForm'=> $form->createView()
         ]);
 
+    }
+
+    // fonction pour supprimé un message
+    #[Route('/event/{id}/delete/{idMessage}', name: 'delete_message')]
+
+    public function deleteMessage(EntityManagerInterface $em, Event $event, $idMessage)
+    {
+        $message = $em->getRepository(Message::class)->find($idMessage); //on cherche l'id du message
+
+         //on récupère le User en session
+
+        if($event->getMessages()->contains($message)){
+
+            $em->remove($message);
+        }
+
+        $em->flush();
+        return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
     }
 
     // fonction pour s'inscrire à un événement

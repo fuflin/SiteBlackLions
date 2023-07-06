@@ -7,6 +7,7 @@
 
 body {
     background: rgb(21, 21, 21) !important;
+    position: relative;
 
     main {
 
@@ -27,31 +28,6 @@ body {
         .container{
 
             margin-top: 80px;
-
-            .carouselImg {
-
-                #MyCarouselImg{
-
-                    .carousel-inner {
-
-                        .carousel-item{
-
-                            figure {
-                                width: 60%;
-                                margin: auto;
-
-                            img {
-
-                                width: 100%;
-                                border-radius: 15px;
-                            }
-                    }
-                }
-                    }
-                }
-
-                
-            }
         }
 
         .search {
@@ -139,8 +115,6 @@ body {
             }
         }
 
-        
-
         .container_message {
 
             width: 50%;
@@ -151,11 +125,30 @@ body {
 
                 width: 90%;
                 margin: 20px auto;
+                transition: 3s all ease-in-out;
+
+                .button {
+                    position: absolute;
+                    right: 12px;
+                    top: 60%;
+                    visibility: hidden;
+                    opacity: 0;
+                }
 
                 footer {
 
                     font-size: 20px !important;
                     height: 20px;
+                }
+            }
+
+            .card:hover {
+
+                transition: 3s all ease-in-out;
+
+                .button{
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
 
