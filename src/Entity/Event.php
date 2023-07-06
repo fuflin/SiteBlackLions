@@ -40,14 +40,14 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: Participate::class, cascade: ["remove"])]
     private Collection $participates;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Message::class)]
-    private Collection $messages;
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Post::class)]
+    private Collection $posts;
 
     public function __construct()
     {
         $this->multimedias = new ArrayCollection();
         $this->participates = new ArrayCollection();
-        $this->messages = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,27 +196,27 @@ class Event
     /**
      * @return Collection<int, Message>
      */
-    public function getMessages(): Collection
+    public function getPosts(): Collection
     {
-        return $this->messages;
+        return $this->posts;
     }
 
-    public function addMessage(Message $message): self
+    public function addPost(Post $post): self
     {
-        if (!$this->messages->contains($message)) {
-            $this->messages->add($message);
-            $message->setEvent($this);
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removeMessage(Message $message): self
+    public function removePost(Post $post): self
     {
-        if ($this->messages->removeElement($message)) {
+        if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($message->getEvent() === $this) {
-                $message->setEvent(null);
+            if ($post->getEvent() === $this) {
+                $post->setEvent(null);
             }
         }
 

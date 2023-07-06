@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Event;
-use App\Entity\Message;
+use App\Entity\Post;
 use App\Data\SearchData;
 use App\Form\SearchForm;
-use App\Form\MessageType;
+use App\Form\PostType;
 use App\Entity\Participate;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,11 +25,11 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
-        // $messages = $em->getRepository(Message::class)->findAll();
+        // $posts = $em->getRepository(post::class)->findAll();
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
-            // 'messages' => $messages
+            // 'posts' => $posts
         ]);
     }
 
@@ -39,12 +39,12 @@ class EventController extends AbstractController
 
     public function showEvent(Event $event, EntityManagerInterface $em, Request $request): Response
     {
-        $message = new Message();
+        $post = new Post();
 
-        $form = $this->createForm(MessageType::class, $message);
+        $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
-        $messages = $em->getRepository(Message::class)->findBy(['event' => $event]);
+        $posts = $em->getRepository(Post::class)->findBy(['event' => $event]);
 
         $user = $this->getUser();
 
@@ -52,17 +52,17 @@ class EventController extends AbstractController
         // dd($participates);
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $message->setUser($this->getUser());
-                $message->setEvent($event);
+                $post->setUser($this->getUser());
+                $post->setEvent($event);
 
-                $message = $form->getData();
+                $post = $form->getData();
 
-                $em->persist($message);
+                $em->persist($post);
                 $em->flush();
 
                 $this->addFlash(
                     'Veuillez vous inscrire pour pouvoir chatter',
-                    'flashMessage'
+                    'flashpost'
                 );
                 return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
             }
@@ -70,24 +70,24 @@ class EventController extends AbstractController
         return $this->render('event/detailEvent.html.twig', [
            'event' => $event,
            'participates' => $participates,
-           'messages' => $messages,
-           'messageForm'=> $form->createView()
+           'posts' => $posts,
+           'postForm'=> $form->createView()
         ]);
 
     }
 
-    // fonction pour supprimé un message
-    #[Route('/event/{id}/delete/{idMessage}', name: 'delete_message')]
+    // fonction pour supprimé un post
+    #[Route('/event/{id}/delete/{idPost}', name: 'delete_post')]
 
-    public function deleteMessage(EntityManagerInterface $em, Event $event, $idMessage)
+    public function deleteMessage(EntityManagerInterface $em, Event $event, $idPost)
     {
-        $message = $em->getRepository(Message::class)->find($idMessage); //on cherche l'id du message
+        $post = $em->getRepository(Post::class)->find($idPost); //on cherche l'id du Post
 
          //on récupère le User en session
 
-        if($event->getMessages()->contains($message)){
+        if($event->getPosts()->contains($post)){
 
-            $em->remove($message);
+            $em->remove($post);
         }
 
         $em->flush();

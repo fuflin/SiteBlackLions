@@ -7,7 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
-class Message
+class Post
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

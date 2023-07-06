@@ -54,14 +54,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $is_banned = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]
-    private Collection $messages;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+    private Collection $posts;
 
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->participates = new ArrayCollection();
-        $this->messages = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,27 +257,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Message>
      */
-    public function getMessages(): Collection
+    public function getPosts(): Collection
     {
-        return $this->messages;
+        return $this->posts;
     }
 
-    public function addMessage(Message $message): self
+    public function addPost(Post $post): self
     {
-        if (!$this->messages->contains($message)) {
-            $this->messages->add($message);
-            $message->setUser($this);
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeMessage(Message $message): self
+    public function removePost(Post $post): self
     {
-        if ($this->messages->removeElement($message)) {
+        if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($message->getUser() === $this) {
-                $message->setUser(null);
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
             }
         }
 
