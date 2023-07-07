@@ -105,9 +105,21 @@ class EventController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
+        $dateInscription = new \DateTime();
+        $dateEvenement = $event->getDateCreate();
+
+        $diff = $dateEvenement->diff($dateInscription)->days;
+
+        if ($diff <= 2) {
+
+            $this->addFlash("message", "Clôture des inscriptions");
+
+            return $this->redirectToRoute('app_event'); // Si l'inscription est effectuée trop près de la date de l'événement, rediriger vers une autre page.
+        }
+
         $participate = new Participate();
 
-            $participate->setDateRegis(new \DateTime());
+            $participate->setDateRegis($dateInscription);
             $participate->setUser($user);
             $participate->setEvent($event);
 
