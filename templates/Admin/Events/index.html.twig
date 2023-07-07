@@ -13,9 +13,10 @@
                 <table class="table table-dark table-striped-columns">
                     <thead>
                         <tr>
-                            <th> liste des événement<br>(liste des participants)</th>
-                            <th>Date de jeu</th>
+                            <th>liste des participants</th>
+                            <th>Date de l'événement</th>
                             <th>Nombre de participants</th>
+                            <th>Verouiller événement</th>
                             <th>Modifier événement</th>
                             <th>Supprimer événement</th>
                         </tr>
@@ -26,6 +27,17 @@
                                 <td><a href="{{ path('admin_participate_show', {'id': event.id})}}" class="btn btn-info" style="display: flex; justify-content: center;">{{ event.name }}</a></td>
                                 <td>{{event.DateCreate | date('d/m/Y')}}</td>
                                 <td>{{event.participates|length}}/{{event.NbMaxPers}}</td>
+                                <td>
+                                    {# switch pour le ban user  #}
+                                    <div class="form-check form-switch">
+                                        <form action="{{ path('admin_events_lock') }}" method="post" id="lockForm">
+                                            <input class="form-check-input" type="checkbox" name="isLock" role="switch" id="switch{{ event.id }}" {{ event.isLock ? "checked" : ""}} onchange="this.form.submit()">
+                                            {# le onchange="this.form.submit() nous permet de submit le switch grâce au code en js #}
+                                            <input type="hidden" name="eventId" value="{{ event.id }}">
+                                        </form>
+                                    </div>
+                                    {# fin du switch #}
+                                </td>
                                 <td><a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-warning">Modifer</a></td>
                                 <td><a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger">Supprimer</a></td>
                             </tr>

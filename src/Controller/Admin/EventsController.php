@@ -8,6 +8,7 @@ use App\Form\EventType;
 use App\Service\SendMail;
 use App\Entity\Participate;
 use App\Service\FileUploader;
+use App\Repository\EventRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -133,6 +134,27 @@ class EventsController extends AbstractController
 
         return $this->redirectToRoute('admin_events_index');
 
+    }
+
+    // fonction pour bloqué un user
+    #[Route('/event/lock', name: 'lock', methods: ['POST'])]
+
+    public function lockEvent(EntityManagerInterface $em, Request $request, EventRepository $eventRepository): Response
+    {
+
+        if ($request->isMethod('POST')) {
+            $eventId = $request->request->get('eventId');
+            $event = $eventRepository->find($eventId);
+
+            if ($event) {
+
+                $isLock = $request->request->has('isLock');
+                $event->setIsLock($isLock);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('admin_events_index');
+        }
     }
 
 }
