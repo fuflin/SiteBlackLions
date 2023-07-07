@@ -34,8 +34,11 @@
     </div>
 
 </div>
+{% if event.isLock == true %}
 
-{% include "event/redirect.html.twig"%}
+{% else %}
+    {% include "event/redirect.html.twig"%}
+{% endif %}
 
 {% if app.user %}
     <h2>Discussion</h2>
@@ -64,22 +67,24 @@
 
         {% for participate in event.participates %}
         {# {{ dump(event.participates) }} #}
-            {% if app.user == participate.user %}
-            {# {{ dump(app.user == user.user) }} #}
-                <div class="formMessage">
-                    {{ form_start(postForm, {'attr': {'style': 'width: 50%'} }) }}
+            {% if event.isLock == true %}
+            {% else %}
+                {% if app.user == participate.user %}
+                    <div class="formMessage">
+                        {{ form_start(postForm, {'attr': {'style': 'width: 50%'} }) }}
 
-                        <div class="form">
-                            <div>
-                                {# {{ form_row(postForm.content) }} #}
+                            <div class="form">
+                                <div>
+                                    {# {{ form_row(postForm.content) }} #}
+                                </div>
+                                <div class="button">
+                                    {# {{form_row(postForm.submit, {'label':'Soumettre'})}} #}
+                                </div>
                             </div>
-                            <div class="button">
-                                {# {{form_row(postForm.submit, {'label':'Soumettre'})}} #}
-                            </div>
-                        </div>
 
-                    {{ form_end(postForm) }}
-                </div>
+                        {{ form_end(postForm) }}
+                    </div>
+                {% endif %}
             {% endif %}
         {% endfor %}
 

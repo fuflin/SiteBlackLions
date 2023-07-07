@@ -30,13 +30,15 @@
                   <h5 class="card-title">Date de l'événement:<br><strong class="second">{{event.DateCreate | date('d/m/Y')}}</strong></h5>
                   <h6 class="card-text">Nombre de participants:<br><strong class="third">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6><br>
                   <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light">Présentation</a>
-
               </div>
 
-              {% include "event/redirect.html.twig"%}
+              {% if event.isLock == true %}
+
+                {% else %}
+                  {% include "event/redirect.html.twig"%}
+              {% endif %}
 
               {% if is_granted('ROLE_ADMIN') %}
-
                 <div class="option">
                   <a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-primary">Modifier</a>
                   <a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger">Supprimer</a>

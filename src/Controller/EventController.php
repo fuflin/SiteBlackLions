@@ -148,6 +148,7 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event');
     }
 
+    // fonction pour la recherche d'event par nom
     #[Route("/events/search", name:"app_event_search", methods:["GET"])]
 
     public function search(Request $request, EventRepository $eventRepository): Response
@@ -156,29 +157,9 @@ class EventController extends AbstractController
 
         // Utilisez la méthode appropriée du repository pour effectuer la recherche
         $event = $eventRepository->searchByNameOrDate($searchTerm);
-        // dd($event);
+
         // Retournez la réponse en JSON
         return $this->json($event);
     }
-
-    // #[Route("/events/search", name:"app_event_search", methods:["GET"])]
-
-    // public function searchEvent(Request $request, EventRepository $eventRepository): Response
-    // {
-
-    //     $data = new SearchData();
-
-    //     $form = $this->createForm(SearchForm::class, $data);
-    //     dd($data);
-    //     $form->handleRequest($request);
-    //     // $data = $request->query->get('data');
-
-    //     $event = $eventRepository->searchEvent($data);
-    //     // dd($event);
-    //     return $this->render('multimedia/index.html.twig', [
-    //         'event' => $event,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
 
 }

@@ -136,7 +136,7 @@ class EventsController extends AbstractController
 
     }
 
-    // fonction pour bloqué un user
+    // fonction pour bloqué un event
     #[Route('/event/lock', name: 'lock', methods: ['POST'])]
 
     public function lockEvent(EntityManagerInterface $em, Request $request, EventRepository $eventRepository): Response
