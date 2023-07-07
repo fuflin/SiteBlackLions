@@ -45,14 +45,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\Column(type: 'boolean')]
+    private $is_banned = false;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Event::class, cascade:['remove'])]
     private Collection $events;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Participate::class, cascade:['remove'])]
     private Collection $participates;
-
-    #[ORM\Column(type: 'boolean')]
-    private $is_banned = false;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
     private Collection $posts;
@@ -60,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $sent;
 
-    #[ORM\OneToMany(mappedBy: 'receive', targetEntity: Message::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'received', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $received;
 
     public function __construct()
@@ -334,7 +334,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->received->contains($received)) {
             $this->received->add($received);
-            $received->setReceive($this);
+            $received->setReceived($this);
         }
 
         return $this;
@@ -344,8 +344,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->received->removeElement($received)) {
             // set the owning side to null (unless already changed)
-            if ($received->getReceive() === $this) {
-                $received->setReceive(null);
+            if ($received->getReceived() === $this) {
+                $received->setReceived(null);
             }
         }
 
