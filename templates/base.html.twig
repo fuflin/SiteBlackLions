@@ -45,6 +45,11 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#"><strong>L'Association</strong></a>
                       </li>
+                      {% if app.user %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ path('app_message')}}"><strong>Messagerie</strong></a>
+                        </li>
+                      {% endif %}
                       <li class="nav-item">
                           <a class="nav-link" href="{{path('app_multimedia')}}"><strong>Galerie</strong></a>
                       </li>
@@ -95,6 +100,17 @@
     </header>
 
       <main>
+        {# {% for message in app.flashes('message') %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %} #}
+
+        {% for key, value in app.flashes %}
+        <div class="alert alert-{{ key }} text-center" role="alert">{{ value[0] }}</div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
       </main>
 
