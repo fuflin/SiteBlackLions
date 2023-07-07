@@ -15,23 +15,26 @@ class Message
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?string $text = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $created_at = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?\DateTimeInterface $created_at;
 
-    #[ORM\Column]
-    private ?bool $is_read = null;
+    #[ORM\Column(type: 'boolean')]
+    private $is_read = false;
 
     #[ORM\ManyToOne(inversedBy: 'sent')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\JoinColumn(nullable: false)]
     private ?User $sender = null;
 
     #[ORM\ManyToOne(inversedBy: 'received')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\JoinColumn(nullable: false)]
     private ?User $received = null;
 
     public function getId(): ?int
@@ -63,12 +66,12 @@ class Message
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -99,12 +102,12 @@ class Message
         return $this;
     }
 
-    public function getReceive(): ?User
+    public function getReceived(): ?User
     {
         return $this->received;
     }
 
-    public function setReceive(?User $received): self
+    public function setReceived(?User $received): self
     {
         $this->received = $received;
 

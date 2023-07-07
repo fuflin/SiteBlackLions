@@ -7,15 +7,14 @@
 <section class="container">
     <div class="row">
         <div class="col">
-            <h2>Messagerie</h2>
-            <p>Résumé de la messagerie</p>
-            <p>Message recus :{{ app.user.received|length }}</p>
-            <p>Message envoyés :{{ app.user.sent|length }}</p>
+            <h2>Envoyer un message</h2>
+
+            {{form(form)}}
+
             <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
                 aria-controls="offcanvasExample">
                 Voir mes dossiers
             </a>
-            <a href="{{ path('send_message')}}" class="btn btn-primary">Envoyer un message</a>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
                 aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
@@ -24,13 +23,13 @@
                 </div>
                 <div class="offcanvas-body">
                     <div class="list-group">
-                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action active">Acceuil</a>
+                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Acceuil</a>
                     </div>
                     <div class="list-group">
-                        <a href="{{ path('receive')}}" class="list-group-item list-group-item-action">Boîte de reception</a>
+                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Boîte de reception</a>
                     </div>
                     <div class="list-group">
-                        <a href="{{ path('sent')}}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Eléments envoyés</a>
                     </div>
                 </div>
             </div>
