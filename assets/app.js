@@ -12,14 +12,20 @@ import './styles/app.css';
 import './bootstrap';
 
 
-//--------- partie pour le switch du panel Admin ---------//
+//--------- partie pour le switch du panel Admin pour ban un user ---------//
 document.addEventListener('DOMContentLoaded', function() {
     const switchElements = document.querySelectorAll('input[id^=switch]');
     console.log(switchElements.length);
     const formElement = document.getElementById('banForm');
 });
-//--------- fin partie pour le switch du panel Admin ---------//
 
+//--------- partie pour le switch du panel Admin pour lock un event ---------//
+
+document.addEventListener('DOMContentLoaded', function() {
+    const switchElements = document.querySelectorAll('input[id^=switch]');
+    console.log(switchElements.length);
+    const formElement = document.getElementById('lockForm');
+});
 
 
 //--------- Partie de la barre de Recherche---------//
