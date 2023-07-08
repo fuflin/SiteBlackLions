@@ -25,11 +25,26 @@ class EventController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $events = $em->getRepository(Event::class)->findAll();
-        // $posts = $em->getRepository(post::class)->findAll();
+
+        // condition pour vérouiller un événement en fonction de sa date
+        foreach ($events as $event) {
+            $dateInscription = new \DateTime();
+            $dateEvenement = $event->getDateCreate();
+
+            $diff = $dateEvenement->diff($dateInscription)->days;
+            // ici in calcule une différence de 2 jours pour plus tard vérouiller les inscriptions
+
+            if ($diff <= 2 || $dateEvenement < $dateInscription) {
+        // si on a un différence sup ou égal à 2 jours ou que la date actuelle est supérieur(passée)
+        // à la date de l'événement
+                $event->setIsLock(true); // alors nous passons l'état is_lock à vrai
+            }
+        }
+
+        $em->flush(); // Sauvegarde les modifications en base de données
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
-            // 'posts' => $posts
         ]);
     }
 
@@ -50,30 +65,30 @@ class EventController extends AbstractController
 
         $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
         // dd($participates);
-            if ($form->isSubmitted() && $form->isValid()) {
 
-                $post->setUser($this->getUser());
-                $post->setEvent($event);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-                $post = $form->getData();
+            $post->setUser($this->getUser());
+            $post->setEvent($event);
 
-                $em->persist($post);
-                $em->flush();
+            $post = $form->getData();
 
-                $this->addFlash(
-                    'Veuillez vous inscrire pour pouvoir chatter',
-                    'flashpost'
-                );
-                return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
-            }
+            $em->persist($post);
+            $em->flush();
+
+            $this->addFlash(
+                'Veuillez vous inscrire pour pouvoir chatter',
+                'flashpost'
+            );
+            return $this->redirectToRoute('show_event', ['id' => $event->getId()]);
+        }
 
         return $this->render('event/detailEvent.html.twig', [
-           'event' => $event,
-           'participates' => $participates,
-           'posts' => $posts,
-           'postForm'=> $form->createView()
+            'event' => $event,
+            'participates' => $participates,
+            'posts' => $posts,
+            'postForm' => $form->createView()
         ]);
-
     }
 
     // fonction pour supprimé un post
@@ -83,9 +98,9 @@ class EventController extends AbstractController
     {
         $post = $em->getRepository(Post::class)->find($idPost); //on cherche l'id du Post
 
-         //on récupère le User en session
+        //on récupère le User en session
 
-        if($event->getPosts()->contains($post)){
+        if ($event->getPosts()->contains($post)) {
 
             $em->remove($post);
         }
@@ -101,7 +116,7 @@ class EventController extends AbstractController
     {
         $user = $this->getUser(); //on récupère le User en session
 
-        if(!$user){ // si la personne n'a pas de compte , elle est renvoyé vers la page d'inscription
+        if (!$user) { // si la personne n'a pas de compte , elle est renvoyé vers la page d'inscription
             return $this->redirectToRoute('app_login');
         }
 
@@ -110,21 +125,22 @@ class EventController extends AbstractController
 
         $diff = $dateEvenement->diff($dateInscription)->days;
 
-        if ($diff <= 2) {
+        if ($diff <= 2 || $dateEvenement < $dateInscription == true) {
 
+            $event->setIsLock(true);
             $this->addFlash("message", "Clôture des inscriptions");
 
             return $this->redirectToRoute('app_event'); // Si l'inscription est effectuée trop près de la date de l'événement, rediriger vers une autre page.
         }
-
+        // dd($event);
         $participate = new Participate();
 
-            $participate->setDateRegis($dateInscription);
-            $participate->setUser($user);
-            $participate->setEvent($event);
+        $participate->setDateRegis($dateInscription);
+        $participate->setUser($user);
+        $participate->setEvent($event);
 
-            $em->persist($participate); // équivalent du prepare dans PDO
-            $em->flush(); // équivalent de insert into (execute) dans PDO
+        $em->persist($participate); // équivalent du prepare dans PDO
+        $em->flush(); // équivalent de insert into (execute) dans PDO
 
         return $this->redirectToRoute('app_event');
     }
@@ -139,7 +155,7 @@ class EventController extends AbstractController
 
         $user = $this->getUser(); //on récupère le User en session
 
-        if($user && $event->getParticipates()->contains($participate)){
+        if ($user && $event->getParticipates()->contains($participate)) {
 
             $em->remove($participate);
         }
@@ -149,7 +165,7 @@ class EventController extends AbstractController
     }
 
     // fonction pour la recherche d'event par nom
-    #[Route("/events/search", name:"app_event_search", methods:["GET"])]
+    #[Route("/events/search", name: "app_event_search", methods: ["GET"])]
 
     public function search(Request $request, EventRepository $eventRepository): Response
     {
@@ -161,5 +177,4 @@ class EventController extends AbstractController
         // Retournez la réponse en JSON
         return $this->json($event);
     }
-
 }
