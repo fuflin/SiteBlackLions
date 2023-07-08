@@ -11,6 +11,9 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
+// code tarteaucitron
+import './tarteaucitron';
+
 
 //--------- partie pour le switch du panel Admin pour ban un user ---------//
 document.addEventListener('DOMContentLoaded', function() {
