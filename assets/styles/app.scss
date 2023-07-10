@@ -406,15 +406,177 @@ body {
                 }
             }
         }
+
+        .parallax {
+
+            .box1 {
+                height: 100vh;
+                width: 100%;
+                background-image: url('/public/img/sniper.jpg');
+                background-size: cover;
+                background-position: center;
+                display: table;
+                background-attachment: fixed;
+                transition: 0.5s all ease-in-out;
+
+                h2{
+                    font-family: 'Reggae One', cursive;
+                    font-size: 48px;
+                    color: #fff;
+                    margin: 0;
+                    text-align: center;
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+            }
+
+            .box2 {
+
+                height: 100vh;
+                width: 100%;
+                background-color: black;
+                display: table;
+                background-attachment: fixed;
+                transition: 0.5s all ease-in-out;
+
+                .card-container {
+                    padding: 50px 0px;
+                    height: 100vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    .cards {
+                        height: 400px;
+                        width: 300px;
+                        padding: 20px;
+                        perspective: 1000px;
+
+                        .card {
+                            // padding-top: 20px;
+                            overflow: hidden;
+                            transform-style: preserve-3d;
+                            background-image: url('/public/img/camo.jpg');
+                            background-size: cover;
+                            background-position: center center;
+                            width: 100%;
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            border-radius: 15px;
+                            transition: all 0.5s ease-in-out;
+
+                            .figure {
+                                width: 100%;
+                                margin: 0;
+
+                                img {
+                                    width: 100%;
+                                    // border-radius: 15px;
+                                }
+                            }
+
+                            .content-box {
+                                height: 100%;
+                                width: 100%;
+                                background-color: rgba(0, 0, 0, 0.811);
+                                border-radius: 0px 0px 10px 10px;
+                                box-shadow: rgba(0, 115, 255, 0.925) 0px 20px 50px -25px;
+                                transition: all 0.5s ease-in-out;
+                                padding: 0px 25px 25px 25px;
+                                transform-style: preserve-3d;
+
+                                .card-title {
+                                    color: #fff;
+                                    font-size: 24px;
+                                    font-weight: 800;
+                                    transition: all 0.5s ease-in-out;
+                                    transform: translate3d(0px, 0px, 20px);
+                                }
+                                .card-title:hover {
+                                    transform: translate3d(0px, 0px, 50px);
+                                }
+
+                                .card-content {
+                                    padding-top: 20px;
+                                    font-size: 13px;
+                                    color: #d7d7d7;
+                                    transition: all 0.5s ease-in-out;
+                                    transform: translate3d(0px, 0px, 20px);
+                                }
+                                .card-content:hover {
+                                    transform: translate3d(0px, 0px, 50px);
+                                }
+
+                                .see-more {
+                                    display: block;
+                                    font-weight: 700;
+                                    font-size: 12px;
+                                    text-transform: uppercase;
+                                    color: #0088ff;
+                                    padding-top: 15px;
+                                    transition: all 0.5s ease-in-out;
+                                    transform: translate3d(0px, 0px, 20px);
+                                }
+                                .see-more:hover {
+                                    transform: translate3d(0px, 0px, 50px);
+                                }
+                            }
+                            .date-box {
+                                position: absolute;
+                                top: 15px;
+                                left: 13px;
+                                height: 60px;
+                                width: 60px;
+                                background-color: #000;
+                                border-radius: 10px;
+                                padding: 10px;
+                                box-shadow: #0066ff 0px 20px 60px 0px, #00c8ff 0px 18px 36px -18px;
+                                transform: translate3d(0px, 0px, 50px);
+
+                                .month {
+                                    color: #fff;
+                                    font-size: 11px;
+                                    font-weight: 700;
+                                    display: block;
+                                    text-align: center;
+                                }
+                                .date {
+                                    font-size: 20px;
+                                    font-weight: 900;
+                                    color: #0088ff;
+                                    display: block;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        .card:hover {
+                            background-position: 80% 20%;
+                            transform: rotate3d(0.5,1,0,15deg);
+                        }
+                    }
+                }
+            }
+
+            .box3 {
+                height: 100vh;
+                width: 100%;
+                background-image: url('/public/img/soldiers.jpg');
+                background-size: cover;
+                background-position: center;
+                display: table;
+                background-attachment: fixed;
+                transition: 0.5s all ease-in-out;
+            }
+        }
     }
 
     header {
-        height: 65px;
+        height: 55px;
 
         figure {
 
             height: 50%;
-            margin-top: 30px !important;
+            margin-top: 30px;
 
             img {
                 width: 100%;
@@ -426,6 +588,5 @@ body {
     footer {
         height: 250px;
     }
-
-    }
+}
 

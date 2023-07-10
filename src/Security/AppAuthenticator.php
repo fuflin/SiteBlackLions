@@ -32,6 +32,13 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
+        $honeyPot = $request->request->get('hp_protect', '');
+
+        if(!empty($honeyPot)){
+
+            throw new \Exception('Bot détecté');
+        }
+
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),

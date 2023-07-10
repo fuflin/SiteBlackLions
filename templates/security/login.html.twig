@@ -31,12 +31,13 @@
                 <input type="password" name="password" id="inputPassword" class="form-control"
                     autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
             </div>
+            <input type="hidden" name="hp_protect" tabindex="-1" autocomplete="off">
             <div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </div>
             <label class="remember_me">
                 <input type="checkbox" name="_remember_me" checked />
-                Rester connecté
+                Se souvenir de moi
             </label>
             <div class="button">
                 <button class="btn btn-lg btn-primary" type="submit">Se connecter</button>

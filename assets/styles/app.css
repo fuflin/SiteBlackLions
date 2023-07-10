@@ -283,12 +283,154 @@ body main .gallery__selector:checked + .gallery__img {
 body main .gallery__selector:checked ~ .gallery__thumb > img {
   box-shadow: 0 0 0 3px #0be2f6;
 }
+body main .parallax .box1 {
+  height: 100vh;
+  width: 100%;
+  background-image: url("/public/img/sniper.jpg");
+  background-size: cover;
+  background-position: center;
+  display: table;
+  background-attachment: fixed;
+  transition: 0.5s all ease-in-out;
+}
+body main .parallax .box1 h2 {
+  font-family: "Reggae One", cursive;
+  font-size: 48px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+body main .parallax .box2 {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  display: table;
+  background-attachment: fixed;
+  transition: 0.5s all ease-in-out;
+}
+body main .parallax .box2 .card-container {
+  padding: 50px 0px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body main .parallax .box2 .card-container .cards {
+  height: 400px;
+  width: 300px;
+  padding: 20px;
+  perspective: 1000px;
+}
+body main .parallax .box2 .card-container .cards .card {
+  overflow: hidden;
+  transform-style: preserve-3d;
+  background-image: url("/public/img/camo.jpg");
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  transition: all 0.5s ease-in-out;
+}
+body main .parallax .box2 .card-container .cards .card .figure {
+  width: 100%;
+  margin: 0;
+}
+body main .parallax .box2 .card-container .cards .card .figure img {
+  width: 100%;
+}
+body main .parallax .box2 .card-container .cards .card .content-box {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.811);
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0px 20px 50px -25px;
+  transition: all 0.5s ease-in-out;
+  padding: 0px 25px 25px 25px;
+  transform-style: preserve-3d;
+}
+body main .parallax .box2 .card-container .cards .card .content-box .card-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  transition: all 0.5s ease-in-out;
+  transform: translate3d(0px, 0px, 20px);
+}
+body main .parallax .box2 .card-container .cards .card .content-box .card-title:hover {
+  transform: translate3d(0px, 0px, 50px);
+}
+body main .parallax .box2 .card-container .cards .card .content-box .card-content {
+  padding-top: 20px;
+  font-size: 13px;
+  color: #d7d7d7;
+  transition: all 0.5s ease-in-out;
+  transform: translate3d(0px, 0px, 20px);
+}
+body main .parallax .box2 .card-container .cards .card .content-box .card-content:hover {
+  transform: translate3d(0px, 0px, 50px);
+}
+body main .parallax .box2 .card-container .cards .card .content-box .see-more {
+  display: block;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #0088ff;
+  padding-top: 15px;
+  transition: all 0.5s ease-in-out;
+  transform: translate3d(0px, 0px, 20px);
+}
+body main .parallax .box2 .card-container .cards .card .content-box .see-more:hover {
+  transform: translate3d(0px, 0px, 50px);
+}
+body main .parallax .box2 .card-container .cards .card .date-box {
+  position: absolute;
+  top: 15px;
+  left: 13px;
+  height: 60px;
+  width: 60px;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: #0066ff 0px 20px 60px 0px, #00c8ff 0px 18px 36px -18px;
+  transform: translate3d(0px, 0px, 50px);
+}
+body main .parallax .box2 .card-container .cards .card .date-box .month {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+}
+body main .parallax .box2 .card-container .cards .card .date-box .date {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0088ff;
+  display: block;
+  text-align: center;
+}
+body main .parallax .box2 .card-container .cards .card:hover {
+  background-position: 80% 20%;
+  transform: rotate3d(0.5, 1, 0, 15deg);
+}
+body main .parallax .box3 {
+  height: 100vh;
+  width: 100%;
+  background-image: url("/public/img/soldiers.jpg");
+  background-size: cover;
+  background-position: center;
+  display: table;
+  background-attachment: fixed;
+  transition: 0.5s all ease-in-out;
+}
 body header {
-  height: 65px;
+  height: 55px;
 }
 body header figure {
   height: 50%;
-  margin-top: 30px !important;
+  margin-top: 30px;
 }
 body header figure img {
   width: 100%;

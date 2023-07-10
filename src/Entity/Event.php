@@ -191,11 +191,7 @@ class Event
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
+    
     /**
      * @return Collection<int, Message>
      */
@@ -203,17 +199,17 @@ class Event
     {
         return $this->posts;
     }
-
+    
     public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
             $post->setEvent($this);
         }
-
+        
         return $this;
     }
-
+    
     public function removePost(Post $post): self
     {
         if ($this->posts->removeElement($post)) {
@@ -222,19 +218,24 @@ class Event
                 $post->setEvent(null);
             }
         }
-
+        
         return $this;
     }
-
+    
     public function isIsLock(): ?bool
     {
         return $this->is_lock;
     }
-
+    
     public function setIsLock(bool $is_lock): self
     {
         $this->is_lock = $is_lock;
-
+        
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getdateCreate();
     }
 }

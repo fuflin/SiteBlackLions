@@ -28,13 +28,10 @@ class EventController extends AbstractController
 
         // condition pour vérouiller un événement en fonction de sa date
         foreach ($events as $event) {
-            $dateInscription = new \DateTime();
+            $dateActuelle = new \DateTime();
             $dateEvenement = $event->getDateCreate();
 
-            $diff = $dateEvenement->diff($dateInscription)->days;
-            // ici in calcule une différence de 2 jours pour plus tard vérouiller les inscriptions
-
-            if ($diff <= 2 || $dateEvenement < $dateInscription) {
+            if ($dateEvenement < $dateActuelle) {
         // si on a un différence sup ou égal à 2 jours ou que la date actuelle est supérieur(passée)
         // à la date de l'événement
                 $event->setIsLock(true); // alors nous passons l'état is_lock à vrai
@@ -125,10 +122,13 @@ class EventController extends AbstractController
 
         $diff = $dateEvenement->diff($dateInscription)->days;
 
-        if ($diff <= 2 || $dateEvenement < $dateInscription == true) {
+        if ($diff <= 2) {
 
             $event->setIsLock(true);
             $this->addFlash("message", "Clôture des inscriptions");
+
+            $em->persist($event);
+            $em->flush();
 
             return $this->redirectToRoute('app_event'); // Si l'inscription est effectuée trop près de la date de l'événement, rediriger vers une autre page.
         }
