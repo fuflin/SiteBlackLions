@@ -16,7 +16,7 @@
 
     <h2>Connexion</h2>
     <figure>
-        <img src="{{asset('/img/airsoft logo CMJN-01.jpg')}}" alt="logo association">
+        <img src="{{asset('/img/logo.png')}}" alt="logo association">
     </figure>
 
     <div class="long">
@@ -31,7 +31,7 @@
                 <input type="password" name="password" id="inputPassword" class="form-control"
                     autocomplete="current-password" placeholder="Entrez votre adresse mot de passe" required>
             </div>
-            <input type="hidden" name="hp_protect" tabindex="-1" autocomplete="off">
+                <input type="hidden" name="hp_protect" tabindex="-1" autocomplete="off">
             <div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </div>
