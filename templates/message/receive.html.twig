@@ -6,62 +6,53 @@
 
 <h2>Boîte de reception</h2>
 
-<section class="container" style="background-color: antiquewhite;">
+<section class="container-recep">
     <div class="row">
-        <div class="col-12">
-            <p>Messages reçus</p>
-            <p>Vous avez {{ app.user.received|length }} messages reçus</p>
+        <div class="nav-buttons">
+            <div class="nav-button">
+            <a class="btn btn-primary" href="{{ path('app_message')}}" class="list-group-item list-group-item-action active">Accueil</a>
+            </div>
+            <div class="nav-button">
+            <a class="btn btn-primary" href="{{ path('receive')}}" class="list-group-item list-group-item-action">Boîte de reception</a>
+            </div>
+            <div class="nav-button">
+            <a class="btn btn-primary" href="{{ path('sent')}}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+            </div>
         </div>
-        <div class="col-3">De</div>
-        <div class="col-3">Sujet</div>
-        <div class="col-3">Date</div>
-        <div class="col-3">Actions</div>
-        {% for message in app.user.received %}
-        {% if message.isRead == false %}
-        {% set bold = "fw-bold" %}
-        {% else %}
-        {% set bold = "" %}
-        {% endif %}
-        <div class="col-3 {{bold}}">{{ message.sender.email }}</div>
-        <div class="col-3 {{bold}}"><a href="{{path('read', {id: message.id})}}">{{ message.title }}</a></div>
-        <div class="col-3 {{bold}}">{{ message.createdAt|date('d/m/Y') }}</div>
-        <div class="col-3">
-            <a href="{{path('delete', {id: message.id})}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel-fill text-danger" viewBox="0 0 16 16">
-                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
-                </svg>
-            </a>
+        <div class="col-12-title">
+            <h4>Messages reçus</h4>
+            <p>Vous avez <strong>{{ app.user.received|length }}</strong> messages</p>
         </div>
-        {% endfor %}
-
-        <div class="col">
-            <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                aria-controls="offcanvasExample">
-                Voir mes dossiers
-            </a>
+        <div class="table-recep">
+            <div class="col-12-up">
+                <div class="col-3">De</div>
+                <div class="col-3">Sujet</div>
+                <div class="col-3">Date</div>
+                <div class="col-3">Actions</div>
+            </div>
+            {% for message in app.user.received %}
+                {% if message.isRead == false %}
+                    {% set bold = "fw-bold" %}
+                {% else %}
+                    {% set bold = "" %}
+                {% endif %}
+                <div class="col-12">
+                    <div class="col-3 {{bold}}">{{ message.sender.email }}</div>
+                    <div class="col-3 {{bold}}"><a href="{{path('read', {id: message.id})}}">{{ message.title }}</a></div>
+                    <div class="col-3 {{bold}}">{{ message.createdAt|date('d/m/Y') }}</div>
+                    <div class="col-3">
+                        <a href="{{path('delete', {id: message.id})}}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-excel-fill text-danger" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
+                            </svg> supprimer
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="send">
             <a href="{{ path('send_message')}}" class="btn btn-primary">Envoyer un message</a>
-
         </div>
-
     </div>
 </section>
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Mes dossiers</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="list-group">
-            <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Acceuil</a>
-        </div>
-        <div class="list-group">
-            <a href="{{ path('receive')}}" class="list-group-item list-group-item-action active">Boîte
-                de reception</a>
-        </div>
-        <div class="list-group">
-            <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Eléments
-                envoyés</a>
-        </div>
-    </div>
-</div>
 
 {% endblock %}

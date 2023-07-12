@@ -4,34 +4,39 @@
 
 {% block body %}
 
-<section class="container">
+<section class="container-send">
     <div class="row">
         <div class="col">
             <h2>Envoyer un message</h2>
-
-            {{form(form)}}
-
-            <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                aria-controls="offcanvasExample">
-                Voir mes dossiers
-            </a>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <h3 class="offcanvas-title" id="offcanvasExampleLabel">Mes dossiers</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="nav-buttons">
+                <div class="nav-button">
+                <a class="btn btn-primary" href="{{ path('app_message')}}" class="list-group-item list-group-item-action active">Accueil</a>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="list-group">
-                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Acceuil</a>
+                <div class="nav-button">
+                <a class="btn btn-primary" href="{{ path('receive')}}" class="list-group-item list-group-item-action">Boîte de reception</a>
+                </div>
+                <div class="nav-button">
+                <a class="btn btn-primary" href="{{ path('sent')}}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+                </div>
+            </div>
+            <div class="send-msg">
+                {{ form_start(messageForm, {'attr': {'style': 'width: 50%'} }) }}
+                <div class="form">
+                    <div>
+                        {{ form_row(messageForm.title) }}
                     </div>
-                    <div class="list-group">
-                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Boîte de reception</a>
+                    <div>
+                        {{ form_row(messageForm.text) }}
                     </div>
-                    <div class="list-group">
-                        <a href="{{ path('app_message')}}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+                    <div>
+                        {{form_label(messageForm.received, "Destinataires")}}
+                        {{ form_widget(messageForm.received) }}
+                    </div>
+                    <div class="button">
+                        {{form_row(messageForm.submit, {'label':'Soumettre'})}}
                     </div>
                 </div>
+                {{ form_end(messageForm) }}
             </div>
         </div>
     </div>

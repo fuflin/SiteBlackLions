@@ -34,9 +34,295 @@ body {
             }
         }
 
+        .container-msg {
+
+            height: 610px;
+
+            .row {
+
+                h3 {
+                    font-family: 'Duplexide', cursive;
+                    font-size: 48px;
+                    color: #fff;
+                    margin: 0;
+                    text-align: center;
+                    padding-bottom: 40px !important;
+                }
+
+                .col {
+
+                    padding: 40px;
+
+                    .nav-buttons {
+
+                        display: flex;
+                        justify-content: center;
+
+                        .nav-button {
+
+                            width: 30%;
+                            text-align: center;
+                        }
+                    }
+
+                    .contenu {
+
+                        padding: 50px !important;
+                        margin-left: 15em;
+
+                        p {
+
+                            font-family: 'Poppins';
+                            color: white;
+                            margin: auto;
+                            margin-top: 20px;
+                        }
+                    }
+
+                    .send {
+
+                       text-align: center;
+                    }
+                }
+            }
+        }
+
+        .container-recep {
+
+            .row {
+
+                padding: 50px !important;
+
+                .nav-buttons {
+
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 30px;
+
+                    .nav-button {
+
+                        width: 30%;
+                        text-align: center;
+                    }
+                }
+
+                .col-12-title {
+
+                    h4 {
+
+                        font-family: 'Poppins';
+                        color: white;
+                        margin: auto;
+                        margin-top: 20px;
+                    }
+
+                    p {
+
+                        font-family: 'Poppins';
+                        color: white;
+                        margin: auto;
+                        margin-top: 20px;
+                        margin-bottom: 40px;
+                        text-align: center;
+                    }
+                }
+
+                .col-12-up {
+
+                    display: flex;
+                    font-family: 'Poppins';
+                    color: white;
+                    margin: auto;
+                    margin-bottom: 40px;
+                    text-align: center;
+                }
+
+                .col-12 {
+
+                    display: flex;
+                    font-family: 'Poppins';
+                    color: white;
+                    margin: auto;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+
+                .send {
+
+                    margin-top: 40px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .container-read {
+
+            .row {
+
+                padding: 50px !important;
+
+                .nav-buttons {
+
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 40px;
+
+                    .nav-button {
+
+                        width: 30%;
+                        text-align: center;
+                    }
+                }
+
+                .col-12-read {
+
+                    text-align: center;
+                    color: white;
+
+                    h4 {
+
+                        margin-bottom: 30px;
+                    }
+
+                    h5 {
+
+                        margin-bottom: 30px;
+                    }
+
+                    p {
+
+                        margin-bottom: 30px;
+                    }
+
+                    div {
+
+                        width: 50%;
+                        text-align: justify;
+                        margin: auto;
+                        margin-bottom: 40px;
+                    }
+                }
+            }
+        }
+
+        .container-sent {
+
+            .row {
+
+                padding: 50px !important;
+
+                .nav-buttons {
+
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 30px;
+
+                    .nav-button {
+
+                        width: 30%;
+                        text-align: center;
+                    }
+                }
+
+                .col-12-title {
+
+                    h4 {
+
+                        font-family: 'Poppins';
+                        color: white;
+                        margin: auto;
+                        margin-top: 20px;
+                    }
+
+                    p {
+
+                        font-family: 'Poppins';
+                        color: white;
+                        margin: auto;
+                        margin-top: 20px;
+                        margin-bottom: 40px;
+                        text-align: center;
+                    }
+                }
+
+                .col-12-up {
+
+                    display: flex;
+                    font-family: 'Poppins';
+                    color: white;
+                    margin: auto;
+                    margin-bottom: 40px;
+                    text-align: center;
+                }
+
+                .col-12 {
+
+                    display: flex;
+                    font-family: 'Poppins';
+                    color: white;
+                    margin: auto;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+
+                .send {
+
+                    margin-top: 40px;
+                    text-align: center;
+                }
+            }
+        }
+
+        .container-send {
+
+            .row {
+
+                .col {
+
+                    .nav-buttons {
+
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 30px;
+    
+                        .nav-button {
+    
+                            width: 30%;
+                            text-align: center;
+                        }
+                    }
+
+                    .send-msg {
+
+                        display: flex !important;
+                        justify-content: center !important;
+                        margin-top: 80px !important;
+
+                        form {
+
+                            div {
+            
+                                width: 100% !important;
+                                color: white !important;
+                                margin-bottom: 40px !important;
+                            }
+            
+                            .button {
+            
+                                width: 100% !important;
+                                margin-bottom: 40px !important;
+                                text-align: center !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .container{
 
             margin-top: 80px;
+
         }
 
         .search {
@@ -716,7 +1002,7 @@ body {
 
         figure {
 
-            height: 50%;
+            height: 45%;
             margin-top: 30px;
 
             img {

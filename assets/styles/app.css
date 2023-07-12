@@ -27,6 +27,188 @@ body main h4 {
 body main h4 a {
   width: 30%;
 }
+body main .container-msg {
+  height: 610px;
+}
+body main .container-msg .row h3 {
+  font-family: "Duplexide", cursive;
+  font-size: 48px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  padding-bottom: 40px !important;
+}
+body main .container-msg .row .col {
+  padding: 40px;
+}
+body main .container-msg .row .col .nav-buttons {
+  display: flex;
+  justify-content: center;
+}
+body main .container-msg .row .col .nav-buttons .nav-button {
+  width: 30%;
+  text-align: center;
+}
+body main .container-msg .row .col .contenu {
+  padding: 50px !important;
+  margin-left: 15em;
+}
+body main .container-msg .row .col .contenu p {
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+}
+body main .container-msg .row .col .send {
+  text-align: center;
+}
+body main .container-recep .row {
+  padding: 50px !important;
+}
+body main .container-recep .row .nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+body main .container-recep .row .nav-buttons .nav-button {
+  width: 30%;
+  text-align: center;
+}
+body main .container-recep .row .col-12-title h4 {
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+}
+body main .container-recep .row .col-12-title p {
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+body main .container-recep .row .col-12-up {
+  display: flex;
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+body main .container-recep .row .col-12 {
+  display: flex;
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+body main .container-recep .row .send {
+  margin-top: 40px;
+  text-align: center;
+}
+body main .container-read .row {
+  padding: 50px !important;
+}
+body main .container-read .row .nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+body main .container-read .row .nav-buttons .nav-button {
+  width: 30%;
+  text-align: center;
+}
+body main .container-read .row .col-12-read {
+  text-align: center;
+  color: white;
+}
+body main .container-read .row .col-12-read h4 {
+  margin-bottom: 30px;
+}
+body main .container-read .row .col-12-read h5 {
+  margin-bottom: 30px;
+}
+body main .container-read .row .col-12-read p {
+  margin-bottom: 30px;
+}
+body main .container-read .row .col-12-read div {
+  width: 50%;
+  text-align: justify;
+  margin: auto;
+  margin-bottom: 40px;
+}
+body main .container-sent .row {
+  padding: 50px !important;
+}
+body main .container-sent .row .nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+body main .container-sent .row .nav-buttons .nav-button {
+  width: 30%;
+  text-align: center;
+}
+body main .container-sent .row .col-12-title h4 {
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+}
+body main .container-sent .row .col-12-title p {
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+body main .container-sent .row .col-12-up {
+  display: flex;
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+body main .container-sent .row .col-12 {
+  display: flex;
+  font-family: "Poppins";
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+body main .container-sent .row .send {
+  margin-top: 40px;
+  text-align: center;
+}
+body main .container-send .row .col .nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+body main .container-send .row .col .nav-buttons .nav-button {
+  width: 30%;
+  text-align: center;
+}
+body main .container-send .row .col .send-msg {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 80px !important;
+}
+body main .container-send .row .col .send-msg form div {
+  width: 100% !important;
+  color: white !important;
+  margin-bottom: 40px !important;
+}
+body main .container-send .row .col .send-msg form .button {
+  width: 100% !important;
+  margin-bottom: 40px !important;
+  text-align: center !important;
+}
 body main .container {
   margin-top: 80px;
 }
@@ -515,7 +697,7 @@ body header {
   height: 55px;
 }
 body header figure {
-  height: 50%;
+  height: 45%;
   margin-top: 30px;
 }
 body header figure img {
