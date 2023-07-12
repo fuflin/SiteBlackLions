@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Duplexide";
+  src: url("./fonts/Duplexide.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +16,7 @@ body {
   position: relative;
 }
 body main h2 {
+  font-family: "Duplexide", cursive;
   text-align: center;
   color: white;
   margin: 30px;
@@ -169,12 +176,9 @@ body main .card_event .row .col-sm-6 .card {
   padding: 10px !important;
   margin: auto !important;
 }
-body main .card_event .row .col-sm-6 .card figure {
-  height: 300px !important;
-  border-radius: 15px !important;
-}
 body main .card_event .row .col-sm-6 .card figure img {
   width: 100% !important;
+  border-radius: 15px !important;
 }
 body main .card_event .row .col-sm-6 .card .card-body .card-title {
   text-align: center !important;
@@ -286,21 +290,36 @@ body main .gallery__selector:checked ~ .gallery__thumb > img {
 body main .parallax .box1 {
   height: 100vh;
   width: 100%;
-  background-image: url("/public/img/sniper.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/public/img/sniper.jpg");
   background-size: cover;
   background-position: center;
-  display: table;
   background-attachment: fixed;
   transition: 0.5s all ease-in-out;
 }
-body main .parallax .box1 h2 {
-  font-family: "Reggae One", cursive;
+body main .parallax .box1 figure {
+  width: 25%;
+  margin: auto !important;
+  padding: 40px !important;
+}
+body main .parallax .box1 figure img {
+  width: 100% !important;
+  border-radius: 20px !important;
+}
+body main .parallax .box1 h3 {
+  font-family: "Duplexide", cursive;
   font-size: 48px;
   color: #fff;
   margin: 0;
   text-align: center;
-  display: table-cell;
-  vertical-align: middle;
+  padding-bottom: 40px !important;
+}
+body main .parallax .box1 p {
+  font-family: "Poppins", cursive;
+  font-size: 30px;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  width: 60%;
 }
 body main .parallax .box2 {
   height: 100vh;
@@ -310,120 +329,187 @@ body main .parallax .box2 {
   background-attachment: fixed;
   transition: 0.5s all ease-in-out;
 }
-body main .parallax .box2 .card-container {
-  padding: 50px 0px;
-  height: 100vh;
+body main .parallax .box2 h3 {
+  font-family: "Duplexide", cursive;
+  font-size: 48px;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  padding: 40px !important;
+}
+body main .parallax .box2 .logos {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-}
-body main .parallax .box2 .card-container .cards {
-  height: 400px;
-  width: 300px;
-  padding: 20px;
-  perspective: 1000px;
-}
-body main .parallax .box2 .card-container .cards .card {
-  overflow: hidden;
-  transform-style: preserve-3d;
-  background-image: url("/public/img/camo.jpg");
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  transition: all 0.5s ease-in-out;
-}
-body main .parallax .box2 .card-container .cards .card .figure {
-  width: 100%;
-  margin: 0;
-}
-body main .parallax .box2 .card-container .cards .card .figure img {
-  width: 100%;
-}
-body main .parallax .box2 .card-container .cards .card .content-box {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.811);
-  border-radius: 0px 0px 10px 10px;
-  box-shadow: rgba(0, 115, 255, 0.925) 0px 20px 50px -25px;
-  transition: all 0.5s ease-in-out;
-  padding: 0px 25px 25px 25px;
-  transform-style: preserve-3d;
-}
-body main .parallax .box2 .card-container .cards .card .content-box .card-title {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 800;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 20px);
-}
-body main .parallax .box2 .card-container .cards .card .content-box .card-title:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
-body main .parallax .box2 .card-container .cards .card .content-box .card-content {
-  padding-top: 20px;
-  font-size: 13px;
-  color: #d7d7d7;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 20px);
-}
-body main .parallax .box2 .card-container .cards .card .content-box .card-content:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
-body main .parallax .box2 .card-container .cards .card .content-box .see-more {
-  display: block;
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #0088ff;
-  padding-top: 15px;
-  transition: all 0.5s ease-in-out;
-  transform: translate3d(0px, 0px, 20px);
-}
-body main .parallax .box2 .card-container .cards .card .content-box .see-more:hover {
-  transform: translate3d(0px, 0px, 50px);
-}
-body main .parallax .box2 .card-container .cards .card .date-box {
+  justify-content: space-around;
+  height: 80vh;
+  margin: 10vh 0;
   position: absolute;
-  top: 15px;
-  left: 13px;
-  height: 60px;
-  width: 60px;
-  background-color: #000;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: #0066ff 0px 20px 60px 0px, #00c8ff 0px 18px 36px -18px;
-  transform: translate3d(0px, 0px, 50px);
 }
-body main .parallax .box2 .card-container .cards .card .date-box .month {
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  display: block;
+body main .parallax .box2 .logos .logo-1 {
+  position: relative;
+  top: 2%;
+  left: 5%;
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-1 figure {
+  width: 66%;
+  margin: auto;
+}
+body main .parallax .box2 .logos .logo-1 figure img {
+  border-radius: 20px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+}
+body main .parallax .box2 .logos .logo-1 p {
+  font-family: "Poppins";
   text-align: center;
+  color: white;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
 }
-body main .parallax .box2 .card-container .cards .card .date-box .date {
-  font-size: 20px;
-  font-weight: 900;
-  color: #0088ff;
-  display: block;
+body main .parallax .box2 .logos .logo-1:hover {
+  transform: scale(1.2);
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-2 {
+  position: relative;
+  top: -30%;
+  left: 10%;
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-2 figure {
+  width: 80%;
+  margin: auto;
+}
+body main .parallax .box2 .logos .logo-2 figure img {
+  border-radius: 20px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+}
+body main .parallax .box2 .logos .logo-2 p {
+  font-family: "Poppins";
   text-align: center;
+  color: white;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
 }
-body main .parallax .box2 .card-container .cards .card:hover {
-  background-position: 80% 20%;
-  transform: rotate3d(0.5, 1, 0, 15deg);
+body main .parallax .box2 .logos .logo-2:hover {
+  transform: scale(1.2);
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-3 {
+  position: relative;
+  top: 2%;
+  left: 20%;
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-3 figure {
+  width: 80%;
+  margin: auto;
+}
+body main .parallax .box2 .logos .logo-3 figure img {
+  border-radius: 20px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+}
+body main .parallax .box2 .logos .logo-3 p {
+  font-family: "Poppins";
+  text-align: center;
+  color: white;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+}
+body main .parallax .box2 .logos .logo-3:hover {
+  transform: scale(1.2);
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-4 {
+  position: relative;
+  top: 30%;
+  left: -40%;
+  transition: 1s all linear;
+}
+body main .parallax .box2 .logos .logo-4 figure {
+  width: 75%;
+  margin: auto;
+}
+body main .parallax .box2 .logos .logo-4 figure img {
+  border-radius: 20px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+}
+body main .parallax .box2 .logos .logo-4 p {
+  font-family: "Poppins";
+  text-align: center;
+  color: white;
+  width: 70%;
+  margin: auto;
+  margin-top: 20px;
+}
+body main .parallax .box2 .logos .logo-4:hover {
+  transform: scale(1.2);
+  transition: 1s all linear;
 }
 body main .parallax .box3 {
   height: 100vh;
   width: 100%;
-  background-image: url("/public/img/soldiers.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/public/img/soldiers.jpg");
   background-size: cover;
   background-position: center;
   display: table;
   background-attachment: fixed;
   transition: 0.5s all ease-in-out;
+}
+body main .parallax .box3 h3 {
+  font-family: "Duplexide", cursive;
+  font-size: 48px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+  padding: 40px !important;
+}
+body main .parallax .box3 .event-container {
+  display: flex;
+  justify-content: space-around;
+}
+body main .parallax .box3 .event-container .img-event {
+  width: 40%;
+}
+body main .parallax .box3 .event-container .img-event figure {
+  width: 80%;
+  margin: auto;
+}
+body main .parallax .box3 .event-container .img-event figure img {
+  width: 100%;
+  border-radius: 25px;
+  border: solid rgb(255, 255, 255) 2px !important;
+}
+body main .parallax .box3 .event-container .regis-home {
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+body main .parallax .box3 .event-container .regis-home .button-infos {
+  text-align: center;
+}
+body main .parallax .box3 .event-container .regis-home .button-infos p {
+  font-family: "Poppins", cursive;
+  font-size: 20px;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  width: 80%;
+}
+body main .parallax .box3 .event-container .regis-home .button-infos button {
+  margin-top: 30px;
+  background-color: rgb(38, 38, 222);
+  border: solid rgb(255, 255, 255) 2px;
+  border-radius: 20px;
+  padding: 6px 10px;
+}
+body main .parallax .box3 .event-container .regis-home .button-infos button a {
+  text-decoration: none;
+  color: white;
 }
 body header {
   height: 55px;
@@ -437,5 +523,5 @@ body header figure img {
   border-radius: 200px !important;
 }
 body footer {
-  height: 250px;
+  height: 125px;
 }/*# sourceMappingURL=app.css.map */

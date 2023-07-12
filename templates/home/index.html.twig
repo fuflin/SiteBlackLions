@@ -7,36 +7,57 @@
 <div class="parallax">
 
     <div class="box1">
-        <h2>Association BlackLions Special Force</h2>
-        <p>test visuel pour le parallax</p>
+        <figure>
+            <img src="{{asset('/img/logo.png')}}" alt="logo association">
+        </figure>
+        <h3>Association BlackLions Special Force</h3>
+        <p>"Un site fait pour une équipe de personnes déterminées qui veulent vivre et faire décourvrir leurs passion à toutes et à tous"</p>
     </div>
 
     <div class="box2">
-        <p>Plonge toi dans les profondeurs de l'espace</p>
-        <div class="card-container">
-            <div class="cards">
-                <div class="card">
-                    <figure class="figure">
-                        <img src="{{asset('/img/airsoft-quoi.jpg')}}" alt="">
-                    </figure>
-                    <div class="content-box">
-                        <p class="card-title">Event title</p>
-                        <p class="card-content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quaerat quae quos modi molestiae incidunt similique magni. Laudantium veritatis maxime.
-                        </p>
-                        <span class="see-more">See More</span>
-                    </div>
-                    <div class="date-box">
-                        <span class="month">JULY</span>
-                        <span class="date">21</span>
-                    </div>
-                </div>
+        <div class="logos">
+            <div class="logo-1">
+                <figure>
+                    <img src="{{asset('/img/immersion.jpg')}}" alt="">
+                </figure>
+                <p>Une plongée en immersion totale</p>
+            </div>
+            <div class="logo-2">
+                <figure>
+                    <img src="{{asset('/img/entraide.jpg')}}" alt="">
+                </figure>
+                <p>L'entraide est essentiel pour la victoire</p>
+            </div>
+            <div class="logo-3">
+                <figure>
+                    <img src="{{asset('/img/terrain.jpg')}}" alt="">
+                </figure>
+                <p>Utiliser les complexités des terrains</p>
+            </div>
+            <div class="logo-4">
+                <figure>
+                    <img src="{{asset('/img/détermination.jpg')}}" alt="">
+                </figure>
+                <p>La finalité étant de passer un bon moment</p>
             </div>
         </div>
     </div>
 
     <div class="box3">
-        <p>Imprègne toi de la tranquilité de l'espace</p>
+        <h3>Evénements</h3>
+        <div class="event-container">
+            <div class="img-event">
+                <figure class="fig-event">
+                    <img src="{{asset('/img/airsoft-quoi.jpg')}}" alt="">
+                </figure>
+            </div>
+            <div class="regis-home">
+                <div class="button-infos">
+                    <p>Notre association prévoit des événements à certaines dates, si cela vous intéresse vous pouvez cliquez sur le lien pour accéder à la liste des événements</p>
+                    <button><a href="{{path('app_event')}}">liste des événements</a></button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

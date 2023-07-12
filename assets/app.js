@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const formElement = document.getElementById('lockForm');
 });
 
-
 //--------- Partie de la barre de Recherche---------//
+var multimediaEventRoute = "/multimedia/event/";
 
 $(document).ready(function() {
 
@@ -54,7 +54,7 @@ $(document).ready(function() {
                     var resultHtml = "";
 
                     for(var i = 0; i < result.length; i++){
-                        resultHtml += "<div>" + result[i].name + "</div>"
+                        resultHtml += "<a href=" + multimediaEventRoute + result[i].id + "><p>" + result[i].name + "</p></a>"
                     }
 
                     $('#result').html(resultHtml);
