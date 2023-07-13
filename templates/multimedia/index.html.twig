@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MultimediaController!{% endblock %}
+{% block title %}Galerie{% endblock %}
 
 {% block body %}
 
@@ -10,31 +10,12 @@
 <h4 style="text-align: center;"><a href="{{ path('add_media')}}" class="btn btn-primary">Ajouter un Media</a></h4>
 {% endif %}
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Liste des événements
-  </button>
-  <ul class="dropdown-menu">
-    {% for event in events %}
-      <li><a class="dropdown-item" href="{{path('show_media', {'id': event.id})}}">{{event.name}}</a></li>
-    {% endfor %}
-  </ul>
-</div>
-
 {# --------- Début partie barre de recherche --------- #}
 
 <div class="search">
   <input class="form-control" type="text" id="live_search" placeholder="Entrez le nom de l'événement">
   <div id="result"></div>
 </div>
-
-{# <div class="search">
-  <form>
-      <input class="form-control" type="text" id="name_search" placeholder="Entrez le nom de l'événement">
-      <input class="form-control" type="date" id="date_search">
-  </form>
-  <div id="result"></div>
-</div> #}
 
 {# --------- Fin partie des barre de recherche --------- #}
 

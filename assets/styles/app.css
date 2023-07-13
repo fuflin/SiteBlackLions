@@ -539,7 +539,7 @@ body main .parallax .box2 .logos .logo-1 figure {
 }
 body main .parallax .box2 .logos .logo-1 figure img {
   border-radius: 20px;
-  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
 }
 body main .parallax .box2 .logos .logo-1 p {
   font-family: "Poppins";
@@ -565,7 +565,7 @@ body main .parallax .box2 .logos .logo-2 figure {
 }
 body main .parallax .box2 .logos .logo-2 figure img {
   border-radius: 20px;
-  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
 }
 body main .parallax .box2 .logos .logo-2 p {
   font-family: "Poppins";
@@ -591,7 +591,7 @@ body main .parallax .box2 .logos .logo-3 figure {
 }
 body main .parallax .box2 .logos .logo-3 figure img {
   border-radius: 20px;
-  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
 }
 body main .parallax .box2 .logos .logo-3 p {
   font-family: "Poppins";
@@ -617,7 +617,7 @@ body main .parallax .box2 .logos .logo-4 figure {
 }
 body main .parallax .box2 .logos .logo-4 figure img {
   border-radius: 20px;
-  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px 0px;
+  box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
 }
 body main .parallax .box2 .logos .logo-4 p {
   font-family: "Poppins";
