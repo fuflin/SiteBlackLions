@@ -14,6 +14,15 @@ import './bootstrap';
 // code tarteaucitron
 import './tarteaucitron';
 
+// START ALERTS
+const alerts = document.querySelectorAll('[role="alert"]') // on récupère tous les éléments avec l'attribut role="alert"
+for (const alert of alerts) { // pour chaque élément
+    setTimeout( function() { // on attend 5 secondes
+        const bootstrapAlert = bootstrap.Alert.getOrCreateInstance(alert);
+        bootstrapAlert.close(); // on ferme l'alerte
+    }, 5000);
+}
+// STOP ALERTS
 
 //--------- partie pour le switch du panel Admin pour ban un user ---------//
 document.addEventListener('DOMContentLoaded', function() {
