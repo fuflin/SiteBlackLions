@@ -50,6 +50,18 @@ class ParticipateRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getNbRegis($event) {
+
+        return $this->createQueryBuilder('p')
+                ->select('COUNT(p.id)')
+                ->leftjoin('p.event', 'e')
+                ->where('e.id = :event')
+                ->setParameter('event', $event)
+                ->getQuery()
+                ->getSingleScalarResult() //Nous renvois une valeur sous forme de nombre
+            ;
+    }
+
     // public function infoParticipate(){
 
     //     return $this->createQueryBuilder('p')

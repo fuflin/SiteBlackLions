@@ -1,7 +1,7 @@
 
 {% set isParticipate = false %}
 
-    {% for participate in event.participates %}
+    {% for participate in event.participates %} {# commenter cette partie entière #}
         {% if participate.user == app.user %}
             <form action="{{path('remove_regis_event',  {'id': event.id, 'idParticipate': participate.id})}}" style="display: flex; justify-content: center;">
                 <button type="submit" class="btn btn-light">

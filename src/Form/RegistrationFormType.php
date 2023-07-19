@@ -22,12 +22,13 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // ici le champ du formalaire est restraint à du texte
             ->add('nickname', TextType::class, ['attr'=> [
                 'class' => 'form-control',
                 'placeholder' => 'Entrez votre pseudo'],
                 'label' => 'Pseudo'
             ])
-
+            // ici si une adresse mail n'est pas saisie le champ ne sera pas validé
             ->add('email', EmailType::class, ['attr'=> [
                 'class' => 'form-control',
                 'placeholder' => 'Entrez une adresse email'],
@@ -51,12 +52,12 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez un mot de passe',
-                    ]),
-                    // new Regex([ //la regex impose des conditions pour le mdp: 1 majuscule, 1 minuscule, 1 nombre, 1 charactère spéciale
-                    //     'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.$!%*?&])[A-Za-z\d@.$!%*?&]{12,32}$/',
-                    //     'match' => true,
-                    //     'message' => 'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 nombre, 1 caractère spéciale compris entre 12 et 32 caractères'
-                    //     ]),
+                        ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*\d)(?=.*[!-/:-@[-`{-~À-ÿ§µ²°£])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{12,32}$/',
+                        'match' => true,
+                        'message' => 'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 nombre, 1 caractère spéciale et doit faire au moins 12 caractères.',
+                        ]),
                     ],
                 ])
 

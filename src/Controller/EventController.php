@@ -42,6 +42,8 @@ class EventController extends AbstractController
 
         return $this->render('event/index.html.twig', [
             'events' => $events,
+            'description' => "ceci est la liste des événements du site BlackLions",
+            'title' => "Liste des événements"
         ]);
     }
 
@@ -114,31 +116,41 @@ class EventController extends AbstractController
         $user = $this->getUser(); //on récupère le User en session
 
         if (!$user) { // si la personne n'a pas de compte , elle est renvoyé vers la page d'inscription
+            $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");
             return $this->redirectToRoute('app_login');
         }
 
+        //condition bloqué inscription quand limite personne atteinte
+        // partie condition pour bloqué les inscriptions à j-2 de la date de l'event
+
+        // variable créer pour récupérer le nombre de participant à un event
+        $placeEvent = $em->getRepository(Participate::class)->getNbRegis($event);
+
+        //variable pour créer pour le calcule de la différence de la date
         $dateInscription = new \DateTime();
         $dateEvenement = $event->getDateCreate();
-
+        //variable contenant le résultat de la différence
         $diff = $dateEvenement->diff($dateInscription)->days;
 
-        if ($diff <= 2) {
+        if ($diff <= 2 || $placeEvent == $event->getNbMaxPers()) {
 
             $event->setIsLock(true);
-            $this->addFlash("message", "Clôture des inscriptions");
+            $this->addFlash("danger", "Clôture des inscriptions");
 
             $em->persist($event);
             $em->flush();
 
             return $this->redirectToRoute('app_event'); // Si l'inscription est effectuée trop près de la date de l'événement, rediriger vers une autre page.
         }
-        // dd($event);
+        // fin de partie condition
+
         $participate = new Participate();
 
         $participate->setDateRegis($dateInscription);
         $participate->setUser($user);
         $participate->setEvent($event);
 
+        $this->addFlash("success", "Inscription validée");
         $em->persist($participate); // équivalent du prepare dans PDO
         $em->flush(); // équivalent de insert into (execute) dans PDO
 
