@@ -408,6 +408,7 @@ body main .login .long {
 }
 body main .login .long .form {
   width: 50%;
+  margin-bottom: 30px !important;
 }
 body main .login .long .form div {
   margin-top: 20px !important;
@@ -705,5 +706,9 @@ body header figure img {
   border-radius: 200px !important;
 }
 body footer {
-  height: 125px;
+  height: 80px;
+}
+body footer .text-center {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
 }/*# sourceMappingURL=app.css.map */

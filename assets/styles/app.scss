@@ -619,6 +619,7 @@ body {
                 .form {
 
                     width: 50%;
+                    margin-bottom: 30px !important;
 
                     div {
 
@@ -1012,7 +1013,14 @@ body {
     }
 
     footer {
-        height: 125px;
+        height: 80px;
+
+        .text-center {
+
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+        }
     }
 }
+
 
