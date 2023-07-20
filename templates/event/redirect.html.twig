@@ -1,19 +1,23 @@
 
-{% set isParticipate = false %}
+{% set isParticipate = false %} {# assignation d'une valeur false à la variable isParticipate #}
 
-    {% for participate in event.participates %} {# commenter cette partie entière #}
-        {% if participate.user == app.user %}
-            <form action="{{path('remove_regis_event',  {'id': event.id, 'idParticipate': participate.id})}}" style="display: flex; justify-content: center;">
+    {% for participate in event.participates %} {# boucle pour parcourir chaque participation dans le tableau participation événement #}
+        {% if participate.user == app.user %} {# condition vérifiant si le user inscrit à l'event est le même que celui connecté en session #}
+            {# formulaire dirigeant vers la fonction pour retiré son inscription a l'event #}
+            <form class="button-regis" action="{{path('remove_regis_event',  {'id': event.id, 'idParticipate': participate.id})}}">
                 <button type="submit" class="btn btn-light">
                 Se désinscrire de l'événement
                 </button>
             </form>
+            {#  #}
             {% set isParticipate = true %}
-        {% endif %}
+        {% endif %}{#  #}
     {% endfor %}
 
-{% if not isParticipate %}
-    <form action="{{path('regis_event',  {'id': event.id})}}" style="display: flex; justify-content: center;">
+{% if not isParticipate %}{#  #}
+    {#  #}
+    <form class="button-regis" action="{{path('regis_event',  {'id': event.id})}}">
+        {#  #}
         <button type="submit" class="btn btn-light">
             S'inscrire à l'événement
         </button>

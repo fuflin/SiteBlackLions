@@ -13,42 +13,40 @@
 {% endif %}
 
 <div class="card_event">
-
     <div class="row">
-
+      {# boucle pour afficher chaque événement contenu dans le tableau events #}
       {% for event in events %}
         <div class="col-sm-6">
-
           <div class="card">
-
-            <figure>
+            <figure>{# affichage du poster de l'event #}
               <img src="{{asset('uploads/images/' ~ event.poster)}}" class="card-img-top">
             </figure>
-
+            {# affichage des différents éléments relatif à l'event #}
               <div class="card-body">
                   <h5 class="card-title">Evénement:<br><strong class="first">{{event.name}}</strong></h5>
                   <h5 class="card-title">Date de l'événement:<br><strong class="second">{{event.DateCreate | date('d/m/Y')}}</strong></h5>
                   <h6 class="card-text">Nombre de participants:<br><strong class="third">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6><br>
+                  {# lien conduisant au détail d'un event #}
                   <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light">Présentation</a>
               </div>
-
-              {% if event.isLock == true %}
-
-                {% else %}
-                  {% include "event/redirect.html.twig"%}
-              {% endif %}
-
-              {% if is_granted('ROLE_ADMIN') %}
+              {# condition pour afficher le bouton d'inscrisption #}
+              {% if event.isLock == true %} {# si l'event est vérouillé #}
+                                  {# alors rien ne sera affiche #}
+                {% else %} {# sinon le bouton sera visible #}
+                  {% include "event/redirect.html.twig"%} {# lien menant vers la page ou se trouve le bouton inscription #}
+              {% endif %} {# fin de condition #}
+              {# condition d'affichage des boutons pour l'utilisateur ayant le role admin #}
+              {% if is_granted('ROLE_ADMIN') %} {# si il est garanti que l'utilisateur à bien le rôle ADMIN #}
                 <div class="option">
+                  {# lien conduisant à la méthode de modification de l'envent #}
                   <a href="{{ path('admin_events_edit_event', {'id': event.id})}}" class="btn btn-primary">Modifier</a>
+                  {# lien conduisant à la méthode de suppression de l'envent #}
                   <a href="{{ path('admin_events_delete_event', {'id': event.id})}}" class="btn btn-danger">Supprimer</a>
                 </div>
               {% endif %}
           </div>
-
         </div>
       {% endfor %}
-
     </div>
 </div>
 

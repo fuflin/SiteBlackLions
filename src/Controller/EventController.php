@@ -115,13 +115,15 @@ class EventController extends AbstractController
     {
         $user = $this->getUser(); //on récupère le User en session
 
-        if (!$user) { // si la personne n'a pas de compte , elle est renvoyé vers la page d'inscription
+        if (!$user) { // si la personne n'a pas de compte
+            //une message d'alerte s'affiche
             $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");
+            //et l'utilisateur est renvoyé vers la page de connexion
             return $this->redirectToRoute('app_login');
         }
 
         //condition bloqué inscription quand limite personne atteinte
-        // partie condition pour bloqué les inscriptions à j-2 de la date de l'event
+        //condition pour bloqué les inscriptions à j-2 de la date de l'event
 
         // variable créer pour récupérer le nombre de participant à un event
         $placeEvent = $em->getRepository(Participate::class)->getNbRegis($event);
@@ -129,28 +131,40 @@ class EventController extends AbstractController
         //variable pour créer pour le calcule de la différence de la date
         $dateInscription = new \DateTime();
         $dateEvenement = $event->getDateCreate();
+
         //variable contenant le résultat de la différence
         $diff = $dateEvenement->diff($dateInscription)->days;
 
+        // si la différence est supérieur ou égale à 2 OU que le nombre de place est supérieur au nombre limite de place de l'événemt
         if ($diff <= 2 || $placeEvent == $event->getNbMaxPers()) {
 
+            //alors on modifie l'état is_lock à true
             $event->setIsLock(true);
+            //on affichera un message pour informer les utilisateurs
             $this->addFlash("danger", "Clôture des inscriptions");
 
             $em->persist($event);
             $em->flush();
-
-            return $this->redirectToRoute('app_event'); // Si l'inscription est effectuée trop près de la date de l'événement, rediriger vers une autre page.
+            // cela nous redirigera vers la page d'affichage des events
+            return $this->redirectToRoute('app_event');
         }
         // fin de partie condition
 
+        //j'instancie la classe participate
         $participate = new Participate();
 
+        //on va attribuer différentes données
+
+        // on attribue la date d'inscription
         $participate->setDateRegis($dateInscription);
+        // on attribue le bon user
         $participate->setUser($user);
+        // on attribue le bon event
         $participate->setEvent($event);
 
+        //message de confirmation pour l'inscription
         $this->addFlash("success", "Inscription validée");
+
         $em->persist($participate); // équivalent du prepare dans PDO
         $em->flush(); // équivalent de insert into (execute) dans PDO
 

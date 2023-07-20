@@ -72,14 +72,14 @@ class MultimediaRepository extends ServiceEntityRepository
 
     public function findImgs($event)
     {
-        return $this->createQueryBuilder('m') // appel de la table avec son alias
+        return $this->createQueryBuilder('m') // création de la requête DQL
             ->where("m.media LIKE '%.jpg'") // condition récupère toute donnée se terminant par .jpg
             ->orWhere("m.media LIKE '%.jpeg'") // ou condition récupère toute donnée se terminant par .jpeg
             ->orWhere("m.media LIKE '%.png'") // ou condition récupère toute donnée se terminant par .png
-            ->andWhere("m.event = :event") // et condition que la donnée appartienne à un objet event
-            ->setParameter("event", $event) // attribut le paramètre event à la variable déclaré $event
+            ->andWhere("m.event = :event") // identifié un event particulier
+            ->setParameter("event", $event) // donner une valeur au paramètre nommé event
             ->getQuery() // exécuter la requête
-            ->getResult() // récupéré les résultats sous forme forme de tableau
+            ->getResult() // récupére les résultats sous forme forme de tableau
         ;
     }
 

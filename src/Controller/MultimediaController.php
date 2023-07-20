@@ -45,22 +45,25 @@ class MultimediaController extends AbstractController
         // si (on a bien appuyer sur submit && que les infos du formalaire sont conformes au filter input qu'on aura mis ici géré par symfony)
         if ($form->isSubmitted() && $form->isValid()) {
 
-                $posterFiles = $form->get('media')->getData(); // hydratation d'un fichier
+            $posterFiles = $form->get('media')->getData(); // hydratation d'un fichier
 
-                        // on boucle pour pouvoir ajouter plusieurs éléments en même temps
+                // on boucle pour pouvoir ajouter plusieurs éléments en même temps
 
-                        foreach($posterFiles as $posterFile) { // pour chaque élément dans le tableau $posterFiles
+                foreach($posterFiles as $posterFile) { // pour chaque élément dans le tableau $posterFiles
 
-                            $media = new Multimedia(); // je crée un nouvel objet contenant mon image/vidéo
+                    $media = new Multimedia(); // je crée un nouvel objet contenant mon image/vidéo
+                    // on utilise le service upload pour chargé le média afin de le stocké en base de donnée
+                    $posterFileName = $fileUploader->upload($posterFile);
+                    // on attribut la valeur de $posterFileName à $media
+                    $media->setMedia($posterFileName);
 
-                            $posterFileName = $fileUploader->upload($posterFile); // on utilise le service upload pour chargé le média afin de le stocké en base de donnée
-                            $media->setMedia($posterFileName);
-                            $em->persist($media); // on persiste à chaque élément
-                        }
+                    // on entre les données dans la base de donnée
+                    $em->persist($media);
+                }
 
+            $em->flush(); // équivalent de insert into (execute)
 
-            $em->flush(); // équivalent de insert into (execute) dans PDO
-
+            // on  sera redirigé vers la page galerie
             return $this->redirectToRoute('app_multimedia');
         }
 

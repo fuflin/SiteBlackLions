@@ -22,7 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EventsController extends AbstractController
 {
-
+    // affichage de la liste des events dans le panel admin
     #[Route('/', name: 'index')]
 
     public function index(EntityManagerInterface $em):Response
