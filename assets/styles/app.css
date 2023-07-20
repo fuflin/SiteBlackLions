@@ -385,6 +385,10 @@ body main .card_event .row .col-sm-6 .card .card-body a {
   margin: auto;
   width: 75%;
 }
+body main .card_event .row .col-sm-6 .card .button-regis {
+  display: flex;
+  justify-content: center;
+}
 body main .card_event .row .col-sm-6 .card .option {
   display: flex;
   justify-content: center;
