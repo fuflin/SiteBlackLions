@@ -26,7 +26,8 @@ class MultimediaType extends AbstractType
                 ],
 
                 'label' => 'Media à enregistrer',
-                'multiple' => true, // paramètre permettant à l'utilisateur de pouvoir ajouter plusieurs fichiers en même temps
+                // paramètre permettant de pouvoir ajouter plusieurs fichiers en même temps
+                'multiple' => true,
                 'mapped' => false,
                 'required' => false,
                 'constraints' =>

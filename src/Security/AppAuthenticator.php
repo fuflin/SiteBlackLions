@@ -32,11 +32,13 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
+        //on récupère la valeur de l'input du honeypot
         $honeyPot = $request->request->get('hp_protect', '');
 
-        if(!empty($honeyPot)){
+        if(!empty($honeyPot)){// si l'input n'est pas vide
 
-            throw new \Exception('Bot détecté'); // checké fonctionnement
+            //alors on envoi un message d'alerte
+            throw new \Exception('Bot détecté');
         }
 
         return new Passport(
