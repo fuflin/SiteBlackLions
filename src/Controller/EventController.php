@@ -63,7 +63,6 @@ class EventController extends AbstractController
         $user = $this->getUser();
 
         $participates = $em->getRepository(Participate::class)->findBy(['user' => $user]);
-        // dd($participates);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -116,32 +115,27 @@ class EventController extends AbstractController
         $user = $this->getUser(); //on récupère le User en session
 
         if (!$user) { // si la personne n'a pas de compte
-            //une message d'alerte s'affiche
-            $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");
-            //et l'utilisateur est renvoyé vers la page de connexion
-            return $this->redirectToRoute('app_login');
+
+            $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");//un message d'alerte s'affiche
+            return $this->redirectToRoute('app_login');//et l'utilisateur est renvoyé vers la page de connexion
         }
 
-        //condition bloqué inscription quand limite personne atteinte
-        //condition pour bloqué les inscriptions à j-2 de la date de l'event
+        //condition bloqué inscription quand limite personne atteinte + bloqué inscriptions à j-2 de la date de l'event
 
         // variable créer pour récupérer le nombre de participant à un event
-        $placeEvent = $em->getRepository(Participate::class)->getNbRegis($event);
+        $placeEvent = $em->getRepository(Participate::class)->getInscrit($event);
 
         //variable pour créer pour le calcule de la différence de la date
-        $dateInscription = new \DateTime();
-        $dateEvenement = $event->getDateCreate();
+        $dateInscription = new \DateTime();// j'instancie la classe DateTime à la date du jour
+        $dateEvenement = $event->getDateCreate();//on attribue à cette variable la date de l'event
 
-        //variable contenant le résultat de la différence
-        $diff = $dateEvenement->diff($dateInscription)->days;
+        $diff = $dateEvenement->diff($dateInscription)->days;//variable contenant le résultat de la différence
 
         // si la différence est supérieur ou égale à 2 OU que le nombre de place est supérieur au nombre limite de place de l'événemt
         if ($diff <= 2 || $placeEvent == $event->getNbMaxPers()) {
 
-            //alors on modifie l'état is_lock à true
-            $event->setIsLock(true);
-            //on affichera un message pour informer les utilisateurs
-            $this->addFlash("danger", "Clôture des inscriptions");
+            $event->setIsLock(true);//alors on modifie l'état is_lock à true
+            $this->addFlash("danger", "Clôture des inscriptions");//on affichera un message pour informer les utilisateurs
 
             $em->persist($event);
             $em->flush();
@@ -150,23 +144,18 @@ class EventController extends AbstractController
         }
         // fin de partie condition
 
-        //j'instancie la classe participate
-        $participate = new Participate();
+        $participate = new Participate();//j'instancie la classe participate
 
         //on va attribuer différentes données
 
-        // on attribue la date d'inscription
-        $participate->setDateRegis($dateInscription);
-        // on attribue le bon user
-        $participate->setUser($user);
-        // on attribue le bon event
-        $participate->setEvent($event);
+        $participate->setDateRegis($dateInscription);// on attribue la date d'inscription
+        $participate->setUser($user);// on attribue le bon user
+        $participate->setEvent($event);// on attribue le bon event
 
-        //message de confirmation pour l'inscription
-        $this->addFlash("success", "Inscription validée");
+        $this->addFlash("success", "Inscription validée");//message de confirmation pour l'inscription
 
-        $em->persist($participate); // équivalent du prepare dans PDO
-        $em->flush(); // équivalent de insert into (execute) dans PDO
+        $em->persist($participate); // équivalent du prepare
+        $em->flush(); // équivalent de insert into (execute)
 
         return $this->redirectToRoute('app_event');
     }

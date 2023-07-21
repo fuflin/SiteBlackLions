@@ -50,12 +50,12 @@ class ParticipateRepository extends ServiceEntityRepository
             ;
     }
 
-    public function getNbRegis($event) {
+    public function getInscrit($event) {// requête DQL visant à récupérer le nombre de personnes déjà inscrite à l'event
 
         return $this->createQueryBuilder('p')// création de la requête DQL
                 ->select('COUNT(p.id)')// sélection de la colonne id de la table participate et avec une fonction pour compter le nombre
                 ->leftjoin('p.event', 'e')// on fait une jointure avec la table event
-                ->where('e.id = :event')// condition id de l'event correspond à l'event 
+                ->where('e.id = :event')// condition id de l'event correspond à la valeur du marqueur nommé
                 ->setParameter('event', $event)// donner une valeur au paramètre nommé event
                 ->getQuery()// exécuter la requête
                 ->getSingleScalarResult() //récupère le resultat sous forme de nombre
