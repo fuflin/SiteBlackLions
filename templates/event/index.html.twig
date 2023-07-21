@@ -25,9 +25,9 @@
               <div class="card-body">
                   <h5 class="card-title">Evénement:<br><strong class="first">{{event.name}}</strong></h5>
                   <h5 class="card-title">Date de l'événement:<br><strong class="second">{{event.DateCreate | date('d/m/Y')}}</strong></h5>
-                  <h6 class="card-text">Nombre de participants:<br><strong class="third">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6><br>
+                  <h6 class="card-text">Nombre de participants:<br><strong class="third">{{event.participates|length}}/{{event.NbMaxPers}} pers.</strong></h6>
                   {# lien conduisant au détail d'un event #}
-                  <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light">Présentation</a>
+                  <a href="{{ path('show_event', {'id': event.id})}}" class="btn btn-light">Détails</a>
               </div>
               {# condition pour afficher le bouton d'inscrisption #}
               {% if event.isLock == true %} {# si l'event est vérouillé #}
