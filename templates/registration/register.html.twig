@@ -21,14 +21,19 @@
                     {{ form_row(registrationForm.email) }}
                 </div>
                 <div>
-                    {{ form_widget(registrationForm.plainPassword, {label: 'Password'}) }}
+                    {{ form_errors(registrationForm.plainPassword.first)}}
+                    {{ form_row(registrationForm.plainPassword.first) }}
+                </div>
+                <div>
+                    {{ form_errors(registrationForm.plainPassword.second)}}
+                    {{ form_row(registrationForm.plainPassword.second) }}
                 </div>
                 <div>
                     {{ form_row(registrationForm.discord_nickname) }}
                 </div>
-                {# <div>
+                <div>
                     {{ form_row(registrationForm.agreeTerms) }}
-                </div> #}
+                </div>
                 <div class="button">
                     {{form_row(registrationForm.submit, {'label':'Soumettre'})}}
                 </div>

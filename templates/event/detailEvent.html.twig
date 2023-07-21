@@ -32,13 +32,13 @@
             <p><u>Description</u><br><strong>{{event.description}}</strong></p>
         </div>
     </div>
+    {% if event.isLock == true %}
 
+    {% else %}
+        {% include "event/redirect.html.twig"%}
+    {% endif %}
 </div>
-{% if event.isLock == true %}
 
-{% else %}
-    {% include "event/redirect.html.twig"%}
-{% endif %}
 
 {% if app.user %}
     <h2>Discussion</h2>

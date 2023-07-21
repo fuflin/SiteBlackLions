@@ -267,6 +267,42 @@ body main .regis form .button {
   margin-top: 30px !important;
   text-align: center !important;
 }
+body main .detail_event .poster {
+  display: flex;
+  justify-content: center;
+}
+body main .detail_event .poster figure {
+  width: 45%;
+  border-radius: 15px;
+}
+body main .detail_event .poster figure img {
+  width: 100%;
+}
+body main .detail_event .bloc {
+  background-color: aliceblue;
+  width: 45%;
+  margin: auto;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+body main .detail_event .bloc div {
+  display: flex;
+  justify-content: center;
+}
+body main .detail_event .bloc div h4 {
+  text-align: center;
+  width: 40%;
+  padding: 10px;
+}
+body main .detail_event .bloc div p {
+  text-align: center;
+  font-size: 1.5em;
+  width: 80%;
+  padding: 10px;
+}
+body main .detail_event .button-regis {
+  text-align: center;
+}
 body main .container_message {
   width: 50%;
   margin: auto;
@@ -309,39 +345,6 @@ body main .container_message .formMessage form .button {
   width: 100% !important;
   margin-top: 30px !important;
   text-align: center !important;
-}
-body main .detail_event .poster {
-  display: flex;
-  justify-content: center;
-}
-body main .detail_event .poster figure {
-  width: 45%;
-  border-radius: 15px;
-}
-body main .detail_event .poster figure img {
-  width: 100%;
-}
-body main .detail_event .bloc {
-  background-color: aliceblue;
-  width: 45%;
-  margin: auto;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
-body main .detail_event .bloc div {
-  display: flex;
-  justify-content: center;
-}
-body main .detail_event .bloc div h4 {
-  text-align: center;
-  width: 40%;
-  padding: 10px;
-}
-body main .detail_event .bloc div p {
-  text-align: center;
-  font-size: 1.5em;
-  width: 70%;
-  padding: 10px;
 }
 body main .card_event .row {
   width: 90% !important;

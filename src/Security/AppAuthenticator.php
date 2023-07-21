@@ -36,7 +36,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         if(!empty($honeyPot)){
 
-            throw new \Exception('Bot détecté');
+            throw new \Exception('Bot détecté'); // checké fonctionnement
         }
 
         return new Passport(

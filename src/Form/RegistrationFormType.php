@@ -54,7 +54,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Entrez un mot de passe',
                         ]),
                     new Regex([
-                        'pattern' => '/^(?=.*\d)(?=.*[!-/:-@[-`{-~À-ÿ§µ²°£])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{12,32}$/',
+                        'pattern' => '/^(?=.*\d)(?=.*[!-\/:-@[-`{-~À-ÿ§µ²°£])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{12,32}$/',
                         'match' => true,
                         'message' => 'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 nombre, 1 caractère spéciale et doit faire au moins 12 caractères.',
                         ]),
@@ -64,6 +64,7 @@ class RegistrationFormType extends AbstractType
                 ->add('discord_nickname', TextType::class, [
                     'attr'=> [
                     'class' => 'form-control',
+                    'label' => 'Pseudo Discord',
                     'placeholder' => 'Entrez votre pseudo discord'
                     ],
                     'required' => false
@@ -72,14 +73,15 @@ class RegistrationFormType extends AbstractType
                 ->add('submit', SubmitType::class, [
                     'attr' => ['class' => 'btn btn-primary']])
 
-                // ->add('agreeTerms', CheckboxType::class, [
-                //     'mapped' => false,
-                //     'constraints' => [
-                //         new IsTrue([
-                //             'message' => 'You should agree to our terms.',
-                //         ]),
-                //     ],
-                // ])
+                ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => "Conditions d'utilisation",
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'Veuillez acceptez les conditions.',
+                        ]),
+                    ],
+                ])
         ;
     }
 

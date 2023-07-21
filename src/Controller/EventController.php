@@ -24,7 +24,7 @@ class EventController extends AbstractController
 
     public function index(EntityManagerInterface $em): Response
     {
-        $events = $em->getRepository(Event::class)->findAll();
+        $events = $em->getRepository(Event::class)->findBy([], ['date_create' => 'DESC']);
 
         // condition pour vérouiller un événement en fonction de sa date
         foreach ($events as $event) {
