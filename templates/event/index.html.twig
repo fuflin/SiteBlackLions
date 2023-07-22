@@ -15,7 +15,7 @@
 <div class="card_event">
     <div class="row">
       {# boucle pour afficher chaque événement contenu dans le tableau events #}
-      {% for event in events %}
+      {% for event in pagination %}
         <div class="col-sm-6">
           <div class="card">
             <figure>{# affichage du poster de l'event #}
@@ -49,5 +49,7 @@
       {% endfor %}
     </div>
 </div>
+
+{{ knp_pagination_render(pagination)}}
 
 {% endblock %}

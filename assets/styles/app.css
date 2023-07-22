@@ -365,7 +365,7 @@ body main .card_event .row {
 }
 body main .card_event .row .col-sm-6 {
   width: 32% !important;
-  margin: 50px 10px !important;
+  margin: 30px 10px !important;
 }
 body main .card_event .row .col-sm-6 .card {
   width: 80% !important;
@@ -421,6 +421,24 @@ body main .card_event .row .col-sm-6 .card .option {
 body main .card_event .row .col-sm-6 .card .option a {
   width: 42%;
   margin: 10px;
+}
+body main .pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+body main .pagination span {
+  margin: 0 10px;
+  color: white;
+  font-size: 20px;
+}
+body main .pagination span a {
+  color: white;
+  text-decoration: none !important;
+  font-size: 20px;
+}
+body main .pagination span a:hover {
+  background-color: gray;
 }
 body main .login figure {
   width: 20%;
@@ -740,6 +758,9 @@ body header figure img {
 }
 body footer {
   height: 80px;
+}
+body footer .container {
+  max-width: 100% !important;
 }
 body footer .text-center {
   background-color: rgba(0, 0, 0, 0.2);

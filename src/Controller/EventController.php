@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Event;
-use App\Entity\Post;
+use App\Form\PostType;
 use App\Data\SearchData;
 use App\Form\SearchForm;
-use App\Form\PostType;
 use App\Entity\Participate;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +23,15 @@ class EventController extends AbstractController
     // affichage de tous les events dans la base de données
     #[Route('/event', name: 'app_event')]
 
-    public function index(EntityManagerInterface $em): Response
+    public function index(EntityManagerInterface $em, Request $request, PaginatorInterface $paginator): Response
     {
         $events = $em->getRepository(Event::class)->findBy([], ['date_create' => 'DESC']);
+
+        $pagination = $paginator->paginate(
+            $em->getRepository(Event::class)->paginationQuery(),
+            $request->query->get('page', 1),
+            3
+        );
 
         // condition pour vérouiller un événement en fonction de sa date
         foreach ($events as $event) {
@@ -41,9 +48,8 @@ class EventController extends AbstractController
         $em->flush(); // Sauvegarde les modifications en base de données
 
         return $this->render('event/index.html.twig', [
-            'events' => $events,
-            'description' => "ceci est la liste des événements du site BlackLions",
-            'title' => "Liste des événements"
+            // 'events' => $events,
+            'pagination' => $pagination
         ]);
     }
 

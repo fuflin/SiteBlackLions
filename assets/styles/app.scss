@@ -559,12 +559,11 @@ body {
                 .col-sm-6 {
 
                     width: 32% !important;
-                    margin: 50px 10px !important;
+                    margin: 30px 10px !important;
 
                     .card {
 
                         width: 80% !important;
-                        // height: 600px !important;
                         background-color: black !important;
                         border: solid rgb(51, 49, 49) 2px !important;
                         padding: 10px !important;
@@ -573,6 +572,7 @@ body {
                         figure {
 
                             margin: 0 !important;
+
                             .img_card {
 
                                 margin: auto !important;
@@ -580,7 +580,6 @@ body {
                                 border-radius: 15px !important;
                                 max-height: 100% !important;
                                 height: 200px !important;
-                                // object-fit: none;
                             }
                         }
 
@@ -634,6 +633,32 @@ body {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        .pagination {
+
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+
+            span {
+
+                margin: 0 10px;
+                color: white;
+                font-size: 20px;
+
+                a {
+
+                color: white;
+                text-decoration: none !important;
+                font-size: 20px;
+                }
+
+                a:hover {
+
+                    background-color: gray;
                 }
             }
         }
@@ -1060,6 +1085,11 @@ body {
 
     footer {
         height: 80px;
+
+        .container {
+
+            max-width: 100% !important;
+        }
 
         .text-center {
 
