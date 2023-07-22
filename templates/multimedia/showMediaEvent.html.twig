@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h2 style="text-align: center;">{{ event.name }}</h2>
+<h2>{{ event.name }}</h2>
 
 <section class="gallery">
     {% for image in images %}
@@ -12,7 +12,7 @@
         <input type="radio" id="{{image.id}}" checked name="gallery" class="gallery__selector"/>
           <img class="gallery__img" src="{{ asset('uploads/images/' ~ image.media)}}" alt=""/>
         <label for="{{image.id}}" class="gallery__thumb">
-            <img src="{{ asset('uploads/images/' ~ image.media)}}" alt=""/>
+            <img class="gallery-img" src="{{ asset('uploads/images/' ~ image.media)}}" alt=""/>
         </label>
     </div>
     {% endfor %}

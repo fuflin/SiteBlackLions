@@ -212,6 +212,19 @@ body main .container-send .row .col .send-msg form .button {
 body main .container {
   margin-top: 80px;
 }
+body main .container .carouselImgs .carousel-inner .carousel-item figure {
+  width: 80%;
+  margin: auto !important;
+}
+body main .container .carouselImgs .carousel-inner .carousel-item figure img {
+  width: 100%;
+  border-radius: 10px !important;
+  max-width: 100%;
+  max-height: 80%;
+  vertical-align: top;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 body main .search {
   width: 50%;
   margin: auto;
@@ -356,7 +369,6 @@ body main .card_event .row .col-sm-6 {
 }
 body main .card_event .row .col-sm-6 .card {
   width: 80% !important;
-  height: 600px !important;
   background-color: black !important;
   border: solid rgb(51, 49, 49) 2px !important;
   padding: 10px !important;
@@ -365,11 +377,12 @@ body main .card_event .row .col-sm-6 .card {
 body main .card_event .row .col-sm-6 .card figure {
   margin: 0 !important;
 }
-body main .card_event .row .col-sm-6 .card figure img {
+body main .card_event .row .col-sm-6 .card figure .img_card {
   margin: auto !important;
-  width: 80% !important;
+  width: 100% !important;
   border-radius: 15px !important;
   max-height: 100% !important;
+  height: 200px !important;
 }
 body main .card_event .row .col-sm-6 .card .card-body {
   flex: none !important;
@@ -440,7 +453,7 @@ body main .login .long .form .remember_me {
   color: white !important;
   font-size: 17px !important;
 }
-body main img {
+body main .gallery-img {
   max-width: 100%;
   max-height: 80%;
   vertical-align: top;
@@ -557,6 +570,7 @@ body main .parallax .box2 .logos .logo-1 figure {
 body main .parallax .box2 .logos .logo-1 figure img {
   border-radius: 20px;
   box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+  width: 100%;
 }
 body main .parallax .box2 .logos .logo-1 p {
   font-family: "Poppins";
@@ -583,6 +597,7 @@ body main .parallax .box2 .logos .logo-2 figure {
 body main .parallax .box2 .logos .logo-2 figure img {
   border-radius: 20px;
   box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+  width: 100%;
 }
 body main .parallax .box2 .logos .logo-2 p {
   font-family: "Poppins";
@@ -609,6 +624,7 @@ body main .parallax .box2 .logos .logo-3 figure {
 body main .parallax .box2 .logos .logo-3 figure img {
   border-radius: 20px;
   box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+  width: 100%;
 }
 body main .parallax .box2 .logos .logo-3 p {
   font-family: "Poppins";
@@ -635,6 +651,7 @@ body main .parallax .box2 .logos .logo-4 figure {
 body main .parallax .box2 .logos .logo-4 figure img {
   border-radius: 20px;
   box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+  width: 100%;
 }
 body main .parallax .box2 .logos .logo-4 p {
   font-family: "Poppins";

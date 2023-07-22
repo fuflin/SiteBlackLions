@@ -31,7 +31,9 @@ security:
                 # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
                 #always_remember_me: true
+
             login_throttling:
+                #limite de tentative de connexion par minute
                 max_attempts: 2
 
             # activate different ways to authenticate

@@ -33,8 +33,6 @@ body {
             }
         }
 
-        
-
         .container-msg {
 
             height: 610px;
@@ -324,6 +322,29 @@ body {
 
             margin-top: 80px;
 
+            .carouselImgs{
+
+                .carousel-inner{
+
+                    .carousel-item{
+
+                        figure{
+
+                            width: 80%;
+                            margin: auto !important;
+
+                            img {
+                                width: 100%;
+                                border-radius: 10px !important;
+                                max-width: 100%;
+                                max-height: 80%;
+                                vertical-align: top;
+                                object-fit: contain;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .search {
@@ -543,7 +564,7 @@ body {
                     .card {
 
                         width: 80% !important;
-                        height: 600px !important;
+                        // height: 600px !important;
                         background-color: black !important;
                         border: solid rgb(51, 49, 49) 2px !important;
                         padding: 10px !important;
@@ -552,12 +573,14 @@ body {
                         figure {
 
                             margin: 0 !important;
-                            img {
+                            .img_card {
 
                                 margin: auto !important;
-                                width: 80% !important;
+                                width: 100% !important;
                                 border-radius: 15px !important;
                                 max-height: 100% !important;
+                                height: 200px !important;
+                                // object-fit: none;
                             }
                         }
 
@@ -666,7 +689,7 @@ body {
         $max-img-width: 600px;
         $max-img-height: 400px;
 
-        img {
+        .gallery-img {
             max-width: 100%;
             max-height: 80%;
             vertical-align: top;
@@ -804,6 +827,7 @@ body {
 
                                 border-radius: 20px;
                                 box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+                                width: 100%;
                             }
                         }
 
@@ -840,6 +864,7 @@ body {
 
                                 border-radius: 20px;
                                 box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+                                width: 100%;
                             }
                         }
 
@@ -876,6 +901,7 @@ body {
 
                                 border-radius: 20px;
                                 box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+                                width: 100%;
                             }
                         }
 
@@ -912,6 +938,7 @@ body {
 
                                 border-radius: 20px;
                                 box-shadow: rgba(0, 115, 255, 0.925) 0 20px 50px -15px;
+                                width: 100%;
                             }
                         }
 
