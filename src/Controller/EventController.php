@@ -121,9 +121,10 @@ class EventController extends AbstractController
         $user = $this->getUser(); //on récupère le User en session
 
         if (!$user) { // si la personne n'a pas de compte
-
-            $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");//un message d'alerte s'affiche
-            return $this->redirectToRoute('app_login');//et l'utilisateur est renvoyé vers la page de connexion
+            //un message d'alerte s'affiche
+            $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");
+            //et l'utilisateur sera renvoyé vers la page de connexion
+            return $this->redirectToRoute('app_login');
         }
 
         //condition bloqué inscription quand limite personne atteinte + bloqué inscriptions à j-2 de la date de l'event
@@ -148,7 +149,6 @@ class EventController extends AbstractController
             // cela nous redirigera vers la page d'affichage des events
             return $this->redirectToRoute('app_event');
         }
-        // fin de partie condition
 
         $participate = new Participate();//j'instancie la classe participate
 
