@@ -76,7 +76,7 @@ class EventRepository extends ServiceEntityRepository
    public function paginationQuery()
    {
        return $this->createQueryBuilder('e')
-           ->orderBy('e.id', 'DESC')
+           ->orderBy('e.date_create', 'DESC')
            ->getQuery()
        ;
    }

@@ -120,6 +120,7 @@ class EventController extends AbstractController
     {
         $user = $this->getUser(); //on récupère le User en session
 
+        //---- condition pour vérifier si l'utilisateur est bien connecté ----//
         if (!$user) { // si la personne n'a pas de compte
             //un message d'alerte s'affiche
             $this->addFlash("danger", "Veuillez vous connecter pour vous inscrire à l'événement");
@@ -127,7 +128,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        //condition bloqué inscription quand limite personne atteinte + bloqué inscriptions à j-2 de la date de l'event
+        //--- condition bloqué inscription quand limite personne atteinte + bloqué inscriptions à j-2 de la date de l'event ---//
 
         // variable créer pour récupérer le nombre de participant à un event
         $placeEvent = $em->getRepository(Participate::class)->getInscrit($event);
@@ -138,18 +139,19 @@ class EventController extends AbstractController
 
         $diff = $dateEvenement->diff($dateInscription)->days;//variable contenant le résultat de la différence
 
-        // si la différence est supérieur ou égale à 2 OU que le nombre de place est supérieur au nombre limite de place de l'événemt
+        // si la différence est supérieur ou égale à 2 OU que le nombre de place est équivalent au nombre limite de place de l'event
         if ($diff <= 2 || $placeEvent == $event->getNbMaxPers()) {
 
             $event->setIsLock(true);//alors on modifie l'état is_lock à true
             $this->addFlash("danger", "Clôture des inscriptions");//on affichera un message pour informer les utilisateurs
 
-            $em->persist($event);
-            $em->flush();
+            $em->persist($event);// prépare les données à enregistré en base de données
+            $em->flush();// transfére dans la base de données toutes les modifications apportées
             // cela nous redirigera vers la page d'affichage des events
             return $this->redirectToRoute('app_event');
         }
 
+        //----- partie pour l'inscription -----//
         $participate = new Participate();//j'instancie la classe participate
 
         //on va attribuer différentes données
@@ -160,10 +162,10 @@ class EventController extends AbstractController
 
         $this->addFlash("success", "Inscription validée");//message de confirmation pour l'inscription
 
-        $em->persist($participate); // équivalent du prepare
-        $em->flush(); // équivalent de insert into (execute)
+        $em->persist($participate);// prépare les données à enregistré en base de données
+        $em->flush();// transfére dans la base de données toutes les modifications apportées
 
-        return $this->redirectToRoute('app_event');
+        return $this->redirectToRoute('app_event');// redirection vers la page événement
     }
 
     // fonction pour désinscrire à un événement
@@ -171,17 +173,21 @@ class EventController extends AbstractController
 
     public function removeRegisEvent(EntityManagerInterface $em, Event $event, $idParticipate)
     {
-
-        $participate = $em->getRepository(Participate::class)->find($idParticipate); //on cherche l'id de la participation
+        //on cherche l'id de la participation
+        $participate = $em->getRepository(Participate::class)->find($idParticipate);
 
         $user = $this->getUser(); //on récupère le User en session
 
+        // si le user connecté ET l'événement dans le tableau à un ID identique alors
         if ($user && $event->getParticipates()->contains($participate)) {
 
+            //la donnée en base de donnée avec le paramètre $participate est préparé pour suppression
             $em->remove($participate);
         }
 
-        $em->flush();
+        $em->flush();// transfére dans la base de données toutes les modifications apportées
+
+        //retour à la page d'affichage des événements
         return $this->redirectToRoute('app_event');
     }
 

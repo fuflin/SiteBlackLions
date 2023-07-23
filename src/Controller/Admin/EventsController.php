@@ -27,7 +27,7 @@ class EventsController extends AbstractController
 
     public function index(EntityManagerInterface $em):Response
     {
-        $events = $em->getRepository(Event::class)->findAll();
+        $events = $em->getRepository(Event::class)->findBy([], ['date_create' => 'DESC']);
 
         return $this->render('admin/events/index.html.twig', compact('events'));
     }
@@ -110,17 +110,21 @@ class EventsController extends AbstractController
 
     public function deleteEvent(EntityManagerInterface $em, Event $event, SendMail $mail): Response
     {
+        //récupération des utilisateurs lié à l'événement supprimé
         $users = $em->getRepository(Participate::class)->findBy(['event' => $event]);
 
         //------- Supression de l'événement -------//
+
+        //la donnée en base de donnée avec le paramètre $participate est préparé pour suppression
         $em->remove($event);
+        // transfére dans la base de données toutes les modifications apportées
         $em->flush();
         //------- Supression de l'événement -------//
 
         //------- Envoi du mail aux différents users concerné par la suppression -------//
         foreach ($users as $user){
 
-            $context = compact('user'); // infos des users
+            $context = compact('user'); // informations des users
             $context['event'] = $event->getName(); // nom de l'event supprimé pour la vue du mail
 
             $mail->send(
@@ -130,10 +134,10 @@ class EventsController extends AbstractController
                 'mail',
                 $context);
         }
-        //------- Envoi du mail aux différents users concerné par la suppression -------//
+        //------- Envoi du mail aux différents users concerné par la suppression fin -------//
 
+        //redirection vers la page admin gestion événements
         return $this->redirectToRoute('admin_events_index');
-
     }
 
     // fonction pour bloqué un event
