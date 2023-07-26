@@ -34,9 +34,8 @@ class ChangPasswordType extends AbstractType
                     new NotBlank([
                         'message' => 'Entrez un mot de passe',
                     ]),
-        
                     new Regex([ //la regex impose des conditions pour le mdp: 1 majuscule, 1 minuscule, 1 nombre, 1 charactère spéciale
-                        'pattern' =>  '/^(?=.*\d)(?=.*[!-\/:-@[-`{-~À-ÿ§µ²°£])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{12,32}$/',
+                        'pattern' => '/^(?=.*\d)(?=.*[!-\/:-@[-`{-~À-ÿ§µ²°£])(?=.*[a-z])(?=.*[A-Z])(?=.*[A-Za-z]).{12,32}$/',
                         'match' => true,
                         'message' => 'Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule,
                                     1 nombre, 1 caractère spéciale compris entre 12 et 32 caractères'
