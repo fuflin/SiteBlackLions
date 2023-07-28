@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       {# <meta name="description" content="{{description}}"> #}
       <title>{% block title %}{{title}}{% endblock %}</title>
-      <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+      <link rel="icon" href="{{asset('/img/logo.png')}}">
       <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
       {% block stylesheets %}
@@ -36,33 +36,37 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                   </div>
                   <div class="offcanvas-body">
+                    {% if app.user %}
+                      <h5>Bonjour <b>{{ app.user.nickname }}</b></h5>
+                    {% endif %}
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('app_home')}}"><strong>Accueil</strong></a>
+                        <a class="nav-link active" aria-current="page" href="{{path('app_home')}}"><b>Accueil</b></a>
                       </li>
                       <li class="nav-item">
                         {% if is_granted('ROLE_ADMIN') %}
-                          <a class="nav-link" href="{{path('admin_index')}}"><strong>Administration</strong></a>
+                          <a class="nav-link" href="{{path('admin_index')}}"><b>Administration</b></a>
                         {% endif %}
+                      </li>
                       {% if app.user %}
                         <li class="nav-item">
-                          <a class="nav-link" href="{{ path('app_message')}}"><strong>Messagerie</strong></a>
+                          <a class="nav-link" href="{{ path('app_message')}}"><b>Messagerie</b></a>
                         </li>
                       {% endif %}
                       <li class="nav-item">
-                          <a class="nav-link" href="{{path('app_multimedia')}}"><strong>Galerie</strong></a>
+                          <a class="nav-link" href="{{path('app_multimedia')}}"><b>Galerie</b></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{path('app_event')}}"><strong>Evénements</strong></a>
+                          <a class="nav-link" href="{{path('app_event')}}"><b>Evénements</b></a>
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <strong>L'airsoft</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                          <li><a class="dropdown-item" href="{{path('app_airsoft')}}"><strong>Qu'est-ce que c'est?</strong></a></li>
-                          <li><a class="dropdown-item" href="#"><strong>Les règlementations</strong></a></li>
-                          <li><a class="dropdown-item" href="#"><strong>Les règles de ce sport</strong></a></li>
+                          <li><a class="dropdown-item" href="{{path('app_airsoft')}}"><b>Qu'est-ce que c'est?</b></a></li>
+                          <li><a class="dropdown-item" href="#"><b>Les règlementations</b></a></li>
+                          <li><a class="dropdown-item" href="#"><b>Les règles de ce sport</b></a></li>
                           <li>
                             <hr class="dropdown-divider">
                           </li>
@@ -71,23 +75,19 @@
                       </li><br>
                       {% if app.user %}
                       <li class="nav-item">
-                        <a class="nav-link" href="{{path('app_logout')}}"><strong>Se déconnecter</strong></a>
+                        <a class="nav-link" href="{{path('app_user')}}"><b>Mon Compte</b></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{{path('app_user')}}"><strong>Personnaliser le Compte</strong></a>
+                        <a class="nav-link" href="{{path('app_logout')}}"><b>Se déconnecter</b></a>
                       </li>
                       {% else %}
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Mon Compte</strong></a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{path('app_register')}}"><strong>S'inscrire</strong></a></li>
-                            <li><a class="dropdown-item" href="{{path('app_login')}}"><strong>Se connecter</strong></a></li>
-                      {% endif %}
-                          <li>
-                            <hr class="dropdown-divider">
-                          </li>
-                        </ul>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_register')}}"><b>S'inscrire</b></a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{path('app_login')}}"><b>Se connecter</b></a>
+                      </li>
+                      {% endif %}
                     </ul>
                     <figure>
                       <img src="{{asset('/img/logo.png')}}" alt="logo association BlackLions">

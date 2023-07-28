@@ -127,7 +127,6 @@ class EventController extends AbstractController
             //et l'utilisateur sera renvoyé vers la page de connexion
             return $this->redirectToRoute('app_login');
         }
-
         //--- condition bloqué inscription quand limite personne atteinte + bloqué inscriptions à j-2 de la date de l'event ---//
 
         // variable créer pour récupérer le nombre de participant à un event

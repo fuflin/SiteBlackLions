@@ -427,19 +427,6 @@ body main .pagination {
   justify-content: center;
   margin-bottom: 20px;
 }
-body main .pagination span {
-  margin: 0 10px;
-  color: white;
-  font-size: 20px;
-}
-body main .pagination span a {
-  color: white;
-  text-decoration: none !important;
-  font-size: 20px;
-}
-body main .pagination span a:hover {
-  background-color: gray;
-}
 body main .login figure {
   width: 20%;
   margin: auto;
@@ -471,12 +458,10 @@ body main .login .long .form .remember_me {
   color: white !important;
   font-size: 17px !important;
 }
-body main .gallery-img {
+body main img {
   max-width: 100%;
   max-height: 80%;
   vertical-align: top;
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 body main .gallery {
   display: flex;
@@ -535,7 +520,7 @@ body main .parallax .box1 figure img {
   width: 100% !important;
   border-radius: 20px !important;
 }
-body main .parallax .box1 h3 {
+body main .parallax .box1 h1 {
   font-family: "Duplexide", cursive;
   font-size: 48px;
   color: #fff;
@@ -748,6 +733,11 @@ body main .parallax .box3 .event-container .regis-home .button-infos button a {
 body header {
   height: 55px;
 }
+body header h5 {
+  color: #fff !important;
+  font-size: 25px !important;
+  text-align: center !important;
+}
 body header figure {
   height: 45%;
   margin-top: 30px;
@@ -755,6 +745,7 @@ body header figure {
 body header figure img {
   width: 100%;
   border-radius: 200px !important;
+  margin: auto;
 }
 body footer {
   height: 80px;

@@ -27,19 +27,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table siteblacklions.doctrine_migration_versions : ~13 rows (environ)
+-- Listage des données de la table siteblacklions.doctrine_migration_versions : ~2 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-	('DoctrineMigrations\\Version20230526142132', '2023-05-26 14:21:54', 87),
-	('DoctrineMigrations\\Version20230612122804', '2023-06-12 12:28:52', 110),
-	('DoctrineMigrations\\Version20230704132617', '2023-07-04 13:26:27', 114),
-	('DoctrineMigrations\\Version20230704160034', '2023-07-04 16:00:39', 16),
-	('DoctrineMigrations\\Version20230704195628', '2023-07-04 19:56:32', 32),
-	('DoctrineMigrations\\Version20230704201511', '2023-07-04 20:16:00', 35),
-	('DoctrineMigrations\\Version20230705075021', '2023-07-05 19:23:02', 21),
-	('DoctrineMigrations\\Version20230705201026', '2023-07-05 20:10:31', 82),
-	('DoctrineMigrations\\Version20230706174653', '2023-07-06 17:47:04', 82),
-	('DoctrineMigrations\\Version20230706195127', '2023-07-06 19:51:32', 66),
-	('DoctrineMigrations\\Version20230706204520', '2023-07-06 20:45:23', 63),
 	('DoctrineMigrations\\Version20230707073153', '2023-07-07 07:31:58', 32),
 	('DoctrineMigrations\\Version20230707124750', '2023-07-07 12:47:55', 30);
 
