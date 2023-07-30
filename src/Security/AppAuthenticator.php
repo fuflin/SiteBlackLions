@@ -41,8 +41,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             throw new \Exception('Bot détecté');
         }
 
-        
-
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
