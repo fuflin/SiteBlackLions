@@ -1,0 +1,179 @@
+@media only screen and (max-width : 420px) {
+
+    h2 {
+
+        margin: 20px !important;
+        font-size: 35px !important;
+    }
+
+    .parallax {
+
+        .box1 {
+
+            figure {
+
+                width: 90% !important;
+                margin: auto !important;
+                padding: 40px !important;
+            }
+
+            h1 {
+
+                font-size: 45px !important;
+            }
+
+            p{
+
+                font-size: 25px !important;
+                width: 80% !important;
+            }
+        }
+
+        .box2 {
+
+            .logos {
+
+                height: 100vh !important;
+                flex-direction: column;
+                position: static !important;
+
+                .logo-1 {
+
+                position: static !important;
+
+                    figure{
+
+                        width: 80% !important;
+                    }
+
+                    p {
+
+                        margin-top: 0px !important;
+                        margin-bottom: 20px !important;
+                    }
+                }
+                .logo-1:hover {
+
+                    transform: scale(1) !important;
+                    transition: 1s all linear;
+                }
+
+                .logo-2 {
+
+                position: static !important;
+
+                    p {
+
+                        margin-top: 0px !important;
+                        margin-bottom: 20px !important;
+                    }
+                }
+                .logo-2:hover {
+
+                    transform: scale(1) !important;
+                    transition: 1s all linear;
+                }
+
+                .logo-3 {
+
+                position: static !important;
+
+                    figure{
+
+                        width: 80% !important;
+                    }
+
+                    p {
+
+                        margin-top: 0px !important;
+                        margin-bottom: 20px !important;
+                    }
+                }
+                .logo-3:hover {
+
+                    transform: scale(1) !important;
+                    transition: 1s all linear;
+                }
+
+                .logo-4 {
+
+                position: static !important;
+
+                    figure{
+
+                        width: 80% !important;
+                    }
+
+                    p {
+
+                        margin-top: 0px !important;
+                        margin-bottom: 20px !important;
+                    }
+                }
+                .logo-4:hover {
+
+                    transform: scale(1) !important;
+                    transition: 1s all linear;
+                }
+            }
+        }
+
+        .box3 {
+
+            .card_event {
+
+                .row {
+
+                    width: 90% !important;
+                    flex-direction: column !important;
+
+                    .col-sm-6 {
+
+                        width: 100% !important;
+                        margin: 15px 0px !important;
+                    }
+                }
+            }
+
+            .event-container {
+
+                .regis-home {
+
+                    width: 80% !important;
+                    margin-bottom: 20px !important;
+                }
+            }
+        }
+    }
+
+    .card_event {
+
+        .row {
+
+            width: 100% !important;
+            flex-direction: column !important;
+
+            .col-sm-6 {
+
+                width: 100% !important;
+                margin: 15px 0px !important;
+            }
+        }
+    }
+
+    h4 {
+
+        a {
+
+            width: 80% !important;
+        }
+    }
+
+    .login {
+
+        figure {
+
+            width: 60% !important;
+        }
+    }
+}
