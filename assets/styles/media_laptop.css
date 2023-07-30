@@ -1,1 +1,16 @@
-/*# sourceMappingURL=media_laptop.css.map */
+@media screen and (min-device-width: 1040px) and (max-device-width: 1500px) {
+  .parallax .box3 .card_event .row {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  .parallax .box3 .card_event .row .col-sm-6 {
+    width: 30% !important;
+  }
+  .card_event .row {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  .card_event .row .col-sm-6 {
+    width: 30% !important;
+  }
+}/*# sourceMappingURL=media_laptop.css.map */

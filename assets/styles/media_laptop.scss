@@ -3,6 +3,37 @@
 
     .parallax {
 
-        
+        .box3 {
+
+            .card_event {
+
+                .row {
+
+                    display: flex !important;
+                    justify-content: space-between !important;
+
+                    .col-sm-6 {
+
+                        width: 30% !important;
+                    }
+                }
+            }
+        }
     }
+
+    .card_event {
+
+        .row {
+
+            display: flex !important;
+            justify-content: space-between !important;
+
+            .col-sm-6 {
+
+                width: 30% !important;
+            }
+        }
+    }
+
+    
 }
