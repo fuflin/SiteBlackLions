@@ -133,7 +133,7 @@ class EventController extends AbstractController
         $placeEvent = $em->getRepository(Participate::class)->getInscrit($event);
 
         //variable pour créer pour le calcule de la différence de la date
-        $dateInscription = new \DateTime();// j'instancie la classe DateTime à la date du jour
+        $dateInscription = new \DateTime();// j'instancie un nouvel objet DateTime à la date du jour
         $dateEvenement = $event->getDateCreate();//on attribue à cette variable la date de l'event
 
         $diff = $dateEvenement->diff($dateInscription)->days;//variable contenant le résultat de la différence
@@ -151,7 +151,7 @@ class EventController extends AbstractController
         }
 
         //----- partie pour l'inscription -----//
-        $participate = new Participate();//j'instancie la classe participate
+        $participate = new Participate();//j'instancie un nouvel objet participate
 
         //on va attribuer différentes données
 
